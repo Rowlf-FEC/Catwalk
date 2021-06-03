@@ -28,5 +28,4 @@ The initial release will focus on providing the MVP for our retail application. 
 ## Resources
 [Trello](https://trello.com/b/zlrsTJTs/fec)
 
-https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-
+![image]({ https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB }) 
