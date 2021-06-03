@@ -21,7 +21,7 @@ The initial release will focus on providing the MVP for our retail application. 
 ### Related Items & Outfit Creation
 
 ## Team Members and Their Engineering Journals
-* [Ryan May]()
+* [Ryan May](https://github.com/IMayCode)
 * [Jason Wesson](https://gist.github.com/jsnwesson/6454fafbeb1a03f6347f9951c78a17b4)
 * [Michael Williamson](https://gist.github.com/mikethegrunt/0ae48f0f5f73f868a5a77fb12d745a63)
 
