@@ -35,3 +35,4 @@ The initial release will focus on providing the MVP for our retail application. 
 ![image]( https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white )
 ![image]( https://img.shields.io/badge/Google_chrome-4285F4?style=for-the-badge&logo=Google-chrome&logoColor=white )
 ![image]( https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white )
+![image]( https://img.shields.io/badge/VisualStudioCode-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white )
