@@ -1,23 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import ProductDetails from './components/ProductDetails';
+// Config is an object that has the cohort and token as keys.
+import config from'./config.js';
+// Import components up here,
+
+// render them in the App div down below
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {/* Insert components here */}
     </div>
   );
 }
