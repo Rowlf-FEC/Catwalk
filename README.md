@@ -28,7 +28,7 @@ The initial release will focus on providing the MVP for our retail application. 
 ## Resources
 [Trello](https://trello.com/b/zlrsTJTs/fec)
 
-## Technologies Used In Creation
+## Technologies Used
 ![image]( https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB ) 
 ![image]( https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node-dot-js&logoColor=white )
 ![image]( https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white )
