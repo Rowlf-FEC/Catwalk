@@ -21,16 +21,19 @@ The initial release will focus on providing the MVP for our retail application. 
 ### Related Items & Outfit Creation
 
 ## Team Members and Their Engineering Journals
-* [Ryan May](https://github.com/IMayCode)
+* [Ryan May]()
 * [Jason Wesson](https://gist.github.com/jsnwesson/6454fafbeb1a03f6347f9951c78a17b4)
 * [Michael Williamson](https://gist.github.com/mikethegrunt/0ae48f0f5f73f868a5a77fb12d745a63)
 
 ## Resources
 [Trello](https://trello.com/b/zlrsTJTs/fec)
 
-## Technologies
+## Technologies Used In Creation
 ![image]( https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB ) 
 ![image]( https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node-dot-js&logoColor=white )
 ![image]( https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white )
 ![image]( https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white )
 ![image]( https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white )
+![image]( https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white )
+![image]( https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white )
+![image]( https://img.shields.io/badge/Google_chrome-4285F4?style=for-the-badge&logo=Google-chrome&logoColor=white )
