@@ -1,5 +1,5 @@
 import './App.css';
-import ProductDetails from './components/ProductDetails';
+import ProductDetails from './components/ProductDetail/ProductDetail.jsx';
 import QandA from './components/QandA';
 import RatingsReviews from './components/RatingsReviews';
 import RelatedItems from './components/RelatedItems';

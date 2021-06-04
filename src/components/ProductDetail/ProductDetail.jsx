@@ -1,29 +1,35 @@
 import React from 'react';
-import config from'../src/config.js'; //need to confirm that this is the filepath to get to config.js
+import config from'/Users/Wesson/Catwalk/src/config.js'; // need to confirm that this is the filepath to get to config.js
 
 export default class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: props.productId || 27197, //assuming that App.jsx has a state with key productId, otherwise default to an id
-      productInfo: []
-    }
+      productId: props.productId || 27197, // assuming that App.jsx has a state with key productId, otherwise default to an id
+      productInfo: [],
+    };
   }
 
   componentDidMount() {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${this.productId}`, {
     headers: {
-      'Authorization': `${config.token}`;
+      'Authorization': `${config.token}`
     }}
       .then(result => {
         this.setState({
-          productInfo: result.data
+          productInfo: result.data,
         });
-      });
-  }
+      })
+    )};
+
+  // eslint-disable-next-line class-methods-use-this
   render() {
-    return(
-      console.log('hello, world!')
+    return (
+      <div>
+        <div>
+          Hello, World!
+        </div>
+      </div>
     );
   }
 }
@@ -31,6 +37,6 @@ export default class ProductDetail extends React.Component {
 
 /* axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${this.productId}`, {
   headers: {
-    'Authorization': `${config.token}`;
+    'Authorization': `${config.token}`
   }}
 */
