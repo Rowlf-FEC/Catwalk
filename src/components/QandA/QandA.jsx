@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import Axios from 'axios';
 
@@ -26,3 +27,6 @@ class QandA extends React.Component {
 }
 
 export default QandA;
+=======
+import React from 'react';
+>>>>>>> f97bf9faf56ec4ef3329d354d3640ce58e449df3

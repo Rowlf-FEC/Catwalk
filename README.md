@@ -7,9 +7,12 @@ Project Catwalk is a complete redesign of our client' retail portal, and is desi
 ## Our Scope
 The initial release will focus on providing the MVP for our retail application. Features implemented will be constrained to the client experience which enables customers to search, browse, add to cart, and checkout.
 
-## Installation
-### Dependencies Required
-### Environmental Requirements
+## Getting Started
+ - *Initial setup:* `npm install`
+ 
+ - *Run the app:* In a new terminal tab, start the application with `npm start`
+
+ - *Run the test suite:* `npm test`
 
 ## Usage
 ### Product Detail
@@ -21,9 +24,9 @@ The initial release will focus on providing the MVP for our retail application. 
 ### Related Items & Outfit Creation
 
 ## Team Members and Their Engineering Journals
-* [Ryan May]()
-* [Jason Wesson](https://gist.github.com/jsnwesson/6454fafbeb1a03f6347f9951c78a17b4)
-* [Michael Williamson](https://gist.github.com/mikethegrunt/0ae48f0f5f73f868a5a77fb12d745a63)
+* [Ryan May](https://github.com/IMayCode) - [Journal]()
+* [Jason Wesson](https://github.com/jsnwesson) - [Journal](https://gist.github.com/jsnwesson/6454fafbeb1a03f6347f9951c78a17b4)
+* [Michael Williamson](https://github.com/mikethegrunt) - [Journal](https://gist.github.com/mikethegrunt/0ae48f0f5f73f868a5a77fb12d745a63)
 
 ## Technologies and Resources Used
 ![image]( https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB ) 
