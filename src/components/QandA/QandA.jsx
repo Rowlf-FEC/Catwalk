@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import config from '../../config.js';
 
 class QandA extends React.Component {
 
@@ -19,6 +20,7 @@ class QandA extends React.Component {
 
     return (
       <div>
+        < SubmitAnswers state={this.state.productId} />
         <h1>Hello World!</h1>
       </div>
     )
