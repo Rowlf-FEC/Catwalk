@@ -56,12 +56,6 @@ class RatingsReviews extends Component {
   }
 }
 
-{/* <ReviewList />
-<RatingBreakdown />
-<ProductBreakdown />
-<WriteNewReview />
-<KeywordSearch /> */}
-
 RatingsReviews.propTypes = {
   productId: PropTypes.number.isRequired,
 };
