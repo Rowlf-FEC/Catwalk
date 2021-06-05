@@ -1,53 +1,69 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import bluebird from 'bluebird';
+import { Grid, Segment } from 'semantic-ui-react'
 import dayjs from 'dayjs';
-import { Button, Icon } from 'semantic-ui-react'
+import handleTime from '../configFiles/dayjsConfig';
+
+import RatingSummary from './RatingSummary';
+import RatingBreakdown from './RatingBreakdown';
+import ProductBreakdown from './ProductBreakdown';
+import SortOptions from './SortOptions';
+import ReviewList from './ReviewList';
+import ListModifierButtons from './ListModifierButtons';
 
 class RatingsReviews extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-
+      date: dayjs(),
     };
   }
 
   render() {
     return (
-      <div>
-        <Button animated>
-          <Button.Content visible>Next</Button.Content>
-          <Button.Content hidden>
-            <Icon name='arrow right' />
-          </Button.Content>
-        </Button>
-        <Button animated='vertical'>
-          <Button.Content hidden>Shop</Button.Content>
-          <Button.Content visible>
-            <Icon name='shop' />
-          </Button.Content>
-        </Button>
-        <Button animated='fade'>
-          <Button.Content visible>Sign-up for a Pro account</Button.Content>
-          <Button.Content hidden>$12.99 a month</Button.Content>
-        </Button>
+      <div class="RatingsReviews">
+  <Grid columns={2}>
+    <Grid.Row stretched>
+      <Grid.Column width={5}>
+        <Segment>
+          <RatingSummary />
+        </Segment>
+        <Segment>
+          <RatingBreakdown />
+        </Segment>
+        <Segment>
+          <ProductBreakdown />
+        </Segment>
+      </Grid.Column>
+      <Grid.Column width={10}>
+        <Segment>
+          <SortOptions />
+        </Segment>
+        <Segment>
+          <ReviewList />
+        </Segment>
+        <Segment>
+          <ListModifierButtons />
+        </Segment>
+
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
       </div>
     );
   }
 }
-// <div class="RatingsReviews">
-//   <ReviewList />
-//   <Review />
-//   <SortOptions />
-//   <RatingBreakdown />
-//   <ProductBreakdown />
-//   <WriteNewReview />
-//   <KeywordSearch />
-// </div>
+
+{/* <ReviewList />
+<RatingBreakdown />
+<ProductBreakdown />
+<WriteNewReview />
+<KeywordSearch /> */}
 
 RatingsReviews.propTypes = {
-
+  productId: PropTypes.number.isRequired,
 };
 
 export default RatingsReviews;

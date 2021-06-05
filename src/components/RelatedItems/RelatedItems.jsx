@@ -9,7 +9,7 @@ function RelatedItems(props) {
   );
 }
 
-RelatedItems.PropTypes = {
+RelatedItems.propTypes = {
 
 };
 
