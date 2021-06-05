@@ -1,18 +1,19 @@
 import './App.css';
-import ProductDetails from './components/ProductDetail/ProductDetail.jsx';
-import QandA from './components/QandA';
-import RatingsReviews from './components/RatingsReviews';
-import RelatedItems from './components/RelatedItems';
+import React from 'react';
+import ProductDetail from './components/ProductDetail/ProductDetail';
+import QandA from './components/QandA/QandA';
+import RatingsReviews from './components/RatingsReviews/RatingsReviews';
+import RelatedItems from './components/RelatedItems/RelatedItems';
 // Config is an object that has the cohort and token as keys.
-import config from'./config.js';
+// import config from'./config.js';
 
 function App() {
   return (
     <div className="App">
-        <ProductDetails />
-        <QandA />
-        <RatingsReviews />
-        <RelatedItems />
+      <ProductDetail />
+      <QandA />
+      <RatingsReviews />
+      <RelatedItems />
     </div>
   );
 }
