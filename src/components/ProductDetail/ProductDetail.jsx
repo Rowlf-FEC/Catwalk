@@ -1,5 +1,5 @@
 import React from 'react';
-import config from'../../config.js'; // need to confirm that this is the filepath to get to config.js
+import config from'../../config'; // need to confirm that this is the filepath to get to config.js
 
 export default class ProductDetail extends React.Component {
   constructor(props) {
