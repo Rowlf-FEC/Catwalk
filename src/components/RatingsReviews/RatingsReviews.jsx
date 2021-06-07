@@ -5,8 +5,8 @@ import { Grid, Segment } from 'semantic-ui-react'
 import dayjs from 'dayjs';
 import handleTime from '../configFiles/dayjsConfig';
 
-import RatingSummary from './RatingSummary';
-import RatingBreakdown from './RatingBreakdown';
+import RatingSummary from './RatingSummary/RatingSummary';
+import RatingBreakdown from './RatingBreakdown/RatingBreakdown';
 import ProductBreakdown from './ProductBreakdown';
 import SortOptions from './SortOptions';
 import ReviewList from './ReviewList';
@@ -23,7 +23,8 @@ class RatingsReviews extends Component {
 
   render() {
     return (
-      <div class="RatingsReviews">
+      <div className="RatingsReviews">
+        <p>{'Ratings & Reviews'}</p>
   <Grid columns={2}>
     <Grid.Row stretched>
       <Grid.Column width={5}>
@@ -57,7 +58,7 @@ class RatingsReviews extends Component {
 }
 
 RatingsReviews.propTypes = {
-  productId: PropTypes.number.isRequired,
+  // productId: PropTypes.number.isRequired,
 };
 
 export default RatingsReviews;
