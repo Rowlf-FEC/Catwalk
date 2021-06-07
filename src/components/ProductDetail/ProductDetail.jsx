@@ -1,9 +1,12 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 /* eslint-disable react/no-unused-state */
 import React from 'react';
 import axios from 'axios';
-import config from '../../config'; // need to confirm that this is the filepath to get to config.js
+import { Grid, Segment, Button, Container } from 'semantic-ui-react';
+
+import config from '../../config';
 import ProductImage from './ProductImage';
 import ProductDescription from './ProductDescription';
 import BuyProduct from './BuyProduct';
@@ -40,14 +43,31 @@ export default class ProductDetail extends React.Component {
       });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   render() {
     const { images, productEssentials, productDescription } = this.state;
     return (
       <div>
-        <ProductImage images={images} />
-        <BuyProduct essentials={productEssentials} />
-        <ProductDescription productDescription={productDescription} />
+        <Grid columns={2}>
+          <Grid.Row stretched>
+            <Grid.Column width={10}>
+              <Segment>
+                <ProductImage images={images} />
+              </Segment>
+            </Grid.Column>
+            <Grid.Column width={6}>
+              <Segment textAlign="left">
+                <BuyProduct essentials={productEssentials} />
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row stretched>
+            <Grid.Column width={16}>
+              <Segment textAlign="center">
+                <ProductDescription productDescription={productDescription} />
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
     );
   }
