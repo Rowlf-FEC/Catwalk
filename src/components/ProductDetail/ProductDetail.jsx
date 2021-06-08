@@ -15,10 +15,12 @@ export default class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentStyle: [],
       images: [],
       productDescription: [],
       productEssentials: [],
       productId: props.productId || 27197,
+      styles: [],
     };
   }
 
@@ -40,11 +42,28 @@ export default class ProductDetail extends React.Component {
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
+      .then(
+        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${productId}/styles`, {
+          headers: {
+            Authorization: `${config.token}`,
+          },
+        })
+          .then((result) => {
+            const { data } = result;
+            this.setState({
+              currentStyle: [data.results[0]],
+              styles: data.results,
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          }),
+      );
   }
 
   render() {
-    const { images, productEssentials, productDescription } = this.state;
+    const { images, productEssentials, productDescription, currentStyle } = this.state;
     return (
       <div>
         <Grid columns={2}>
@@ -56,7 +75,7 @@ export default class ProductDetail extends React.Component {
             </Grid.Column>
             <Grid.Column width={6}>
               <Segment textAlign="left">
-                <BuyProduct essentials={productEssentials} />
+                <BuyProduct essentials={productEssentials} currentStyle={currentStyle} />
               </Segment>
             </Grid.Column>
           </Grid.Row>
