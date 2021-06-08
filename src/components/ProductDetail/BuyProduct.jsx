@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import {
   Grid, Divider, Header, Breadcrumb, Dropdown, Icon, Button,
 } from 'semantic-ui-react';
+import '../../App.css';
 
 function BuyProduct({ essentials, currentStyle }) {
   const qtyOptions = {};
@@ -40,18 +41,28 @@ function BuyProduct({ essentials, currentStyle }) {
       }
     }
 
+    // const strikethrough = {
+    //   textDecorationLine: line-through,
+    // }
+
     return (
       <div>
         <Header size="tiny">{essentials[0]}</Header>
         <Header size="large">{essentials[2]}</Header>
-        <Header size="tiny">${essentials[1]}</Header>
+        <Header>
+          <Header.Content
+            className={currentStyle[0].sale_price ? 'sale' : 'original'}
+            content={currentStyle[0].sale_price ? `$${currentStyle[0].sale_price}` : `$${currentStyle[0].original_price}`}
+          />
+          <Header.Subheader
+            content={currentStyle[0].sale_price ? <span className="strikethrough">${currentStyle[0].original_price}</span> : null}
+          />
+        </Header>
         <Divider />
         <Breadcrumb icon="right angle" sections={sections} />
         <Grid.Row>
           <Dropdown
-            placeholder={sizes.length === 0 ? 'OUT OF STOCK' : 'Select Size'}
-            block
-            compact
+            header="Select a size"
             selection
             onChange={(e) => {
               const quantities = [];
@@ -70,17 +81,18 @@ function BuyProduct({ essentials, currentStyle }) {
               setCurrentQty([...quantities]);
             }}
             options={sizes}
+            placeholder={sizes.length === 0 ? 'OUT OF STOCK' : 'Select Size'}
+          />
+          <Dropdown
+            placeholder={currentQty.length === 0 ? '-' : '1'}
+            compact
+            defaultValue="1"
+            selection
+            options={currentQty}
           />
         </Grid.Row>
         <Divider />
         <Grid.Row>
-          <Dropdown
-            placeholder={currentQty.length === 0 ? '-' : '1'}
-            block
-            compact
-            selection
-            options={currentQty}
-          />
           <Button animated="horizontal">
             <Button.Content hidden>Add</Button.Content>
             <Button.Content visible>
