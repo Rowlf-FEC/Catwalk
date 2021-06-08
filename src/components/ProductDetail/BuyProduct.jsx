@@ -41,10 +41,6 @@ function BuyProduct({ essentials, currentStyle }) {
       }
     }
 
-    // const strikethrough = {
-    //   textDecorationLine: line-through,
-    // }
-
     return (
       <div>
         <Header size="tiny">{essentials[0]}</Header>
@@ -93,7 +89,7 @@ function BuyProduct({ essentials, currentStyle }) {
         </Grid.Row>
         <Divider />
         <Grid.Row>
-          <Button animated="horizontal">
+          <Button animated="horizontal" disabled={currentQty.length === 0}>
             <Button.Content hidden>Add</Button.Content>
             <Button.Content visible>
               <Icon name="shop" />
