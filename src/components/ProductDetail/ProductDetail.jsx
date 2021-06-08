@@ -4,7 +4,9 @@
 /* eslint-disable react/no-unused-state */
 import React from 'react';
 import axios from 'axios';
-import { Grid, Segment, Button, Container } from 'semantic-ui-react';
+import {
+  Grid, Segment,
+} from 'semantic-ui-react';
 
 import config from '../../config';
 import ProductImage from './ProductImage';
@@ -63,7 +65,9 @@ export default class ProductDetail extends React.Component {
   }
 
   render() {
-    const { images, productEssentials, productDescription, currentStyle } = this.state;
+    const {
+      images, productEssentials, productDescription, currentStyle,
+    } = this.state;
     return (
       <div>
         <Grid columns={2}>

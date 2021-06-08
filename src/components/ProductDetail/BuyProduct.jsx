@@ -2,20 +2,23 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/forbid-prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Divider, Header, Breadcrumb, Dropdown, Icon, Button } from 'semantic-ui-react';
+import {
+  Grid, Divider, Header, Breadcrumb, Dropdown, Icon, Button,
+} from 'semantic-ui-react';
 
 function BuyProduct({ essentials, currentStyle }) {
-  const sections = [
-    { key: 'Style', content: 'Style', link: false },
-    { key: 'Stylename', content: currentStyle[0].name, link: false },
-  ];
-
   const qtyOptions = {};
   const sizes = [];
+  const [currentQty, setCurrentQty] = useState([]);
 
   if (currentStyle.length > 0) {
+    const sections = [
+      { key: 'Style', content: 'Style', link: false },
+      { key: 'Stylename', content: currentStyle[0].name, link: false },
+    ];
+
     for (const sku in currentStyle[0].skus) {
       const item = currentStyle[0].skus[sku];
       const sizeOption = {
@@ -30,7 +33,7 @@ function BuyProduct({ essentials, currentStyle }) {
         value: item.quantity,
       };
     }
-    console.log(currentStyle.name)
+
     return (
       <div>
         <Header size="tiny">{essentials[0]}</Header>
@@ -44,6 +47,22 @@ function BuyProduct({ essentials, currentStyle }) {
             block
             compact
             selection
+            onChange={(e) => {
+              const quantities = [];
+              let n = 0;
+              while (n <= qtyOptions[e.target.textContent].key) {
+                if (n > 15) {
+                  break;
+                }
+                quantities.push({
+                  key: n,
+                  text: n,
+                  value: n,
+                });
+                n += 1;
+              }
+              setCurrentQty([...quantities]);
+            }}
             options={sizes} // CHANGES BASED ON CURRENT SIZE
           />
         </Grid.Row>
@@ -54,7 +73,7 @@ function BuyProduct({ essentials, currentStyle }) {
             block
             compact
             selection
-            disabled
+            options={currentQty}
           />
           <Button animated="horizontal">
             <Button.Content hidden>Add</Button.Content>
