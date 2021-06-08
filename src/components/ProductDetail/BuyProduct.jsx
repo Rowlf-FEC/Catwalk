@@ -20,18 +20,24 @@ function BuyProduct({ essentials, currentStyle }) {
     ];
 
     for (const sku in currentStyle[0].skus) {
-      const item = currentStyle[0].skus[sku];
-      const sizeOption = {
-        key: item.size,
-        text: item.size,
-        value: item.size,
-      };
-      sizes.push(sizeOption);
-      qtyOptions[item.size] = {
-        key: item.quantity,
-        text: item.quantity,
-        value: item.quantity,
-      };
+      if (sku === 'null') {
+        break;
+      } else {
+        const item = currentStyle[0].skus[sku];
+        if (item.quantity > 0) {
+          const sizeOption = {
+            key: item.size,
+            text: item.size,
+            value: item.size,
+          };
+          sizes.push(sizeOption);
+          qtyOptions[item.size] = {
+            key: item.quantity,
+            text: item.quantity,
+            value: item.quantity,
+          };
+        }
+      }
     }
 
     return (
@@ -43,13 +49,13 @@ function BuyProduct({ essentials, currentStyle }) {
         <Breadcrumb icon="right angle" sections={sections} />
         <Grid.Row>
           <Dropdown
-            placeholder="Select a size"
+            placeholder={sizes.length === 0 ? 'OUT OF STOCK' : 'Select Size'}
             block
             compact
             selection
             onChange={(e) => {
               const quantities = [];
-              let n = 0;
+              let n = 1;
               while (n <= qtyOptions[e.target.textContent].key) {
                 if (n > 15) {
                   break;
@@ -69,7 +75,7 @@ function BuyProduct({ essentials, currentStyle }) {
         <Divider />
         <Grid.Row>
           <Dropdown
-            placeholder="0"
+            placeholder={currentQty.length === 0 ? '-' : '1'}
             block
             compact
             selection

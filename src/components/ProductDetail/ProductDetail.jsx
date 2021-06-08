@@ -21,7 +21,7 @@ export default class ProductDetail extends React.Component {
       images: [],
       productDescription: [],
       productEssentials: [],
-      productId: props.productId || 27197,
+      productId: props.productId || 27201,
       styles: [],
     };
   }
