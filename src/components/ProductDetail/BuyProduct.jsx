@@ -63,7 +63,7 @@ function BuyProduct({ essentials, currentStyle }) {
               }
               setCurrentQty([...quantities]);
             }}
-            options={sizes} // CHANGES BASED ON CURRENT SIZE
+            options={sizes}
           />
         </Grid.Row>
         <Divider />
@@ -82,11 +82,13 @@ function BuyProduct({ essentials, currentStyle }) {
             </Button.Content>
           </Button>
           <Button animated="fade">
-            <Button.Content hidden>
+            <Button.Content hidden icon labelPosition="left">
               <Icon name="heart" />
+              Fave
             </Button.Content>
-            <Button.Content visible>
+            <Button.Content visible icon labelPosition="left">
               <Icon name="heart outline" />
+              Fave
             </Button.Content>
           </Button>
         </Grid.Row>
