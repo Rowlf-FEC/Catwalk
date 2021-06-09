@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Progress, Grid } from 'semantic-ui-react';
+import { Progress } from 'semantic-ui-react';
 
-function RatingProgressBar(props) {
+function RatingProgressBar({ percent }) {
   return (
-    <Progress percent={props.percent} />
+    <Progress percent={percent} size="tiny" />
   );
 }
 
