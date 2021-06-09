@@ -2,17 +2,21 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/forbid-prop-types */
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Grid, Divider, Header, Breadcrumb, Dropdown, Icon, Button,
+  Grid, Divider, Header, Breadcrumb, Dropdown, Icon, Button, Image, Card, Label,
 } from 'semantic-ui-react';
 import '../../App.css';
+import './BuyProduct.css';
 
-function BuyProduct({ essentials, currentStyle }) {
+function BuyProduct({ essentials, currentStyle, styles, changeStyle }) {
   const qtyOptions = {};
   const sizes = [];
   const [currentQty, setCurrentQty] = useState([]);
+
+  useLayoutEffect(() => {
+  });
 
   if (currentStyle.length > 0) {
     const sections = [
@@ -43,7 +47,7 @@ function BuyProduct({ essentials, currentStyle }) {
 
     return (
       <div>
-        <Header size="tiny">{essentials[0]}</Header>
+        <Header size="medium">{essentials[0]}</Header>
         <Header size="large">{essentials[2]}</Header>
         <Header>
           <Header.Content
@@ -55,7 +59,23 @@ function BuyProduct({ essentials, currentStyle }) {
           />
         </Header>
         <Divider />
-        <Breadcrumb icon="right angle" sections={sections} />
+        <Breadcrumb as="h2" icon="right angle" sections={sections} size="large" />
+        <Divider hidden />
+        <Grid.Row>
+          <Card.Group itemsPerRow={4} size="small">
+            {styles.map((style) => (
+              <Card
+                className="imgStyle"
+                onClick={() => { changeStyle(style); }}
+                raised
+              >
+                <Image src={style.photos[0].thumbnail_url} />
+                {/* <Label corner="right" icon="check" size="mini" /> */}
+              </Card>
+            ))}
+          </Card.Group>
+        </Grid.Row>
+        <Divider hidden />
         <Grid.Row>
           <Dropdown
             header="Select a size"
@@ -74,7 +94,7 @@ function BuyProduct({ essentials, currentStyle }) {
                 });
                 n += 1;
               }
-              setCurrentQty([...quantities]);
+              setCurrentQty(quantities);
             }}
             options={sizes}
             placeholder={sizes.length === 0 ? 'OUT OF STOCK' : 'Select Size'}
@@ -87,7 +107,7 @@ function BuyProduct({ essentials, currentStyle }) {
             options={currentQty}
           />
         </Grid.Row>
-        <Divider />
+        <Divider hidden />
         <Grid.Row>
           <Button animated="horizontal" disabled={currentQty.length === 0}>
             <Button.Content hidden>Add</Button.Content>
@@ -114,7 +134,9 @@ function BuyProduct({ essentials, currentStyle }) {
 
 BuyProduct.propTypes = {
   essentials: PropTypes.array.isRequired,
+  changeStyle: PropTypes.func.isRequired,
   currentStyle: PropTypes.array.isRequired,
+  styles: PropTypes.array.isRequired,
 };
 
 export default BuyProduct;

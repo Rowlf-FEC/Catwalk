@@ -1,0 +1,7 @@
+.imgStyle {
+  /* display: block; */
+  max-height: 40px;
+  /* max-width: 75px; */
+  /* border-radius: 50%; */
+  overflow: hidden;
+}

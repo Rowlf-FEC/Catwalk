@@ -24,6 +24,7 @@ export default class ProductDetail extends React.Component {
       productId: props.productId || 27201,
       styles: [],
     };
+    this.changeStyle = this.changeStyle.bind(this);
   }
 
   componentDidMount() {
@@ -64,9 +65,15 @@ export default class ProductDetail extends React.Component {
       );
   }
 
+  changeStyle(style) {
+    this.setState({
+      currentStyle: [style],
+    });
+  }
+
   render() {
     const {
-      images, productEssentials, productDescription, currentStyle,
+      images, productEssentials, productDescription, currentStyle, styles,
     } = this.state;
     return (
       <div>
@@ -74,19 +81,28 @@ export default class ProductDetail extends React.Component {
           <Grid.Row stretched>
             <Grid.Column width={10}>
               <Segment>
-                <ProductImage images={images} />
+                <ProductImage
+                  images={images}
+                />
               </Segment>
             </Grid.Column>
             <Grid.Column width={6}>
               <Segment textAlign="left">
-                <BuyProduct essentials={productEssentials} currentStyle={currentStyle} />
+                <BuyProduct
+                  essentials={productEssentials}
+                  changeStyle={this.changeStyle}
+                  currentStyle={currentStyle}
+                  styles={styles}
+                />
               </Segment>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row stretched>
             <Grid.Column width={16}>
               <Segment textAlign="center">
-                <ProductDescription productDescription={productDescription} />
+                <ProductDescription
+                  productDescription={productDescription}
+                />
               </Segment>
             </Grid.Column>
           </Grid.Row>
