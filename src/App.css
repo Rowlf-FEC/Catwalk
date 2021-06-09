@@ -5,4 +5,16 @@
 .bigRating {
   font-size: 5em;
   font-weight: bold;
+  
+.original {
+  color: black;
+}
+
+.sale {
+  color: red;
+}
+
+.strikethrough {
+  text-decoration-line: line-through;
+  text-decoration-style: solid;
 }
