@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.bigRating {
+  font-size: 5em;
+  font-weight: bold;
+  
 .original {
   color: black;
 }
