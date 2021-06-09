@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import SubmitPhotoPopUp from './SubmitPhotoPopUp';
 import validateSubmit from './validateSubmit';
 
-function SubmitAnswer(props) {
+function SubmitQuestionForm(props) {
 
-    /** possible state neeeded:
+  /** possible state neeeded:
   *
-  *
+  *  Need productId
   *
   */
 
   // This is a pop up that overlays window
 
-  // At top of window title should read "Submit your Answer for [product name]: [question body]"
+  // At top of window title should read "Ask your question about the [product name]"
 
   // Has a form layout with an input for:
     // "What is you email? *mandatory" input placeholder="Example: JaneDoe@gmail.com"
@@ -25,10 +24,8 @@ function SubmitAnswer(props) {
 
   // Answer body input should accept 1000 characters and placeholder="Your answer to question here"
 
-  // Should have "upload photos" button that is separate pop up window
-
-  // Should have "Submit Answer" button that VALIDATES form before submitting
+  // Should have "Submit Question" button that VALIDATES form before submitting
 
 }
 
-export default SubmitAnswer;
+export default SubmitQuestionForm;

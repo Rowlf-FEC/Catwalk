@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function SubmitPhotoPopUp(props) {
+function SubmitPhotoForm(props) {
 
   /** possible state neeeded:
   *
@@ -19,4 +19,4 @@ function SubmitPhotoPopUp(props) {
 
 }
 
-export default SubmitPhotoPopUp;
+export default SubmitPhotoForm;
