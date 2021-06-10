@@ -1,37 +1,21 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Divider } from 'semantic-ui-react';
-// import {
-//   CarouselProvider, Image, Slide, Slider,
-// } from 'pure-react-carousel';
-// import CustomDotGroup from './CustomDotGroup';
+// import { Image } from 'semantic-ui-react';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
+import './ProductImage.css';
 
 function ProductImage({ images }) {
   return (
-    <div>Insert photo here </div>
+    <Carousel dynamicHeight showArrows showStatus={false} showThumbs useKeyboardArrows width="100%">
+      {images.map((image) => (
+        <div>
+          <img alt={image.url} className="carouselImg" src={image.thumbnail_url} />
+        </div>
+      ))}
+    </Carousel>
   );
-  // return (
-  //   <CarouselProvider
-  //     naturalSlideWidth={1}
-  //     naturalSlideHeight={1}
-  //     totalSlides={3}
-  //   >
-  //     <Slider>
-  //       <Slide tag="a" index={0}>
-  //         <Image src="https://lorempixel.com/800/800/cats/0" />
-  //       </Slide>
-  //       <Slide tag="a" index={1}>
-  //         <Image src="https://lorempixel.com/800/800/cats/1" />
-  //       </Slide>
-  //       <Slide tag="a" index={2}>
-  //         <Image src="https://lorempixel.com/800/800/cats/2" />
-  //       </Slide>
-  //     </Slider>
-  //     <Divider />
-  //     <CustomDotGroup slides={3} />
-  //   </CarouselProvider>
-  // );
 }
 
 ProductImage.propTypes = {
