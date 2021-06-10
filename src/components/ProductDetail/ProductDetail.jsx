@@ -20,8 +20,8 @@ export default class ProductDetail extends React.Component {
       currentStyle: [],
       images: [],
       productDescription: [],
-      productEssentials: [],
-      productId: props.productId || 27201,
+      essentials: [],
+      productId: props.productId || 27203,
       styles: [],
     };
   }
@@ -39,7 +39,7 @@ export default class ProductDetail extends React.Component {
         const resultEssentials = [data.category, data.default_price, data.name, data.features];
         this.setState({
           productDescription: resultDescriptions,
-          productEssentials: resultEssentials,
+          essentials: resultEssentials,
         });
       })
       .catch((error) => {
@@ -66,7 +66,7 @@ export default class ProductDetail extends React.Component {
 
   render() {
     const {
-      images, productEssentials, productDescription, currentStyle,
+      images, essentials, productDescription, currentStyle,
     } = this.state;
     return (
       <div>
@@ -79,15 +79,13 @@ export default class ProductDetail extends React.Component {
             </Grid.Column>
             <Grid.Column width={6}>
               <Segment textAlign="left">
-                <BuyProduct essentials={productEssentials} currentStyle={currentStyle} />
+                <BuyProduct essentials={essentials} currentStyle={currentStyle} />
               </Segment>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row stretched>
-            <Grid.Column width={16}>
-              <Segment textAlign="center">
-                <ProductDescription productDescription={productDescription} />
-              </Segment>
+            <Grid.Column textAlign="center" width={16}>
+                <ProductDescription productDescription={productDescription} essentials={essentials} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
