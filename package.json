@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bluebird": "^3.7.2",
+    "css-loader": "^5.2.6",
     "dayjs": "^1.10.5",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

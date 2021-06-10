@@ -5,7 +5,7 @@
 import React from 'react';
 import axios from 'axios';
 import {
-  Grid, Segment,
+  Grid,
 } from 'semantic-ui-react';
 
 import config from '../../config';
@@ -20,8 +20,8 @@ export default class ProductDetail extends React.Component {
       currentStyle: [],
       images: [],
       productDescription: [],
-      productEssentials: [],
-      productId: props.productId || 27189,
+      essentials: [],
+      productId: props.productId || 27201,
       styles: [],
     };
     this.changeStyle = this.changeStyle.bind(this);
@@ -74,7 +74,7 @@ export default class ProductDetail extends React.Component {
 
   render() {
     const {
-      images, productEssentials, productDescription, currentStyle, styles,
+      images, essentials, productDescription, currentStyle, styles,
     } = this.state;
     return (
       <div>
@@ -83,19 +83,18 @@ export default class ProductDetail extends React.Component {
             <Grid.Column width={10}>
               <ProductImage images={images} />
             </Grid.Column>
-            <Grid.Column width={6}>
-              <Segment textAlign="left">
-                <BuyProduct
-                  essentials={productEssentials}
-                  changeStyle={this.changeStyle}
-                  currentStyle={currentStyle}
-                  styles={styles}
-              </Segment>
+            <Grid.Column textAlign="left" width={6}>
+              <BuyProduct
+                essentials={essentials}
+                changeStyle={this.changeStyle}
+                currentStyle={currentStyle}
+                styles={styles}
+              />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row stretched>
             <Grid.Column textAlign="center" width={16}>
-                <ProductDescription productDescription={productDescription} essentials={essentials} />
+              <ProductDescription productDescription={productDescription} essentials={essentials} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
