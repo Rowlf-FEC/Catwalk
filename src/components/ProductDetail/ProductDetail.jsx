@@ -9,7 +9,7 @@ import {
 } from 'semantic-ui-react';
 
 import config from '../../config';
-import ProductImage from './ProductImage';
+import ProductImage from './ProductImage/ProductImage.jsx';
 import ProductDescription from './ProductDescription';
 import BuyProduct from './BuyProduct';
 
@@ -21,7 +21,7 @@ export default class ProductDetail extends React.Component {
       images: [],
       productDescription: [],
       productEssentials: [],
-      productId: props.productId || 27201,
+      productId: props.productId || 27189,
       styles: [],
     };
   }
