@@ -19,6 +19,7 @@ class RatingsReviews extends Component {
     super(props);
 
     this.state = {
+      loaded: false,
       date: dayjs(),
       productId: props.productId || 27189,
       reviews: [],
@@ -50,8 +51,7 @@ class RatingsReviews extends Component {
         product_id: productId,
       },
     })
-      .then((response) => {
-        this.setState({ reviews: response.data.results });
+      .then((reviews) => {
         axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/meta', {
           headers: {
             Authorization: `${config.token}`,
@@ -60,18 +60,23 @@ class RatingsReviews extends Component {
             product_id: productId,
           },
         })
-          .then((response) => {
-            // characteristics
-            // rating
+          .then((metaReviews) => {
             this.setState({
-              ratings: response.data.ratings,
+              loaded: true,
+              reviews: reviews.data.results,
+              ratings: metaReviews.data.ratings,
+              recommended: metaReviews.data.recommended,
             });
-            // reccomend
+            console.log(metaReviews.data)
           });
-      })
+      });
   }
 
   render() {
+    const { loaded, ratings, recommended, reviews } = this.state;
+    if (!loaded) {
+      return <div />;
+    }
     return (
       <div className="RatingsReviews">
         <Grid centered columns={2}>
@@ -83,15 +88,18 @@ class RatingsReviews extends Component {
           </Grid.Row>
           <Grid.Row stretched>
             <Grid.Column width={4}>
-              <RatingSummary ratings={this.state.ratings} />
+              <RatingSummary ratings={ratings} />
               <Divider hidden />
-              <RatingBreakdown />
+              <RatingBreakdown
+                ratings={ratings}
+                recommended={recommended}
+              />
               <Divider hidden />
               <ProductBreakdown />
             </Grid.Column>
             <Grid.Column width={9}>
-              <SortOptions count={this.state.reviews.length} />
-              <ReviewList />
+              <SortOptions count={reviews.length} />
+              <ReviewList ratings={ratings} />
               <ListModifierButtons />
             </Grid.Column>
           </Grid.Row>

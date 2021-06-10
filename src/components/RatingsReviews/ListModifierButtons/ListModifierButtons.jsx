@@ -4,7 +4,7 @@ import { Container, Button } from 'semantic-ui-react';
 
 function ListModifierButtons(props) {
   return (
-    <Container textAlign="left">
+    <Container>
       <Button basic>MORE REVIEWS</Button>
       <Button basic>ADD A REVIEW +</Button>
     </Container>

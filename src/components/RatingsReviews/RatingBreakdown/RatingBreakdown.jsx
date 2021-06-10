@@ -3,48 +3,53 @@ import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
 import RatingProgressBar from './RatingProgressBar';
 
-function RatingBreakdown(props) {
+function RatingBreakdown({ ratings, recommended }) {
+  let max = 0;
+  const percentages = {
+    5: 0,
+    4: 0,
+    3: 0,
+    2: 0,
+    1: 0,
+  };
+
+  Object.keys(ratings).forEach((index) => {
+    if (max < ratings[index]) {
+      max = ratings[index];
+    }
+    percentages[index] = ratings[index]
+  });
+  Object.keys(percentages).forEach((index) => {
+    percentages[index] = (percentages[index] / max) * (100);
+  });
+
   return (
     <div>
       <p>100% of reviewers recommend this product</p>
       <Grid>
-        <Grid.Column width={4}>
-          <p>5 stars:</p>
-        </Grid.Column>
-        <Grid.Column width={12}>
-          <RatingProgressBar percent={20} />
-        </Grid.Column>
-        <Grid.Column width={4}>
-          <p>4 stars:</p>
-        </Grid.Column>
-        <Grid.Column width={12}>
-          <RatingProgressBar percent={40} />
-        </Grid.Column>
-        <Grid.Column width={4}>
-          <p>3 stars:</p>
-        </Grid.Column>
-        <Grid.Column width={12}>
-          <RatingProgressBar percent={100} />
-        </Grid.Column>
-        <Grid.Column width={4}>
-          <p>2 stars:</p>
-        </Grid.Column>
-        <Grid.Column width={12}>
-          <RatingProgressBar percent={20} />
-        </Grid.Column>
-        <Grid.Column width={4}>
-          <p>1 stars:</p>
-        </Grid.Column>
-        <Grid.Column width={12}>
-          <RatingProgressBar percent={10} />
-        </Grid.Column>
+        {Object.keys(percentages).map((index) => (
+          <Grid.Row key={`${index}StarBar`}>
+            <Grid.Column width={4}>
+              <p>
+                <u>
+                  {index}
+                  {' stars'}
+                </u>
+              </p>
+            </Grid.Column>
+            <Grid.Column width={12}>
+              <RatingProgressBar percent={percentages[index]} />
+            </Grid.Column>
+          </Grid.Row>
+        ))}
       </Grid>
     </div>
   );
 }
 
 RatingBreakdown.propTypes = {
-
+  ratings: PropTypes.object.isRequired,
+  recommended: PropTypes.object.isRequired,
 };
 
 export default RatingBreakdown;

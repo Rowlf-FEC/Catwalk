@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import { Grid, Container, Divider } from 'semantic-ui-react';
 import StarRating from '../ModularComponents/StarRating';
 
-const Review = (props) => {
-  const [reviews, setReviews] = useState(props.reviews || []);
+const ReviewList = ({ reviews, ratings }) => {
+  const [reviewSet, setReviewSet] = useState(reviews || []);
+  const [ratingList, setRatingList] = useState(ratings || {});
 
   return (
     <Grid>
       <Grid.Row>
         <Grid.Column floated="left" width={1}>
           <Container textAlign="left">
-            <StarRating />
+            <StarRating ratings={ratings} />
           </Container>
         </Grid.Column>
         <Grid.Column floated="right" width={4}>
@@ -57,8 +58,9 @@ const Review = (props) => {
   );
 };
 
-Review.propTypes = {
+ReviewList.propTypes = {
   reviews: PropTypes.array.isRequired,
+  ratings: PropTypes.object.isRequired,
 };
 
-export default Review;
+export default ReviewList;

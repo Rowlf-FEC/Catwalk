@@ -1,26 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
 import StarRating from '../ModularComponents/StarRating';
 import ProductRating from './ProductRating';
+import findAverageRating from '../ModularComponents/findAverageRating';
 
-function RatingSummary(props) {
-  let total = 0;
-  let divisor = 0;
-  Object.keys(props.ratings).forEach((rating) => {
-    total += Number(rating) * Number(props.ratings[rating]);
-    divisor += Number(props.ratings[rating]);
-  });
-  total = total / divisor
+function RatingSummary({ ratings }) {
+  // const [stars, setStars] = useState(5);
+  // const [total, setTotal] = useState(0);
 
+  const stars = findAverageRating(ratings) || 5;
   return (
     <Grid>
       <Grid.Row>
         <Grid.Column verticalAlign="top" width={5}>
-          <ProductRating rating={total} />
+          <ProductRating rating={stars} />
         </Grid.Column>
         <Grid.Column verticalAlign="top" width={3}>
-          <StarRating />
+          <StarRating ratings={ratings} />
         </Grid.Column>
       </Grid.Row>
     </Grid>
@@ -28,7 +25,7 @@ function RatingSummary(props) {
 }
 
 RatingSummary.propTypes = {
-  ratings: PropTypes.objectOf.isRequired,
+  ratings: PropTypes.object.isRequired,
 };
 
 export default RatingSummary;
