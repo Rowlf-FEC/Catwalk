@@ -40,7 +40,7 @@ export default class ProductDetail extends React.Component {
         const resultEssentials = [data.category, data.default_price, data.name, data.features];
         this.setState({
           productDescription: resultDescriptions,
-          productEssentials: resultEssentials,
+          essentials: resultEssentials,
         });
       })
       .catch((error) => {
@@ -90,17 +90,12 @@ export default class ProductDetail extends React.Component {
                   changeStyle={this.changeStyle}
                   currentStyle={currentStyle}
                   styles={styles}
-                />
               </Segment>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row stretched>
-            <Grid.Column width={16}>
-              <Segment textAlign="center">
-                <ProductDescription
-                  productDescription={productDescription}
-                />
-              </Segment>
+            <Grid.Column textAlign="center" width={16}>
+                <ProductDescription productDescription={productDescription} essentials={essentials} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
