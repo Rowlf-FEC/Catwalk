@@ -121,11 +121,11 @@ function BuyProduct({
             </Button.Content>
           </Button>
           <Button animated="fade">
-            <Button.Content hidden labelposition="left">
+            <Button.Content hidden>
               <Icon name="heart" />
               Fave
             </Button.Content>
-            <Button.Content visible labelposition="left">
+            <Button.Content visible>
               <Icon name="heart outline" />
               Fave
             </Button.Content>
