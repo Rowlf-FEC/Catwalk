@@ -9,7 +9,7 @@ import {
 } from 'semantic-ui-react';
 
 import config from '../../config';
-import ProductImage from './ProductImage';
+import ProductImage from './ProductImage/ProductImage';
 import ProductDescription from './ProductDescription';
 import BuyProduct from './BuyProduct';
 
@@ -20,10 +20,11 @@ export default class ProductDetail extends React.Component {
       currentStyle: [],
       images: [],
       productDescription: [],
-      essentials: [],
-      productId: props.productId || 27203,
+      productEssentials: [],
+      productId: props.productId || 27189,
       styles: [],
     };
+    this.changeStyle = this.changeStyle.bind(this);
   }
 
   componentDidMount() {
@@ -55,6 +56,7 @@ export default class ProductDetail extends React.Component {
             const { data } = result;
             this.setState({
               currentStyle: [data.results[0]],
+              images: data.results[0].photos,
               styles: data.results,
             });
           })
@@ -64,22 +66,30 @@ export default class ProductDetail extends React.Component {
       );
   }
 
+  changeStyle(style) {
+    this.setState({
+      currentStyle: [style],
+    });
+  }
+
   render() {
     const {
-      images, essentials, productDescription, currentStyle,
+      images, productEssentials, productDescription, currentStyle, styles,
     } = this.state;
     return (
       <div>
         <Grid columns={2}>
           <Grid.Row stretched>
             <Grid.Column width={10}>
-              <Segment>
-                <ProductImage images={images} />
-              </Segment>
+              <ProductImage images={images} />
             </Grid.Column>
             <Grid.Column width={6}>
               <Segment textAlign="left">
-                <BuyProduct essentials={essentials} currentStyle={currentStyle} />
+                <BuyProduct
+                  essentials={productEssentials}
+                  changeStyle={this.changeStyle}
+                  currentStyle={currentStyle}
+                  styles={styles}
               </Segment>
             </Grid.Column>
           </Grid.Row>
