@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Grid, Divider, Header, List,
+  Grid, Header, List,
 } from 'semantic-ui-react';
 
 function ProductDescription({ productDescription, essentials }) {
@@ -15,8 +15,8 @@ function ProductDescription({ productDescription, essentials }) {
         </Grid.Column>
         <Grid.Column width={3}>
           <List>
-            {essentials[3].map((element) => (
-              <List.Item>
+            {essentials[3].map((element, index) => (
+              <List.Item key={index}>
                 <List.Icon name="check" />
                 <List.Content content={element.feature} />
               </List.Item>

@@ -10,7 +10,7 @@ function ProductImage({ images }) {
   return (
     <Carousel dynamicHeight showArrows showStatus={false} showThumbs useKeyboardArrows width="100%">
       {images.map((image) => (
-        <div>
+        <div key={image.url.slice(34, 44)}>
           <img alt={image.url} className="carouselImg" src={image.thumbnail_url} />
         </div>
       ))}
