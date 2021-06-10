@@ -9,7 +9,7 @@ import {
 } from 'semantic-ui-react';
 
 import config from '../../config';
-import ProductImage from './ProductImage';
+import ProductImage from './ProductImage/ProductImage';
 import ProductDescription from './ProductDescription';
 import BuyProduct from './BuyProduct';
 
@@ -21,7 +21,7 @@ export default class ProductDetail extends React.Component {
       images: [],
       productDescription: [],
       productEssentials: [],
-      productId: props.productId || 27201,
+      productId: props.productId || 27189,
       styles: [],
     };
     this.changeStyle = this.changeStyle.bind(this);
@@ -56,6 +56,7 @@ export default class ProductDetail extends React.Component {
             const { data } = result;
             this.setState({
               currentStyle: [data.results[0]],
+              images: data.results[0].photos,
               styles: data.results,
             });
           })
@@ -80,11 +81,7 @@ export default class ProductDetail extends React.Component {
         <Grid columns={2}>
           <Grid.Row stretched>
             <Grid.Column width={10}>
-              <Segment>
-                <ProductImage
-                  images={images}
-                />
-              </Segment>
+              <ProductImage images={images} />
             </Grid.Column>
             <Grid.Column width={6}>
               <Segment textAlign="left">
