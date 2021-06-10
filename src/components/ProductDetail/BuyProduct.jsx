@@ -125,9 +125,9 @@ function BuyProduct({ essentials, currentStyle, styles, changeStyle }) {
               Fave
             </Button.Content>
           </Button>
-          <Button color="facebook" icon="facebook" />
-          <Button color="twitter" icon="twitter" />
-          <Button color="pinterest" icon="pinterest" />
+          <Button circular color="facebook" icon="facebook" />
+          <Button circular color="twitter" icon="twitter" />
+          <Button circular color="pinterest" icon="pinterest" />
         </Grid.Row>
       </div>
     );
