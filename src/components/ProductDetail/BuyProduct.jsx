@@ -5,12 +5,14 @@
 import React, { useState, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Grid, Divider, Header, Breadcrumb, Dropdown, Icon, Button, Image, Card, Label,
+  Grid, Divider, Header, Breadcrumb, Dropdown, Icon, Button, Image, Card,
 } from 'semantic-ui-react';
 import '../../App.css';
 import './BuyProduct.css';
 
-function BuyProduct({ essentials, currentStyle, styles, changeStyle }) {
+function BuyProduct({
+  essentials, currentStyle, styles, changeStyle,
+}) {
   const qtyOptions = {};
   const sizes = [];
   const [currentQty, setCurrentQty] = useState([]);
@@ -23,6 +25,8 @@ function BuyProduct({ essentials, currentStyle, styles, changeStyle }) {
       { key: 'Style', content: 'Style', link: false },
       { key: 'Stylename', content: currentStyle[0].name, link: false },
     ];
+
+    const isTrue = currentQty.length === 0;
 
     for (const sku in currentStyle[0].skus) {
       if (sku === 'null') {
@@ -66,6 +70,7 @@ function BuyProduct({ essentials, currentStyle, styles, changeStyle }) {
             {styles.map((style) => (
               <Card
                 className="imgStyle"
+                key={style.style_id}
                 onClick={() => { changeStyle(style); }}
                 raised
               >
@@ -109,25 +114,25 @@ function BuyProduct({ essentials, currentStyle, styles, changeStyle }) {
         </Grid.Row>
         <Divider hidden />
         <Grid.Row>
-          <Button animated="horizontal" disabled={currentQty.length === 0}>
+          <Button animated disabled={isTrue}>
             <Button.Content hidden>Add</Button.Content>
             <Button.Content visible>
               <Icon name="shop" />
             </Button.Content>
           </Button>
           <Button animated="fade">
-            <Button.Content hidden icon labelPosition="left">
+            <Button.Content hidden labelposition="left">
               <Icon name="heart" />
               Fave
             </Button.Content>
-            <Button.Content visible icon labelPosition="left">
+            <Button.Content visible labelposition="left">
               <Icon name="heart outline" />
               Fave
             </Button.Content>
           </Button>
           <Button circular color="facebook" icon="facebook" />
           <Button circular color="twitter" icon="twitter" />
-          <Button circular color="pinterest" icon="pinterest" />
+          <Button circular color="red" icon="pinterest" />
         </Grid.Row>
       </div>
     );
