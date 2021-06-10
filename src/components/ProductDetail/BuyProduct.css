@@ -1,0 +1,8 @@
+.imgStyle {
+  /* display: block; */
+  max-height:3em;
+  max-width: 15%;
+  /* border-radius: 50%; */
+  overflow: hidden;
+  /* object-fit: cover; */
+}
