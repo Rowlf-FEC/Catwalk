@@ -66,7 +66,7 @@ function BuyProduct({
         <Breadcrumb as="h2" icon="right angle" sections={sections} size="large" />
         <Divider hidden />
         <Grid.Row>
-          <Card.Group itemsPerRow={4} size="small">
+          <Card.Group itemsPerRow={4} size="large">
             {styles.map((style) => (
               <Card
                 className="imgStyle"
