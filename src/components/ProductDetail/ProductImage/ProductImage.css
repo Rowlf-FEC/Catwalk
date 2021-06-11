@@ -1,6 +1,16 @@
-.carouselImg {
-  max-height: 400px;
-  max-width: 300px;
-  height: auto;
-  width: auto;
+img.carouselImg {
+  cursor: zoom-in;
+  max-width: 80%;
+}
+
+.carousel.carousel-slider {
+  height: 350px;
+}
+
+.carouselColumn {
+  padding-top: 50px;
+}
+
+.carousel img {
+  cursor: zoom-in;
 }

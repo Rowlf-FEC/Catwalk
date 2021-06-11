@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -8,10 +9,10 @@ import './ProductImage.css';
 
 function ProductImage({ images }) {
   return (
-    <Carousel dynamicHeight showArrows showStatus={false} showThumbs useKeyboardArrows width="100%">
-      {images.map((image) => (
-        <div key={image.url.slice(34, 44)}>
-          <img alt={image.url} className="carouselImg" src={image.thumbnail_url} />
+    <Carousel showArrows showStatus={false} showThumbs useKeyboardArrows width="100%">
+      {images.map((image, index) => (
+        <div key={index}>
+          <img alt={image.url} className="carouselImg" src={image.url} />
         </div>
       ))}
     </Carousel>

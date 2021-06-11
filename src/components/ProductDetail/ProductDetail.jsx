@@ -7,6 +7,7 @@ import axios from 'axios';
 import {
   Grid,
 } from 'semantic-ui-react';
+import './ProductImage/ProductImage.css';
 
 import config from '../../config';
 import ProductImage from './ProductImage/ProductImage';
@@ -21,7 +22,7 @@ export default class ProductDetail extends React.Component {
       images: [],
       productDescription: [],
       essentials: [],
-      productId: props.productId || 27201,
+      productId: props.productId || 27191,
       styles: [],
     };
     this.changeStyle = this.changeStyle.bind(this);
@@ -80,7 +81,7 @@ export default class ProductDetail extends React.Component {
       <div>
         <Grid columns={2}>
           <Grid.Row stretched>
-            <Grid.Column width={10}>
+            <Grid.Column className="carouselColumn" width={10}>
               <ProductImage images={images} />
             </Grid.Column>
             <Grid.Column textAlign="left" width={6}>
