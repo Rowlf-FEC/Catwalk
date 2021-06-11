@@ -2,13 +2,14 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/forbid-prop-types */
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Grid, Divider, Header, Breadcrumb, Dropdown, Icon, Button, Image, Card,
 } from 'semantic-ui-react';
 import '../../App.css';
 import './BuyProduct.css';
+import ShareButton from './BuyProduct/ShareButtons';
 
 function BuyProduct({
   essentials, currentStyle, styles, changeStyle,
@@ -16,9 +17,6 @@ function BuyProduct({
   const qtyOptions = {};
   const sizes = [];
   const [currentQty, setCurrentQty] = useState([]);
-
-  useLayoutEffect(() => {
-  });
 
   if (currentStyle.length > 0) {
     const sections = [
@@ -130,9 +128,8 @@ function BuyProduct({
               Fave
             </Button.Content>
           </Button>
-          <Button circular color="facebook" icon="facebook" />
-          <Button circular color="twitter" icon="twitter" />
-          <Button circular color="red" icon="pinterest" />
+          <Divider hidden />
+          <ShareButton />
         </Grid.Row>
       </div>
     );
