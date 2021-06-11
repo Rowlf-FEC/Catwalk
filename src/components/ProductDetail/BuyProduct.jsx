@@ -9,6 +9,7 @@ import {
 } from 'semantic-ui-react';
 import '../../App.css';
 import './BuyProduct.css';
+import PriceTag from './BuyProduct/PriceTag';
 import ShareButton from './BuyProduct/ShareButtons';
 
 function BuyProduct({
@@ -47,15 +48,7 @@ function BuyProduct({
       <div>
         <Header size="medium">{essentials[0]}</Header>
         <Header size="large">{essentials[2]}</Header>
-        <Header>
-          <Header.Content
-            className={currentStyle[0].sale_price ? 'sale' : 'original'}
-            content={currentStyle[0].sale_price ? `$${currentStyle[0].sale_price}` : `$${currentStyle[0].original_price}`}
-          />
-          <Header.Subheader
-            content={currentStyle[0].sale_price ? <span className="strikethrough">${currentStyle[0].original_price}</span> : null}
-          />
-        </Header>
+        <PriceTag currentStyle={currentStyle} />
         <Divider />
         <Breadcrumb as="h2" icon="right angle" sections={sections} size="large" />
         <Divider hidden />
