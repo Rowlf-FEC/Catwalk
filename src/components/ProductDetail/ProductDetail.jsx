@@ -22,7 +22,7 @@ export default class ProductDetail extends React.Component {
       images: [],
       productDescription: [],
       essentials: [],
-      productId: props.productId || 27191,
+      productId: props.productId || 27192,
       styles: [],
     };
     this.changeStyle = this.changeStyle.bind(this);

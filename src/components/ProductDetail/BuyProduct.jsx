@@ -38,11 +38,7 @@ function BuyProduct({
             value: item.size,
           };
           sizes.push(sizeOption);
-          qtyOptions[item.size] = {
-            key: item.quantity,
-            text: item.quantity,
-            value: item.quantity,
-          };
+          qtyOptions[item.size] = item.quantity;
         }
       }
     }
@@ -86,7 +82,7 @@ function BuyProduct({
             onChange={(e) => {
               const quantities = [];
               let n = 1;
-              while (n <= qtyOptions[e.target.textContent].key) {
+              while (n <= qtyOptions[e.target.textContent]) {
                 if (n > 15) {
                   break;
                 }
