@@ -22,7 +22,9 @@ export default class ProductDetail extends React.Component {
       images: [],
       productDescription: [],
       essentials: [],
-      productId: props.productId || 27191,
+      productId: props.productId || 27192,
+      qtyOptions: [],
+      sizeOptions: [],
       styles: [],
     };
     this.changeStyle = this.changeStyle.bind(this);
@@ -63,6 +65,35 @@ export default class ProductDetail extends React.Component {
           })
           .catch((error) => {
             console.log(error);
+          })
+          .then(() => {
+            const {
+              currentStyle,
+            } = this.state;
+            const skus = Object.keys(currentStyle[0].skus);
+            const sizeResult = [];
+            const qtyResult = {};
+            for (let i = 0; i < skus.length; i += 1) {
+              const sku = skus[i];
+              if (sku === 'null') {
+                break;
+              } else {
+                const item = currentStyle[0].skus[sku];
+                if (item.quantity > 0) {
+                  const sizeOption = {
+                    key: item.size,
+                    text: item.size,
+                    value: item.size,
+                  };
+                  sizeResult.push(sizeOption);
+                  qtyResult[item.size] = item.quantity;
+                }
+              }
+            }
+            this.setState({
+              sizeOptions: sizeResult,
+              qtyOptions: [qtyResult],
+            });
           }),
       );
   }
@@ -70,12 +101,41 @@ export default class ProductDetail extends React.Component {
   changeStyle(style) {
     this.setState({
       currentStyle: [style],
+      images: style.photos,
+    }, () => {
+      const {
+        currentStyle,
+      } = this.state;
+      const skus = Object.keys(currentStyle[0].skus);
+      const sizeResult = [];
+      const qtyResult = {};
+      for (let i = 0; i < skus.length; i += 1) {
+        const sku = skus[i];
+        if (sku === 'null') {
+          break;
+        } else {
+          const item = currentStyle[0].skus[sku];
+          if (item.quantity > 0) {
+            const sizeOption = {
+              key: item.size,
+              text: item.size,
+              value: item.size,
+            };
+            sizeResult.push(sizeOption);
+            qtyResult[item.size] = item.quantity;
+          }
+        }
+      }
+      this.setState({
+        sizeOptions: sizeResult,
+        qtyOptions: [qtyResult],
+      });
     });
   }
 
   render() {
     const {
-      images, essentials, productDescription, currentStyle, styles,
+      images, essentials, productDescription, currentStyle, styles, qtyOptions, sizeOptions,
     } = this.state;
     return (
       <div>
@@ -89,6 +149,8 @@ export default class ProductDetail extends React.Component {
                 essentials={essentials}
                 changeStyle={this.changeStyle}
                 currentStyle={currentStyle}
+                qtyOptions={qtyOptions}
+                sizeOptions={sizeOptions}
                 styles={styles}
               />
             </Grid.Column>

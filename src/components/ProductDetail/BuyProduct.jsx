@@ -17,7 +17,7 @@ import CartFaveButton from './BuyProduct/CartFaveButton';
 import ShareButton from './BuyProduct/ShareButtons';
 
 function BuyProduct({
-  essentials, currentStyle, styles, changeStyle,
+  essentials, currentStyle, styles, changeStyle, sizeOptions, qtyOptions,
 }) {
   const [isTrue, setIsTrue] = useState(true);
 
@@ -40,7 +40,7 @@ function BuyProduct({
         </Grid.Row>
         <Divider hidden />
         <Grid.Row>
-          <SizeQtyDropDowns currentStyle={currentStyle} setIsTrue={setIsTrue} />
+          <SizeQtyDropDowns setIsTrue={setIsTrue} sizeOptions={sizeOptions} qtyOptions={qtyOptions} />
         </Grid.Row>
         <Divider hidden />
         <Grid.Row>
@@ -58,6 +58,8 @@ BuyProduct.propTypes = {
   essentials: PropTypes.array.isRequired,
   changeStyle: PropTypes.func.isRequired,
   currentStyle: PropTypes.array.isRequired,
+  qtyOptions: PropTypes.array.isRequired,
+  sizeOptions: PropTypes.array.isRequired,
   styles: PropTypes.array.isRequired,
 };
 

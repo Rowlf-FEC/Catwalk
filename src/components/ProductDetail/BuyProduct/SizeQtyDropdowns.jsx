@@ -1,38 +1,18 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Dropdown,
 } from 'semantic-ui-react';
 
 function SizeQtyDropdowns({
-  currentStyle,
+  qtyOptions,
   setIsTrue,
+  sizeOptions,
 }) {
-  const qtyOptions = {};
-  const sizes = [];
-  const [currentQty, setCurrentQty] = useState([]);
-  const skus = Object.keys(currentStyle[0].skus);
-  for (let i = 0; i < skus.length; i += 1) {
-  // for (const sku in currentStyle[0].skus) {
-    const sku = skus[i];
-    if (sku === 'null') {
-      break;
-    } else {
-      const item = currentStyle[0].skus[sku];
-      if (item.quantity > 0) {
-        const sizeOption = {
-          key: item.size,
-          text: item.size,
-          value: item.size,
-        };
-        sizes.push(sizeOption);
-        qtyOptions[item.size] = item.quantity;
-      }
-    }
-  }
+  const quantities = [];
 
-  setIsTrue(currentQty.length === 0);
+  setIsTrue(quantities.length === 0);
 
   return (
     <div>
@@ -40,38 +20,38 @@ function SizeQtyDropdowns({
         header="Select a size"
         selection
         onChange={(e) => {
-          const quantities = [];
           let n = 1;
-          while (n <= qtyOptions[e.target.textContent]) {
+          while (n <= qtyOptions[0][e.target.textContent]) {
             if (n > 15) {
               break;
             }
             quantities.push({
-              key: n,
+              key: n + 1,
               text: n,
               value: n,
             });
             n += 1;
           }
-          setCurrentQty(quantities);
         }}
-        options={sizes}
-        placeholder={sizes.length === 0 ? 'OUT OF STOCK' : 'Select Size'}
+        options={sizeOptions}
+        placeholder={sizeOptions.length === 0 ? 'OUT OF STOCK' : 'Select Size'}
       />
       <Dropdown
-        placeholder={currentQty.length === 0 ? '-' : '1'}
+        placeholder={quantities.length === 0 ? '-' : '1'}
         compact
         defaultValue="1"
         selection
-        options={currentQty}
+        options={quantities}
       />
     </div>
   );
 }
 
 SizeQtyDropdowns.propTypes = {
-  currentStyle: PropTypes.array.isRequired,
+  // currentStyle: PropTypes.array.isRequired,
+  qtyOptions: PropTypes.array.isRequired,
   setIsTrue: PropTypes.func.isRequired,
+  sizeOptions: PropTypes.array.isRequired,
 };
 
 export default SizeQtyDropdowns;
