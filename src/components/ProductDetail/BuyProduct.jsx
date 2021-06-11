@@ -19,7 +19,7 @@ import ShareButton from './BuyProduct/ShareButtons';
 function BuyProduct({
   essentials, currentStyle, styles, changeStyle, sizeOptions, qtyOptions,
 }) {
-  const [isTrue, setIsTrue] = useState(true);
+  const [isTrue, setTrue] = useState(true);
 
   if (currentStyle.length > 0) {
     const sections = [
@@ -40,7 +40,7 @@ function BuyProduct({
         </Grid.Row>
         <Divider hidden />
         <Grid.Row>
-          <SizeQtyDropDowns setIsTrue={setIsTrue} sizeOptions={sizeOptions} qtyOptions={qtyOptions} />
+          <SizeQtyDropDowns setTrue={setTrue} sizeOptions={sizeOptions} qtyOptions={qtyOptions} />
         </Grid.Row>
         <Divider hidden />
         <Grid.Row>

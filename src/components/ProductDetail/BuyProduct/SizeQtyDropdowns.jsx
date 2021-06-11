@@ -7,12 +7,12 @@ import {
 
 function SizeQtyDropdowns({
   qtyOptions,
-  setIsTrue,
+  setTrue,
   sizeOptions,
 }) {
   const quantities = [];
 
-  setIsTrue(quantities.length === 0);
+  setTrue(quantities.length === 0);
 
   return (
     <div>
@@ -50,7 +50,7 @@ function SizeQtyDropdowns({
 SizeQtyDropdowns.propTypes = {
   // currentStyle: PropTypes.array.isRequired,
   qtyOptions: PropTypes.array.isRequired,
-  setIsTrue: PropTypes.func.isRequired,
+  setTrue: PropTypes.func.isRequired,
   sizeOptions: PropTypes.array.isRequired,
 };
 
