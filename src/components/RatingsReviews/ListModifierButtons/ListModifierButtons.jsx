@@ -1,18 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Container, Button } from 'semantic-ui-react';
 
-function ListModifierButtons(props) {
+function ListModifierButtons() {
   return (
-    <Container textAlign="left">
+    <Container>
       <Button basic>MORE REVIEWS</Button>
       <Button basic>ADD A REVIEW +</Button>
     </Container>
   );
 }
 
-ListModifierButtons.propTypes = {
+// ListModifierButtons.propTypes = {
 
-};
+// };
 
 export default ListModifierButtons;

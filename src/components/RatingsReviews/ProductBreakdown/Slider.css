@@ -1,0 +1,44 @@
+.triangle.down.icon {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  margin-top: -9px;
+}
+
+.sliderBar {
+  position: relative;
+  z-index: -1;
+  float: left;
+  width: 100%;
+  background-color: rgb(230, 230, 230);
+  height: 7px;
+  margin: 7px 15px 7px 15px;
+}
+.gapLeft {
+  position: absolute;
+  z-index: 0;
+  margin-left: 30%;
+  width: 3%;
+  background-color: #ffffff;
+  height: 7px;
+}
+.gapRight {
+  position: absolute;
+  z-index: 0;
+  margin-left: 66%;
+  width: 3%;
+  background-color: #ffffff;
+  height: 7px;
+}
+
+.three.column.row {
+  padding-top: 0px;
+  font-size: 11px;
+}
+
+.sliderTitle {
+  margin-left: 15px;
+  margin-bottom: 0px;
+  font-size: 15px;
+}

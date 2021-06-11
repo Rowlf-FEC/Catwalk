@@ -1,0 +1,15 @@
+.starOutline {
+
+  background: url('./star-outline.svg');
+  background-size: 20px;
+  height: 20px;
+  width: 100px;
+  position: absolute;
+}
+.star {
+  background: url('./star.svg');
+  background-size: 20px;
+  height: 20px;
+  width: 100px;
+  position: relative;
+}
