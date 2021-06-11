@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Grid, Divider, Header, Breadcrumb, Dropdown, Icon, Button, Image, Card,
+  Grid, Divider, Header, Breadcrumb, Dropdown, Icon, Button,
 } from 'semantic-ui-react';
 import '../../App.css';
 import './BuyProduct.css';

@@ -5,7 +5,9 @@ import {
   Card, Image,
 } from 'semantic-ui-react';
 
-function StyleThumbnails({styles, changeStyle}) {
+function StyleThumbnails({
+  styles, changeStyle,
+}) {
   return (
     <Card.Group itemsPerRow={4} size="large">
       {styles.map((style) => (
