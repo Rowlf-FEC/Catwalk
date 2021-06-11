@@ -54,19 +54,6 @@ function BuyProduct({
         <Breadcrumb as="h2" icon="right angle" sections={sections} size="large" />
         <Divider hidden />
         <Grid.Row>
-          {/* <Card.Group itemsPerRow={4} size="large">
-            {styles.map((style) => (
-              <Card
-                className="imgStyle"
-                key={style.style_id}
-                onClick={() => { changeStyle(style); }}
-                raised
-              >
-                <Image src={style.photos[0].thumbnail_url} />
-                {/* <Label corner="right" icon="check" size="mini" />
-               </Card>
-            ))}
-          </Card.Group> */}
           <StyleThumbnails styles={styles} changeStyle={changeStyle} />
         </Grid.Row>
         <Divider hidden />
