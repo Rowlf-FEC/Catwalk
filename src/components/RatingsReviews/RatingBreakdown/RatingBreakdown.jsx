@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
 import RatingProgressBar from './RatingProgressBar';
 
-function RatingBreakdown({ ratings, recommended }) {
+function RatingBreakdown({ ratings, recommended, total }) {
   let max = 0;
   const percentages = {
     5: 0,
@@ -17,15 +17,17 @@ function RatingBreakdown({ ratings, recommended }) {
     if (max < ratings[index]) {
       max = ratings[index];
     }
-    percentages[index] = ratings[index]
+    percentages[index] = ratings[index];
   });
   Object.keys(percentages).forEach((index) => {
     percentages[index] = (percentages[index] / max) * (100);
   });
-
   return (
     <div>
-      <p>100% of reviewers recommend this product</p>
+      <p>
+        {(recommended.true / total) * 100}
+        % of reviewers recommend this product
+      </p>
       <Grid>
         {Object.keys(percentages).map((index) => (
           <Grid.Row key={`${index}StarBar`}>
@@ -48,8 +50,9 @@ function RatingBreakdown({ ratings, recommended }) {
 }
 
 RatingBreakdown.propTypes = {
-  ratings: PropTypes.object.isRequired,
-  recommended: PropTypes.object.isRequired,
+  ratings: PropTypes.shape().isRequired,
+  recommended: PropTypes.shape().isRequired,
+  total: PropTypes.number.isRequired,
 };
 
 export default RatingBreakdown;

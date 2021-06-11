@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, Dropdown } from 'semantic-ui-react';
 import './SortOptions.css';
 
-
-function SortOptions(props) {
+function SortOptions({ count }) {
   const options = [
     {
       key: 'relevance',
@@ -24,7 +23,9 @@ function SortOptions(props) {
   ];
   return (
     <div>
-      <Container as="h4" textAlign="left">{props.count} reviews. Sorted by:{' '}
+      <Container as="h4" textAlign="left">
+        {count}
+        {' reviews. Sorted by: '}
         <Dropdown
           text="newest"
           inline

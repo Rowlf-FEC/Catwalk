@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
 import StarRating from '../ModularComponents/StarRating';
@@ -25,7 +25,7 @@ function RatingSummary({ ratings }) {
 }
 
 RatingSummary.propTypes = {
-  ratings: PropTypes.object.isRequired,
+  ratings: PropTypes.shape().isRequired,
 };
 
 export default RatingSummary;

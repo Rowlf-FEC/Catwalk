@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './StarRating.css';
 import findAverageRating from './findAverageRating';
@@ -27,7 +27,7 @@ function StarRating({ ratings }) {
 }
 
 StarRating.propTypes = {
-  ratings: PropTypes.object.isRequired,
+  ratings: PropTypes.shape().isRequired,
 };
 
 export default StarRating;

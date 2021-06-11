@@ -8,5 +8,5 @@ export default (ratings) => {
   });
 
   sum /= divisor;
-  return sum;
-}
+  return sum.toFixed(1);
+};
