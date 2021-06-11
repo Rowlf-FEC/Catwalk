@@ -10,7 +10,6 @@ import {
   Grid, Divider, Header, Breadcrumb,
 } from 'semantic-ui-react';
 import '../../App.css';
-import './BuyProduct.css';
 import PriceTag from './BuyProduct/PriceTag';
 import StyleThumbnails from './BuyProduct/StyleThumbnails';
 import SizeQtyDropDowns from './BuyProduct/SizeQtyDropdowns';
