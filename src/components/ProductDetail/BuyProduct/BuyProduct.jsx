@@ -9,12 +9,12 @@ import PropTypes from 'prop-types';
 import {
   Grid, Divider, Header, Breadcrumb,
 } from 'semantic-ui-react';
-import '../../App.css';
-import PriceTag from './BuyProduct/PriceTag';
-import StyleThumbnails from './BuyProduct/StyleThumbnails';
-import SizeQtyDropDowns from './BuyProduct/SizeQtyDropdowns';
-import CartFaveButton from './BuyProduct/CartFaveButton';
-import ShareButton from './BuyProduct/ShareButtons';
+import '../../../App.css';
+import PriceTag from './PriceTag';
+import StyleThumbnails from './StyleThumbnails';
+import SizeQtyDropDowns from './SizeQtyDropdowns';
+import CartFaveButton from './CartFaveButton';
+import ShareButton from './ShareButtons';
 
 function BuyProduct({
   essentials, currentStyle, styles, changeStyle, sizeOptions, qtyOptions,

@@ -12,7 +12,7 @@ import './ProductImage/ProductImage.css';
 import config from '../../config';
 import ProductImage from './ProductImage/ProductImage';
 import ProductDescription from './ProductDescription';
-import BuyProduct from './BuyProduct';
+import BuyProduct from './BuyProduct/BuyProduct';
 
 export default class ProductDetail extends React.Component {
   constructor(props) {
