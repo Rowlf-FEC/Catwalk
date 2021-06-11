@@ -7,13 +7,14 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Grid, Divider, Header, Breadcrumb, Icon, Button,
+  Grid, Divider, Header, Breadcrumb,
 } from 'semantic-ui-react';
 import '../../App.css';
 import './BuyProduct.css';
 import PriceTag from './BuyProduct/PriceTag';
 import StyleThumbnails from './BuyProduct/StyleThumbnails';
 import SizeQtyDropDowns from './BuyProduct/SizeQtyDropdowns';
+import CartFaveButton from './BuyProduct/CartFaveButton';
 import ShareButton from './BuyProduct/ShareButtons';
 
 function BuyProduct({
@@ -44,22 +45,7 @@ function BuyProduct({
         </Grid.Row>
         <Divider hidden />
         <Grid.Row>
-          <Button animated disabled={isTrue}>
-            <Button.Content hidden>Add</Button.Content>
-            <Button.Content visible>
-              <Icon name="shop" />
-            </Button.Content>
-          </Button>
-          <Button animated="fade">
-            <Button.Content hidden>
-              <Icon name="heart" />
-              Fave
-            </Button.Content>
-            <Button.Content visible>
-              <Icon name="heart outline" />
-              Fave
-            </Button.Content>
-          </Button>
+          <CartFaveButton isTrue={isTrue} />
           <Divider hidden />
           <ShareButton />
         </Grid.Row>
