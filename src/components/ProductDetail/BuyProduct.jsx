@@ -10,6 +10,7 @@ import {
 import '../../App.css';
 import './BuyProduct.css';
 import PriceTag from './BuyProduct/PriceTag';
+import StyleThumbnails from './BuyProduct/StyleThumbnails';
 import ShareButton from './BuyProduct/ShareButtons';
 
 function BuyProduct({
@@ -53,7 +54,7 @@ function BuyProduct({
         <Breadcrumb as="h2" icon="right angle" sections={sections} size="large" />
         <Divider hidden />
         <Grid.Row>
-          <Card.Group itemsPerRow={4} size="large">
+          {/* <Card.Group itemsPerRow={4} size="large">
             {styles.map((style) => (
               <Card
                 className="imgStyle"
@@ -62,10 +63,11 @@ function BuyProduct({
                 raised
               >
                 <Image src={style.photos[0].thumbnail_url} />
-                {/* <Label corner="right" icon="check" size="mini" /> */}
-              </Card>
+                {/* <Label corner="right" icon="check" size="mini" />
+               </Card>
             ))}
-          </Card.Group>
+          </Card.Group> */}
+          <StyleThumbnails styles={styles} changeStyle={changeStyle} />
         </Grid.Row>
         <Divider hidden />
         <Grid.Row>
