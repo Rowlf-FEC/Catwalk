@@ -20,14 +20,21 @@ export default class ProductDetail extends React.Component {
     this.state = {
       currentStyle: [],
       images: [],
+      isTrue: true,
       productDescription: [],
       essentials: [],
       productId: props.productId || 27192,
+      quantities: [],
       qtyOptions: [],
       sizeOptions: [],
+      skuCart: null,
+      qtyCart: 0,
       styles: [],
     };
     this.changeStyle = this.changeStyle.bind(this);
+    this.submitItem = this.submitItem.bind(this);
+    this.setQuantity = this.setQuantity.bind(this);
+    this.setSizeQuantity = this.setSizeQuantity.bind(this);
   }
 
   componentDidMount() {
@@ -81,9 +88,9 @@ export default class ProductDetail extends React.Component {
                 const item = currentStyle[0].skus[sku];
                 if (item.quantity > 0) {
                   const sizeOption = {
-                    key: item.size,
+                    key: item.quantity,
                     text: item.size,
-                    value: item.size,
+                    value: sku,
                   };
                   sizeResult.push(sizeOption);
                   qtyResult[item.size] = item.quantity;
@@ -96,6 +103,43 @@ export default class ProductDetail extends React.Component {
             });
           }),
       );
+  }
+
+  setQuantity(sku) {
+    const { sizeOptions } = this.state;
+    const quantitiesArr = [];
+    let quantity;
+
+    sizeOptions.forEach((size) => {
+      if (size.value === sku) {
+        quantity = size.key;
+      }
+    });
+
+    let n = 1;
+    while (n <= quantity) {
+      if (n > 15) {
+        break;
+      }
+      quantitiesArr.push({
+        key: n + 1,
+        text: n,
+        value: sku,
+      });
+      n += 1;
+    }
+
+    this.setState({
+      quantities: quantitiesArr,
+    });
+  }
+
+  setSizeQuantity(skuQty) {
+    this.setState({
+      isTrue: false,
+      qtyCart: skuQty[0],
+      skuCart: skuQty[1],
+    });
   }
 
   changeStyle(style) {
@@ -117,9 +161,9 @@ export default class ProductDetail extends React.Component {
           const item = currentStyle[0].skus[sku];
           if (item.quantity > 0) {
             const sizeOption = {
-              key: item.size,
+              key: sku,
               text: item.size,
-              value: item.size,
+              value: sku,
             };
             sizeResult.push(sizeOption);
             qtyResult[item.size] = item.quantity;
@@ -127,15 +171,30 @@ export default class ProductDetail extends React.Component {
         }
       }
       this.setState({
+        isTrue: true,
         sizeOptions: sizeResult,
         qtyOptions: [qtyResult],
       });
     });
   }
 
+  submitItem() {
+    const { skuCart, qtyCart } = this.state;
+    let n = 0;
+    while (n < qtyCart) {
+      axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/cart', { sku_id: skuCart }, {
+        headers: {
+          Authorization: `${config.token}`,
+        },
+      });
+      n += 1;
+    }
+  }
+
   render() {
     const {
-      images, essentials, productDescription, currentStyle, styles, qtyOptions, sizeOptions,
+      images, essentials, productDescription, currentStyle,
+      styles, quantities, sizeOptions, isTrue,
     } = this.state;
     return (
       <div>
@@ -149,9 +208,13 @@ export default class ProductDetail extends React.Component {
                 essentials={essentials}
                 changeStyle={this.changeStyle}
                 currentStyle={currentStyle}
-                qtyOptions={qtyOptions}
+                isTrue={isTrue}
+                quantities={quantities}
+                setQuantity={this.setQuantity}
+                setSizeQuantity={this.setSizeQuantity}
                 sizeOptions={sizeOptions}
                 styles={styles}
+                submitItem={this.submitItem}
               />
             </Grid.Column>
           </Grid.Row>

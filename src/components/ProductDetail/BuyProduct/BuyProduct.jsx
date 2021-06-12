@@ -2,9 +2,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/forbid-prop-types */
-import React, {
-  useState,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Grid, Divider, Header, Breadcrumb,
@@ -17,10 +15,9 @@ import CartFaveButton from './CartFaveButton';
 import ShareButton from './ShareButtons';
 
 function BuyProduct({
-  essentials, currentStyle, styles, changeStyle, sizeOptions, qtyOptions,
+  essentials, currentStyle, styles, changeStyle, setQuantity,
+  sizeOptions, quantities, submitItem, setSizeQuantity, isTrue,
 }) {
-  const [isTrue, setTrue] = useState(true);
-
   if (currentStyle.length > 0) {
     const sections = [
       { key: 'Style', content: 'Style', link: false },
@@ -40,11 +37,16 @@ function BuyProduct({
         </Grid.Row>
         <Divider hidden />
         <Grid.Row>
-          <SizeQtyDropDowns setTrue={setTrue} sizeOptions={sizeOptions} qtyOptions={qtyOptions} />
+          <SizeQtyDropDowns
+            setQuantity={setQuantity}
+            setSizeQuantity={setSizeQuantity}
+            sizeOptions={sizeOptions}
+            quantities={quantities}
+          />
         </Grid.Row>
         <Divider hidden />
         <Grid.Row>
-          <CartFaveButton isTrue={isTrue} />
+          <CartFaveButton isTrue={isTrue} submitItem={submitItem} />
           <Divider hidden />
           <ShareButton />
         </Grid.Row>
@@ -58,9 +60,13 @@ BuyProduct.propTypes = {
   essentials: PropTypes.array.isRequired,
   changeStyle: PropTypes.func.isRequired,
   currentStyle: PropTypes.array.isRequired,
-  qtyOptions: PropTypes.array.isRequired,
+  isTrue: PropTypes.bool.isRequired,
+  quantities: PropTypes.array.isRequired,
+  setQuantity: PropTypes.func.isRequired,
+  setSizeQuantity: PropTypes.func.isRequired,
   sizeOptions: PropTypes.array.isRequired,
   styles: PropTypes.array.isRequired,
+  submitItem: PropTypes.func.isRequired,
 };
 
 export default BuyProduct;
