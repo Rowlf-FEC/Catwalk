@@ -33,7 +33,7 @@ function BuyProduct({
         <Breadcrumb as="h2" icon="right angle" sections={sections} size="large" />
         <Divider hidden />
         <Grid.Row>
-          <StyleThumbnails styles={styles} changeStyle={changeStyle} />
+          <StyleThumbnails changeStyle={changeStyle} currentStyle={currentStyle} styles={styles} />
         </Grid.Row>
         <Divider hidden />
         <Grid.Row>

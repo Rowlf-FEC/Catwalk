@@ -7,7 +7,7 @@ import {
 } from 'semantic-ui-react';
 
 function StyleThumbnails({
-  styles, changeStyle,
+  styles, changeStyle, currentStyle,
 }) {
   return (
     <Card.Group itemsPerRow={4} size="large">
@@ -18,8 +18,12 @@ function StyleThumbnails({
           onClick={() => { changeStyle(style); }}
           raised
         >
-          <Image src={style.photos[0].thumbnail_url} />
-          {/* <Label corner="right" icon="check" size="mini" /> */}
+          <Image
+            label={currentStyle[0].style_id === style.style_id ? {
+              color: 'red', corner: 'left', icon: 'check', size: 'mini',
+            } : null}
+            src={style.photos[0].thumbnail_url}
+          />
         </Card>
       ))}
     </Card.Group>
@@ -29,6 +33,7 @@ function StyleThumbnails({
 StyleThumbnails.propTypes = {
   styles: PropTypes.array.isRequired,
   changeStyle: PropTypes.func.isRequired,
+  currentStyle: PropTypes.func.isRequired,
 };
 
 export default StyleThumbnails;
