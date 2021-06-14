@@ -23,12 +23,19 @@ function BuyProduct({
       { key: 'Style', content: 'Style', link: false },
       { key: 'Stylename', content: currentStyle[0].name, link: false },
     ];
+    let totalReviews = 0;
+    for (const score in ratings) {
+      totalReviews += Number(ratings[score]);
+    }
 
     return (
       <div>
         <Header size="medium">{essentials[0]}</Header>
         <Header size="large">{essentials[2]}</Header>
-        <StarRating ratings={ratings} />
+        <div className="reviewLink">
+          <StarRating ratings={ratings} />
+          <a href="#read_reviews">Read all {totalReviews} reviews</a>
+        </div>
         <PriceTag currentStyle={currentStyle} />
         <Divider />
         <Breadcrumb as="h2" icon="right angle" sections={sections} size="large" />

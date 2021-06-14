@@ -23,7 +23,7 @@ export default class ProductDetail extends React.Component {
       images: [],
       isTrue: true,
       productDescription: [],
-      productId: props.productId || 27191,
+      productId: props.productId || 27192,
       qtyCart: 0,
       qtyOptions: [],
       quantities: [],

@@ -15,6 +15,14 @@ div.ui.large.header {
   margin-bottom: 10px;
 }
 
+div.ui.header.priceTag {
+  margin-top: 10px;
+}
+
+div.star {
+  margin-right: 30px;
+}
+
 .imgStyle {
   /* display: block; */
   max-height:3em;
@@ -24,6 +32,7 @@ div.ui.large.header {
   /* object-fit: cover; */
 }
 
-div.ui.header.priceTag {
-  margin-top: 10px;
+
+.reviewLink {
+  display: flex;
 }
