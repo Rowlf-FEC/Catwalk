@@ -15,10 +15,10 @@ function ProductDescription({ productDescription, essentials }) {
         </Grid.Column>
         <Grid.Column width={3}>
           <List>
-            {essentials[3].map((element, index) => (
-              <List.Item key={index}>
+            {essentials[3].map((element) => (
+              <List.Item key={element.feature}>
                 <List.Icon name="check" />
-                <List.Content content={element.feature} />
+                <List.Content content={element.value} />
               </List.Item>
             ))}
           </List>

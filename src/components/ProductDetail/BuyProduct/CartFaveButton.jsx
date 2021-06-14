@@ -6,10 +6,17 @@ import {
 
 function CartFaveButton({
   isTrue,
+  submitItem,
 }) {
   return (
     <div>
-      <Button animated disabled={isTrue}>
+      <Button
+        animated
+        disabled={isTrue}
+        onClick={() => {
+          submitItem();
+        }}
+      >
         <Button.Content hidden>Add</Button.Content>
         <Button.Content visible>
           <Icon name="shop" />
@@ -31,6 +38,7 @@ function CartFaveButton({
 
 CartFaveButton.propTypes = {
   isTrue: PropTypes.bool.isRequired,
+  submitItem: PropTypes.func.isRequired,
 };
 
 export default CartFaveButton;
