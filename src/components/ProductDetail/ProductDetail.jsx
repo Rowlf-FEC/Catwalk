@@ -19,22 +19,29 @@ export default class ProductDetail extends React.Component {
     super(props);
     this.state = {
       currentStyle: [],
+      essentials: [],
       images: [],
       isTrue: true,
       productDescription: [],
-      essentials: [],
-      productId: props.productId || 27192,
-      quantities: [],
+      productId: props.productId || 27191,
+      qtyCart: 0,
       qtyOptions: [],
+      quantities: [],
+      ratings: {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+      },
       sizeOptions: [],
       skuCart: null,
-      qtyCart: 0,
       styles: [],
     };
     this.changeStyle = this.changeStyle.bind(this);
-    this.submitItem = this.submitItem.bind(this);
     this.setQuantity = this.setQuantity.bind(this);
     this.setSizeQuantity = this.setSizeQuantity.bind(this);
+    this.submitItem = this.submitItem.bind(this);
   }
 
   componentDidMount() {
@@ -102,7 +109,31 @@ export default class ProductDetail extends React.Component {
               qtyOptions: [qtyResult],
             });
           }),
-      );
+      )
+      .catch((error) => {
+        console.log(error);
+      })
+      .then(() => {
+        axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/meta', {
+          headers: {
+            Authorization: `${config.token}`,
+          },
+          params: {
+            product_id: productId,
+          },
+        })
+          .then((metaReviews) => {
+            this.setState({
+              ratings: metaReviews.data.ratings,
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   setQuantity(sku) {
@@ -194,7 +225,7 @@ export default class ProductDetail extends React.Component {
   render() {
     const {
       images, essentials, productDescription, currentStyle,
-      styles, quantities, sizeOptions, isTrue,
+      styles, quantities, sizeOptions, isTrue, ratings,
     } = this.state;
     return (
       <div>
@@ -205,11 +236,12 @@ export default class ProductDetail extends React.Component {
             </Grid.Column>
             <Grid.Column textAlign="left" width={6}>
               <BuyProduct
-                essentials={essentials}
                 changeStyle={this.changeStyle}
                 currentStyle={currentStyle}
+                essentials={essentials}
                 isTrue={isTrue}
                 quantities={quantities}
+                ratings={ratings}
                 setQuantity={this.setQuantity}
                 setSizeQuantity={this.setSizeQuantity}
                 sizeOptions={sizeOptions}

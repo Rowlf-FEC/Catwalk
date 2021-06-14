@@ -6,6 +6,15 @@
   display: flex;
 }
 
+div.ui.medium.header {
+  margin: 50px 0 0 0;
+}
+
+div.ui.large.header {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
 .imgStyle {
   /* display: block; */
   max-height:3em;
@@ -13,4 +22,8 @@
   /* border-radius: 50%; */
   overflow: hidden;
   /* object-fit: cover; */
+}
+
+div.ui.header.priceTag {
+  margin-top: 10px;
 }

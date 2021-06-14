@@ -8,6 +8,7 @@ import {
   Grid, Divider, Header, Breadcrumb,
 } from 'semantic-ui-react';
 import '../../../App.css';
+import StarRating from '../../RatingsReviews/ModularComponents/StarRating';
 import PriceTag from './PriceTag';
 import StyleThumbnails from './StyleThumbnails';
 import SizeQtyDropDowns from './SizeQtyDropdowns';
@@ -15,7 +16,7 @@ import CartFaveButton from './CartFaveButton';
 
 function BuyProduct({
   essentials, currentStyle, styles, changeStyle, setQuantity,
-  sizeOptions, quantities, submitItem, setSizeQuantity, isTrue,
+  sizeOptions, quantities, submitItem, setSizeQuantity, isTrue, ratings,
 }) {
   if (currentStyle.length > 0) {
     const sections = [
@@ -27,6 +28,7 @@ function BuyProduct({
       <div>
         <Header size="medium">{essentials[0]}</Header>
         <Header size="large">{essentials[2]}</Header>
+        <StarRating ratings={ratings} />
         <PriceTag currentStyle={currentStyle} />
         <Divider />
         <Breadcrumb as="h2" icon="right angle" sections={sections} size="large" />
@@ -54,11 +56,12 @@ function BuyProduct({
 }
 
 BuyProduct.propTypes = {
-  essentials: PropTypes.array.isRequired,
   changeStyle: PropTypes.func.isRequired,
   currentStyle: PropTypes.array.isRequired,
+  essentials: PropTypes.array.isRequired,
   isTrue: PropTypes.bool.isRequired,
   quantities: PropTypes.array.isRequired,
+  ratings: PropTypes.object.isRequired,
   setQuantity: PropTypes.func.isRequired,
   setSizeQuantity: PropTypes.func.isRequired,
   sizeOptions: PropTypes.array.isRequired,
