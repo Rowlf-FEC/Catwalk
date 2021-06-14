@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import bluebird from 'bluebird';
 import axios from 'axios';
-import { Grid, Divider } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 // import dayjs from 'dayjs';
 // import handleTime from '../configFiles/dayjsConfig';
 import config from '../../config';
@@ -23,6 +23,8 @@ class RatingsReviews extends Component {
       // date: dayjs(),
       productId: props.productId || 27189,
       reviews: [],
+      reviewsRendered: 0,
+      reviewsToRender: [],
       characteristics: [],
       ratings: {
         1: 0,
@@ -36,6 +38,7 @@ class RatingsReviews extends Component {
         true: 0,
       },
     };
+    this.addReviews = this.addReviews.bind(this);
   }
 
   componentDidMount() {
@@ -67,9 +70,27 @@ class RatingsReviews extends Component {
               ratings: metaReviews.data.ratings,
               recommended: metaReviews.data.recommended,
               characteristics: metaReviews.data.characteristics,
+              reviewsRendered: 2,
+              reviewsToRender: reviews.data.results.slice(0, 2),
             });
+            // console.log('reviews', reviews.data)
+            // console.log('meta', metaReviews.data)
           });
       });
+  }
+
+  addReviews() {
+    const { reviews, reviewsRendered, reviewsToRender } = this.state;
+    const renderMoreReviews = reviewsToRender.slice();
+    for (let i = 0; i < 2; i += 1) {
+      if (reviews[reviewsRendered + i] !== undefined) {
+        renderMoreReviews.push(reviews[reviewsRendered + i]);
+      }
+    }
+    this.setState({
+      reviewsToRender: renderMoreReviews,
+      reviewsRendered: renderMoreReviews.length,
+    });
   }
 
   render() {
@@ -78,11 +99,14 @@ class RatingsReviews extends Component {
       ratings,
       recommended,
       reviews,
+      reviewsToRender,
       characteristics,
     } = this.state;
+
     if (!loaded) {
       return <div />;
     }
+
     return (
       <div className="RatingsReviews">
         <Grid centered columns={2}>
@@ -95,19 +119,25 @@ class RatingsReviews extends Component {
           <Grid.Row stretched>
             <Grid.Column width={4}>
               <RatingSummary ratings={ratings} />
-              <Divider hidden />
               <RatingBreakdown
                 ratings={ratings}
                 recommended={recommended}
                 total={reviews.length}
               />
-              <Divider hidden />
               <ProductBreakdown characteristics={characteristics} />
             </Grid.Column>
             <Grid.Column width={9}>
               <SortOptions count={reviews.length} />
-              <ReviewList ratings={ratings} />
-              <ListModifierButtons />
+              <ReviewList
+                addReviews={this.addReviews}
+                count={reviews.length}
+                reviews={reviewsToRender}
+                ratings={ratings}
+              />
+              <ListModifierButtons
+                addReviews={this.addReviews}
+                characteristics={characteristics}
+              />
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -116,8 +146,8 @@ class RatingsReviews extends Component {
   }
 }
 
-// RatingsReviews.propTypes = {
-//   productId: PropTypes.number.isRequired,
-// };
+RatingsReviews.propTypes = {
+  productId: PropTypes.number.isRequired,
+};
 
 export default RatingsReviews;

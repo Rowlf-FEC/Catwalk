@@ -15,9 +15,13 @@ function ProductBreakdown({ characteristics }) {
   };
 
   return (
-    <Grid>
+    <Grid style={{ paddingTop: '20px' }}>
       {Object.keys(characteristics).map((attr) => (
-        <Grid.Row key={attr} columns={3}>
+        <Grid.Row
+          key={attr}
+          columns={3}
+          style={{ maxHeight: '100px' }}
+        >
           <p className="sliderTitle">{attr}</p>
           <Slider sliderValue={characteristics[attr].value} />
           <Grid.Column textAlign="left">

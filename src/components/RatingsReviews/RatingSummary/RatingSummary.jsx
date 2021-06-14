@@ -11,7 +11,7 @@ function RatingSummary({ ratings }) {
 
   const stars = findAverageRating(ratings) || 5;
   return (
-    <Grid>
+    <Grid style={{ maxHeight: '130px' }}>
       <Grid.Row>
         <Grid.Column verticalAlign="top" width={5}>
           <ProductRating rating={stars} />

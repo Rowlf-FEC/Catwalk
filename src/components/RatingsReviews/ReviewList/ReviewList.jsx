@@ -1,61 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Container, Divider } from 'semantic-ui-react';
-import StarRating from '../ModularComponents/StarRating';
+import { Grid } from 'semantic-ui-react';
+import dayjs from 'dayjs';
+// import InfiniteScroll from 'react-infinite-scroll-component';
+import './ReviewList.css';
+import ReviewHeader from './ReviewHeader';
+import ReviewBody from './ReviewBody';
+import ReviewFooter from './ReviewFooter';
 
-const ReviewList = ({ reviews, ratings }) => (
-  <Grid>
-    <Grid.Row>
-      <Grid.Column floated="left" width={1}>
-        <Container textAlign="left">
-          <StarRating ratings={ratings} />
-        </Container>
+const ReviewList = ({ reviews }) => (
+  <Grid id="scrollContainer" className="reviewListContainer">
+    {reviews.map((review) => (
+      <Grid.Column
+        key={`review${review.review_id}`}
+        className="reviewContainer"
+        width={16}
+      >
+        <ReviewHeader
+          rating={review.rating}
+          reviewer_name={review.reviewer_name}
+          givenTime={dayjs(review.date)}
+        />
+        <ReviewBody
+          summary={review.summary}
+          body={review.body}
+        />
+        <ReviewFooter helpfulness={review.helpfulness} />
       </Grid.Column>
-      <Grid.Column floated="right" width={4}>
-        <Container textAlign="right">
-          <p>verified, username, date</p>
-        </Container>
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row textAlign="left">
-      <Grid.Column floated="left">
-
-        <Container textAlign="left">
-          <b>Title</b>
-
-          <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-            ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et
-            magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
-          </p>
-        </Container>
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row>
-      <Grid.Column floated="left">
-        <Container textAlign="left">
-          <p>text</p>
-        </Container>
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row>
-      <Grid.Column floated="left">
-        <Container textAlign="left">
-          Helpful? Yes 10 | Report
-        </Container>
-      </Grid.Column>
-    </Grid.Row>
-    <Divider />
+    ))}
   </Grid>
 );
 
 ReviewList.propTypes = {
-  // reviews: PropTypes.shape().isRequired,
-  ratings: PropTypes.shape().isRequired,
+  reviews: PropTypes.arrayOf(
+    PropTypes.shape({
+      body: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      helpfulness: PropTypes.number.isRequired,
+      rating: PropTypes.number.isRequired,
+      recommend: PropTypes.bool.isRequired,
+      response: PropTypes.string,
+      review_id: PropTypes.number.isRequired,
+      reviewer_name: PropTypes.string.isRequired,
+      summary: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default ReviewList;
