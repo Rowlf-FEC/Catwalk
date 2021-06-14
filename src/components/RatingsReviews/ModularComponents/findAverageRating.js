@@ -1,4 +1,8 @@
 export default (ratings) => {
+  if (typeof ratings === 'number') {
+    return ratings.toFixed(1);
+  }
+
   let sum = 0;
   let divisor = 0;
 
