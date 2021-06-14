@@ -2,6 +2,10 @@
   max-height: 1000px;
 } */
 
+.cartShare {
+  display: flex;
+}
+
 .imgStyle {
   /* display: block; */
   max-height:3em;

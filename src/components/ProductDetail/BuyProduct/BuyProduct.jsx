@@ -12,7 +12,6 @@ import PriceTag from './PriceTag';
 import StyleThumbnails from './StyleThumbnails';
 import SizeQtyDropDowns from './SizeQtyDropdowns';
 import CartFaveButton from './CartFaveButton';
-import ShareButton from './ShareButtons';
 
 function BuyProduct({
   essentials, currentStyle, styles, changeStyle, setQuantity,
@@ -47,8 +46,6 @@ function BuyProduct({
         <Divider hidden />
         <Grid.Row>
           <CartFaveButton isTrue={isTrue} submitItem={submitItem} />
-          <Divider hidden />
-          <ShareButton />
         </Grid.Row>
       </div>
     );
