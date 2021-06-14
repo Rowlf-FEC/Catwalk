@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Dropdown } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 import './SortOptions.css';
 
 function SortOptions({ count }) {
@@ -22,18 +22,15 @@ function SortOptions({ count }) {
     },
   ];
   return (
-    <div>
-      <Container as="h4" textAlign="left">
-        {count}
-        {' reviews. Sorted by: '}
-        <Dropdown
-          text="newest"
-          inline
-          options={options}
-          defaultValue="newest"
-        />
-      </Container>
-
+    <div className="sortContainer">
+      {count}
+      {' reviews, sorted by: '}
+      <Dropdown
+        text="relevance"
+        inline
+        options={options}
+        defaultValue="newest"
+      />
     </div>
   );
 }

@@ -40,7 +40,7 @@ const handleTime = (givenTime) => {
   if (dayjs().subtract(12, 'hours').isBefore(givenTime)) {
     return givenTime.fromNow();
   }
-  return givenTime.format('lll');
+  return givenTime.format('ll');
 };
 
 export default handleTime;

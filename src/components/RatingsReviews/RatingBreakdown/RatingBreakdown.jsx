@@ -23,9 +23,13 @@ function RatingBreakdown({ ratings, recommended, total }) {
     percentages[index] = (percentages[index] / max) * (100);
   });
   return (
-    <div>
+    <div style={{
+      maxHeight: '300px',
+      paddingBottom: '50px',
+    }}
+    >
       <p>
-        {(recommended.true / total) * 100}
+        {((recommended.true / total) * 100).toFixed()}
         % of reviewers recommend this product
       </p>
       <Grid>
