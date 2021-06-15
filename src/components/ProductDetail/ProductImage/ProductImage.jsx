@@ -1,29 +1,48 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/forbid-prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { Image } from 'semantic-ui-react';
+import { Modal } from 'semantic-ui-react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import './ProductImage.css';
 
 function ProductImage({ images }) {
-  const customRenderThumb = () => {
-    images.map((image) => (
-      // <div>
-      <img alt={image.thumbnail_url} src={image.thumbnail_url} />
-      // </div>
-    ));
-  };
+  const [open, setOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  return (
-    <Carousel showArrows showIndicators={false} showStatus={false} showThumbs useKeyboardArrows width="100%">
+  const Slide = () => (
+    <Carousel
+      onClickItem={(index) => { setOpen(() => true); setCurrentSlide(() => index); }}
+      onChange={(index) => { setCurrentSlide(() => index); }}
+      selectedItem={currentSlide}
+      showArrows
+      showIndicators={false}
+      showStatus={false}
+      showThumbs
+      useKeyboardArrows
+      width="100%"
+    >
       {images.map((image, index) => (
-        <button key={index} type="button">
-          <img alt={image.url} src={image.url} className="slideImg" />
-        </button>
+        <div key={index}>
+          <img alt={image.url} src={image.url} />
+        </div>
       ))}
     </Carousel>
+  );
+
+  return (
+    <div>
+      <Slide id="slideImg" />
+      <Modal
+        onClose={() => setOpen(false)}
+        open={open}
+      >
+        <Modal.Content>
+          <Slide />
+        </Modal.Content>
+      </Modal>
+    </div>
   );
 }
 
