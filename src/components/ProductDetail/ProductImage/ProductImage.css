@@ -26,6 +26,10 @@ div.thumbs-wrapper.axis-vertical {
   max-height: 50%;
 }
 
+li.slide.selected:hover {
+  cursor: zoom-in;
+}
+
 ul.thumbs.animated {
   margin: 5px;
 }

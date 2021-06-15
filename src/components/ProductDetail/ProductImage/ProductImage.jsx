@@ -16,10 +16,8 @@ function ProductImage({ images }) {
       onClickItem={(index) => { setOpen(() => true); setCurrentSlide(() => index); }}
       onChange={(index) => { setCurrentSlide(() => index); }}
       selectedItem={currentSlide}
-      showArrows
       showIndicators={false}
       showStatus={false}
-      showThumbs
       useKeyboardArrows
       width="100%"
     >
