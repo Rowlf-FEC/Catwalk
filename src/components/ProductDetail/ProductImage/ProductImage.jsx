@@ -8,12 +8,20 @@ import { Carousel } from 'react-responsive-carousel';
 import './ProductImage.css';
 
 function ProductImage({ images }) {
+  const customRenderThumb = () => {
+    images.map((image) => (
+      // <div>
+      <img alt={image.thumbnail_url} src={image.thumbnail_url} />
+      // </div>
+    ));
+  };
+
   return (
-    <Carousel showArrows showStatus={false} showThumbs useKeyboardArrows width="100%">
+    <Carousel showArrows showIndicators={false} showStatus={false} showThumbs useKeyboardArrows width="100%">
       {images.map((image, index) => (
-        <div key={index}>
-          <img alt={image.url} className="carouselImg" src={image.url} />
-        </div>
+        <button key={index} type="button">
+          <img alt={image.url} src={image.url} className="slideImg" />
+        </button>
       ))}
     </Carousel>
   );

@@ -1,16 +1,31 @@
-img.carouselImg {
-  cursor: zoom-in;
-  max-width: 80%;
+/* .slideImg {
+  float: left;
+  width:  500px;
+  height: 500px;
+} */
+
+div.carousel-root {
+  height: 550px;
 }
 
-.carousel.carousel-slider {
-  height: 350px;
+div.carousel.carousel-slider {
+  /* height: ; */
+  width: 100%;
+  max-width: 100%;
 }
 
-.carouselColumn {
-  padding-top: 50px;
+/* image gallery */
+div.slider-wrapper.axis-horizontal {
+  height: 450px;
+  width: auto;
 }
 
-.carousel img {
-  cursor: zoom-in;
+/* thumbnail gallery */
+div.thumbs-wrapper.axis-vertical {
+  margin: 0;
+  max-height: 50%;
+}
+
+ul.thumbs.animated {
+  margin: 5px;
 }

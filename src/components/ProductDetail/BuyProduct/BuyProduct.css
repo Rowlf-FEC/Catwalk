@@ -1,13 +1,5 @@
-/* .carousel-root {
-  max-height: 1000px;
-} */
-
 .cartShare {
   display: flex;
-}
-
-div.ui.medium.header {
-  margin: 50px 0 0 0;
 }
 
 div.ui.large.header {
@@ -32,7 +24,19 @@ div.star {
   /* object-fit: cover; */
 }
 
-
 .reviewLink {
   display: flex;
+}
+
+.original {
+  color: black;
+}
+
+.sale {
+  color: red;
+}
+
+.strikethrough {
+  text-decoration-line: line-through;
+  text-decoration-style: solid;
 }
