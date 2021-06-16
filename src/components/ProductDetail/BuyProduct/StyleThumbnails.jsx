@@ -33,7 +33,7 @@ function StyleThumbnails({
 StyleThumbnails.propTypes = {
   styles: PropTypes.array.isRequired,
   changeStyle: PropTypes.func.isRequired,
-  currentStyle: PropTypes.func.isRequired,
+  currentStyle: PropTypes.array.isRequired,
 };
 
 export default StyleThumbnails;
