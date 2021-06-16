@@ -13,6 +13,7 @@ function ProductImage({ images }) {
 
   const Slide = () => (
     <Carousel
+      className="slideImg"
       onClickItem={(index) => { setOpen(() => true); setCurrentSlide(() => index); }}
       onChange={(index) => { setCurrentSlide(() => index); }}
       selectedItem={currentSlide}
@@ -31,8 +32,9 @@ function ProductImage({ images }) {
 
   return (
     <div>
-      <Slide id="slideImg" />
+      <Slide />
       <Modal
+        id="modalCarousel"
         onClose={() => setOpen(false)}
         open={open}
       >

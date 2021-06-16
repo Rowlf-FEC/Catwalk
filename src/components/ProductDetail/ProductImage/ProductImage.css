@@ -1,8 +1,6 @@
-/* .slideImg {
-  float: left;
-  width:  500px;
-  height: 500px;
-} */
+.slideImg:hover {
+  cursor: zoom-in;
+}
 
 div.carousel-root {
   height: 550px;
@@ -26,8 +24,12 @@ div.thumbs-wrapper.axis-vertical {
   max-height: 50%;
 }
 
-li.slide.selected:hover {
+/* li.slide.selected:hover {
   cursor: zoom-in;
+} */
+
+div#modalCarousel.ui.modal.transition.visible.active div.content div.carousel-root:hover {
+  cursor: crosshair;
 }
 
 ul.thumbs.animated {
