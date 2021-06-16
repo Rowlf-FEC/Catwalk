@@ -1,78 +1,44 @@
-/* eslint-disable no-console */
-/* eslint-disable no-plusplus */
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable consistent-return */
-/* eslint-disable no-unused-vars */
-/* eslint-disable spaced-comment */
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Grid, Button, Icon } from 'semantic-ui-react';
-import config from '../../config';
 import Question from './Question';
+import './Question.css';
 
-function QuestionsList(props) {
-  const context = { headers: { authorization: config.token }, params: { product_id: 27189 } };
-
-  const [questions, setQuestions] = useState([]);
+function QuestionsList({ questionsArray }) {
   const [count, setCount] = useState(3);
-  const [shownQuestions, setShownQuestions] = useState([]);
+  const [shownQuestions, setShownQuestions] = useState(questionsArray.slice(0, 5));
 
   useEffect(() => {
-    axios.get(`${config.url}/qa/questions`, context)
-      .then((results) => {
-        function compare(a, b) {
-          if (a.question_helpfulness > b.question_helpfulness) {
-            return -1;
-          }
-          if (a.question_helpfulness < b.question_helpfulness) {
-            return 1;
-          }
-          return 0;
-        }
-        results.data.results.sort(compare);
-        setQuestions(results.data.results);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+    setShownQuestions(questionsArray.slice(0, count + 1));
+  }, [questionsArray, count]);
 
-  useEffect(() => {
-    const results = [];
-    for (let i = 0; i <= count; i++) {
-      if (questions[i] !== undefined) {
-        results.push(questions[i]);
-      }
-    }
-    setShownQuestions(results);
-  }, [count, questions]);
-
-  function showMore(e) {
+  function showMore() {
     setCount(count + 4);
   }
-  function showLess(e) {
+
+  function showLess() {
     if (count > 1) {
       setCount(count - 4);
     }
   }
-  function questionsAccordionButtons() {
-    if (questions.length > count + 1 && count > 1) {
+
+  function questionsAccordion() {
+    if (shownQuestions.length > count && count > 3) {
       return (
         <div>
-          <Button onClick={showLess}>
+          <Button id="show_questions_button_row" onClick={showLess}>
             <Icon name="angle up" />
             <u>Show Less Questions</u>
           </Button>
-          <Button onClick={showMore}>
+          <Button id="show_questions_button_row" onClick={showMore}>
             <Icon name="angle down" />
             <u>Show More Questions</u>
           </Button>
         </div>
       );
     }
-    if (questions.length > count + 1) {
+    if (shownQuestions.length > count) {
       return (
-        <Button onClick={showMore}>
+        <Button id="show_questions_button_row" onClick={showMore}>
           <Icon name="angle down" />
           <u>More Answered Questions</u>
         </Button>
@@ -80,31 +46,22 @@ function QuestionsList(props) {
     }
     if (count > 3) {
       return (
-        <Button onClick={showLess}>
+        <Button id="show_questions_button_row" onClick={showLess}>
           <Icon name="angle up" />
           <u>Less Questions</u>
         </Button>
       );
     }
-    if (questions.length === 0) {
-      return <p></p>;
-    }
+    return <p />;
   }
 
   return (
     <Grid centered>
-      <Grid.Row columns={1}>
-        <Grid.Column>
-          {shownQuestions.map((q) => <Question key={q.question_id} q={q} />) }
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row columns={2}>
-        <Grid.Column>
-          {questionsAccordionButtons()}
-        </Grid.Column>
-        <Grid.Column>
-          <Button>Ask A Question</Button>
-        </Grid.Column>
+      <Grid id="questions_feed">
+        {shownQuestions.map((q) => <Question key={q.question_id} q={q} />)}
+      </Grid>
+      <Grid.Row>
+        {questionsAccordion()}
       </Grid.Row>
     </Grid>
   );

@@ -8,7 +8,8 @@ import axios from 'axios';
 import { Container, Header, Accordion, Grid, Button } from 'semantic-ui-react';
 import AnswersList from './AnswersList';
 import config from '../../config';
-// import SumbitAnswersForm from './SumbitAnswersForm';
+import SubmitAnswerForm from './SubmitAnswerForm';
+import './Question.css';
 
 function Question({ q }) {
   // This is for each individual question
@@ -31,29 +32,24 @@ function Question({ q }) {
     }
   }
   return (
-    <div>
-      <Grid celled centered>
-        <Grid.Row textAlign="left" columns={3}>
-          <Grid.Column textAlign="right">
-            <h3>Q: "{q.question_body}"</h3>
-          </Grid.Column>
-          <Grid.Column textAlign="right">
-            <h5 onClick={handleHelpful}>
-              Helpful?&nbsp;&nbsp;<u>Yes</u>({helpful})
-            </h5>
-          </Grid.Column>
-          <Grid.Column>
-            <h5><u>Add Answer</u></h5>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <AnswersList answersObj={q.answers} />
-        </Grid.Row>
-        <Grid.Row>
-          <Button>Add an Answer</Button>
-        </Grid.Row>
-      </Grid>
-    </div>
+    <Grid centered container id="question">
+      <Grid.Row columns={3} className="question_row">
+        <Grid.Column textAlign="left" width={10}>
+          <h4>Q: "{q.question_body}"</h4>
+        </Grid.Column>
+        <Grid.Column textAlign="right" width={3}>
+          <Button id="button" size="mini" onClick={handleHelpful}>
+            Helpful?&nbsp;&nbsp;<u>Yes</u>({helpful})
+          </Button>
+        </Grid.Column>
+        <Grid.Column width={3}>
+          <SubmitAnswerForm id={q.question_id} body={q.question_body} />
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row className="answer_row">
+        <AnswersList answersObj={q.answers} />
+      </Grid.Row>
+    </Grid>
   );
 }
 

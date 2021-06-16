@@ -1,34 +1,29 @@
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable consistent-return */
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable object-curly-newline */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-console */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { Accordion, Icon, Grid, Image, Button } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import Answer from './Answer';
+import moreAndLess from './moreAndLessButtons';
 
-// If the list becomes to large for the screen, it stays contained and becomes scrollable
+// this helper function is used in .sort() method to order answers by helpfulness
+function compare(a, b) {
+  if (a.helpfulness > b.helpfulness) {
+    return -1;
+  }
+  if (a.helpfulness < b.helpfulness) {
+    return 1;
+  }
+  return 0;
+}
 
-function AnswersList(props) {
+function AnswersList({ answersObj }) {
   const [answers, setAnswers] = useState([]);
   const [count, setCount] = useState(1);
   const [shownAnswers, setShownAnswers] = useState([]);
+
   useEffect(() => {
-    const answersArr = Object.keys(props.answersObj).map((key) => props.answersObj[key]);
-    function compare(a, b) {
-      if (a.helpfulness > b.helpfulness) {
-        return -1;
-      }
-      if (a.helpfulness < b.helpfulness) {
-        return 1;
-      }
-      return 0;
-    }
+    const answersArr = Object.keys(answersObj).map((key) => answersObj[key]);
     answersArr.sort(compare);
+    // this forEach is making sure that if the Seller answers a question it always shows first
     answersArr.forEach((obj, index) => {
       if (obj.answerer_name === 'Seller') {
         const temp = answersArr[0];
@@ -37,11 +32,11 @@ function AnswersList(props) {
       }
     });
     setAnswers(answersArr);
-  }, [props.answersObj]);
+  }, [answersObj]);
 
   useEffect(() => {
     const results = [];
-    for (let i = 0; i <= count; i++) {
+    for (let i = 0; i <= count; i += 1) {
       if (answers[i] !== undefined) {
         results.push(answers[i]);
       }
@@ -49,56 +44,28 @@ function AnswersList(props) {
     setShownAnswers(results);
   }, [count, answers]);
 
-  function showMore(e) {
+  function showMore() {
     setCount(count + 2);
   }
-  function showLess(e) {
+  function showLess() {
     if (count > 1) {
       setCount(count - 2);
     }
   }
-  function enoughQuestions() {
-    if (answers.length > count + 1 && count > 1) {
-      return (
-        <div>
-          <Button onClick={showLess}>
-            <Icon name="angle up" />
-            <u>Show Less Answers</u>
-          </Button>
-          <Button onClick={showMore}>
-            <Icon name="angle down" />
-            <u>Show More Answers</u>
-          </Button>
-        </div>
-      );
-    }
-    if (answers.length > count + 1) {
-      return (
-        <Button onClick={showMore}>
-          <Icon name="angle down" />
-          <u>Show More Answers</u>
-        </Button>
-      );
-    }
-    if (count > 1) {
-      return (
-        <Button onClick={showLess}>
-          <Icon name="angle up" />
-          <u>Show Less Answers</u>
-        </Button>
-      );
-    }
-    if (answers.length === 0) {
-      return <p></p>;
-    }
-  }
 
   return (
-    <div>
+    <Grid>
       {shownAnswers.map((answer) => <Answer key={answer.id} answer={answer} />)}
-      {enoughQuestions()}
-    </div>
+      {answers.length > 2 ? moreAndLess(showLess, showMore, count, answers, 'Answers') : null}
+    </Grid>
   );
 }
+
+AnswersList.propTypes = {
+  answersObj: PropTypes.shape(),
+};
+AnswersList.defaultProps = {
+  answersObj: {},
+};
 
 export default AnswersList;

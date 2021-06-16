@@ -117,4 +117,4 @@ BuyProduct.propTypes = {
   currentStyle: PropTypes.array.isRequired,
 };
 
-// export default BuyProduct;
+export default BuyProduct;

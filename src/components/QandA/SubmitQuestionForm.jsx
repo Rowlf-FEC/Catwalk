@@ -1,31 +1,81 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import validateSubmit from './validateSubmit';
+import { Modal, Form, Button } from 'semantic-ui-react';
+import config from '../../config';
 
-function SubmitQuestionForm(props) {
+function SubmitQuestionForm({ productId }) {
+  const [open, setOpen] = useState(false);
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
-  /** possible state neeeded:
-  *
-  *  Need productId
-  *
-  */
+  function nicknameStore(e) {
+    setNickname(e.target.value);
+  }
 
-  // This is a pop up that overlays window
+  function emailStore(e) {
+    setEmail(e.target.value);
+  }
 
-  // At top of window title should read "Ask your question about the [product name]"
+  function messageStore(e) {
+    setMessage(e.target.value);
+  }
 
-  // Has a form layout with an input for:
-    // "What is you email? *mandatory" input placeholder="Example: JaneDoe@gmail.com"
-    // "what is your NickName *mandatory" input placeholder="Example: jackson11!"
+  function submitQuestion() {
+    const data = {
+      body: message, name: nickname, email, productId,
+    };
 
-  // Below email input it should say "For authorization reasons, you will not be emailed"
+    const context = {
+      headers:
+      {
+        authorization: config.token,
+      },
+    };
 
-  // Below nickname input it should say "For privacy reasons do no use your full name or email address"
+    axios.post(`${config.url}/qa/questions`, data, context)
+      .then((results) => results)
+      .catch((err) => {
+        throw err;
+      });
+  }
 
-  // Answer body input should accept 1000 characters and placeholder="Your answer to question here"
+  function doubleFunction() {
+    setOpen(false);
+    submitQuestion();
+  }
 
-  // Should have "Submit Question" button that VALIDATES form before submitting
-
+  return (
+    <Modal
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={open}
+      trigger={<Button id="ask_question_button">Ask a Question</Button>}
+    >
+      <Modal.Header>Ask Your Question</Modal.Header>
+      <Modal.Content>
+        <Form>
+          <Form.Group widths="equal">
+            <Form.Input onChange={nicknameStore} fluid label="What is your nickname? *" placeholder="Example: Jackson11! *Required" />
+            <Form.Input onChange={emailStore} fluid label="What is your email? *" placeholder="Example: JaneDoe@Gmail.com *Required" />
+          </Form.Group>
+          <Form.TextArea onChange={messageStore} label="Question" placeholder="Your Question About The Product Here..." />
+        </Form>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button color="black" onClick={() => setOpen(false)}>
+          Cancel
+        </Button>
+        <Button
+          content="Submit Question"
+          labelPosition="right"
+          icon="paper plane outline"
+          onClick={() => doubleFunction()}
+          positive
+        />
+      </Modal.Actions>
+    </Modal>
+  );
 }
 
 export default SubmitQuestionForm;
