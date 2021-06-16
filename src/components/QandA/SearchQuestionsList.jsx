@@ -1,50 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { ReactSearchAutocomplete } from 'react-search-autocomplete'
-import config from '../../config';
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+import PropTypes from 'prop-types';
 import './Question.css';
 
-function SearchQuestionsList({ productId }) {
+function SearchQuestionsList({ questionsArray }) {
   const [searchQuestions, setSearchQuestions] = useState([]);
-  const [inputValue, setInputValue] = useState('');
-  const context = {
-    headers: { authorization: config.token },
-    params: { product_id: productId, count: 100 },
-  };
 
+  // this useEffect is changing the property key to "name" and deleting the old key "question_body"
+  // search bar requires "name" property for lookup
   useEffect(() => {
-    axios.get(`${config.url}/qa/questions`, context)
-      .then((results) => {
-        for (let i = 0; i < results.data.results.length; i += 1) {
-          const obj = results.data.results[i];
-          delete Object.assign(obj, { name: obj.question_body }).question_body;
-        }
-        setSearchQuestions(results.data.results);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+    for (let i = 0; i < questionsArray.length; i += 1) {
+      const obj = questionsArray[i];
+      delete Object.assign(obj, { name: obj.question_body }).question_body;
+    }
+    setSearchQuestions(questionsArray);
+  }, [questionsArray]);
 
-  const handleOnSearch = (string, results) => {
-    // onSearch will have as the first callback parameter
-    // the string searched and for the second the results.
-    console.log(string, results);
-  };
+  // ============= Need to finish this logic for what happens with search bar ================
 
-  const handleOnHover = (result) => {
-    // the item hovered
-    console.log(result);
-  };
+  // const [inputValue, setInputValue] = useState('');
 
-  const handleOnSelect = (item) => {
-    // the item selected
-    console.log(item);
-  };
+  // const handleOnSearch = (string, results) => {
+  //   // onSearch will have as the first callback parameter
+  //   // the string searched and for the second the results.
+  //   // console.log(string, results);
+  // };
 
-  const handleOnFocus = () => {
-    //console.log('Focused');
-  };
+  // const handleOnHover = (result) => {
+  //   // the item hovered
+  //   // console.log(result);
+  // };
+
+  // const handleOnSelect = (item) => {
+  //   // the item selected
+  //   // console.log(item);
+  // };
+
+  // const handleOnFocus = () => {
+  //   // console.log('Focused');
+  // };
 
   return (
     <div className="searchBar">
@@ -52,10 +46,10 @@ function SearchQuestionsList({ productId }) {
         <div style={{ width: '40vw' }}>
           <ReactSearchAutocomplete
             items={searchQuestions}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
+            // onSearch={handleOnSearch}
+            // onHover={handleOnHover}
+            // onSelect={handleOnSelect}
+            // onFocus={handleOnFocus}
             autoFocus
           />
         </div>
@@ -63,5 +57,12 @@ function SearchQuestionsList({ productId }) {
     </div>
   );
 }
+
+SearchQuestionsList.propTypes = {
+  questionsArray: PropTypes.arrayOf(PropTypes.shape()),
+};
+SearchQuestionsList.defaultProps = {
+  questionsArray: [],
+};
 
 export default SearchQuestionsList;

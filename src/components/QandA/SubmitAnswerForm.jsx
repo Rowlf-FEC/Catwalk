@@ -24,7 +24,7 @@ function SubmitAnswerForm({ id, body }) {
       .catch((err) => err);
   }
 
-  // this is just to invoke two functions in event handler
+  // this is to invoke two functions with one onClick event handler
   function doubleFunction() {
     setOpen(false);
     submitAnswer();
@@ -35,7 +35,7 @@ function SubmitAnswerForm({ id, body }) {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button id="button" size="mini"><u>Add an Answer</u></Button>}
+      trigger={<Button id="buttonAnswers" size="mini"><u>Add an Answer</u></Button>}
     >
       <Modal.Header>
         Submit your Answer for:
@@ -68,8 +68,12 @@ function SubmitAnswerForm({ id, body }) {
 }
 
 SubmitAnswerForm.propTypes = {
-  id: PropTypes.number.isRequired,
-  body: PropTypes.string.isRequired,
+  id: PropTypes.number,
+  body: PropTypes.string,
+};
+SubmitAnswerForm.defaultProps = {
+  id: 1,
+  body: 'hello world',
 };
 
 export default SubmitAnswerForm;

@@ -34,11 +34,18 @@ div#question.ui.centered.container.grid {
 }
 
 div.three.column.row.question_row {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-#button {
+div.ui.grid>.row.show_Questions_row {
+  padding-top: 0;
+  margin-top: 14px;
+}
+
+#buttonQuestion {
   padding: 0;
   border: none;
   background: none;
@@ -48,7 +55,7 @@ div.three.column.row.question_row {
   margin-left: 5%;
 }
 
-#show_questions_button_row {
+#show_Questions_buttons {
   margin-top: 15px;
 }
 
@@ -88,19 +95,17 @@ div.ui.container.grid.answer {
 .ui.grid>.row.show_Answers_buttons {
   padding-top: 1%;
   margin-left: 15%;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+#buttonAnswers {
+  padding: 0;
+  border: none;
+  background: none;
 }
 
 #button.report_button {
   margin-left: 25px;
 }
-
-/*
-.ui.centered.grid.QandA {
-  padding-top: 50px;
-}
-
-.three.column.row.question_body {
-  padding-top: 5px;
-  padding-bottom: 0px;
-}
-*/

@@ -53,7 +53,7 @@ function Answer({ answer }) {
           &nbsp;from&nbsp;
           {handleTime(dayjs(answer.date))}
         </p>
-        <Button id="button" className="helpful_answer_button" size="mini" onClick={handleHelpful}>
+        <Button id="buttonAnswers" className="helpful_answer_button" size="mini" onClick={handleHelpful}>
           Helpful?&nbsp;&nbsp;
           <b>
             <u>Yes</u>
@@ -62,7 +62,7 @@ function Answer({ answer }) {
             )
           </b>
         </Button>
-        <Button id="button" className="report_button" size="mini" onClick={reportAnswer}>
+        <Button id="buttonAnswers" className="report_button" size="mini" onClick={reportAnswer}>
           {report ? <b><u>Reported</u></b> : <b><u>Report</u></b>}
         </Button>
       </Grid.Row>

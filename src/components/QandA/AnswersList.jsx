@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Answer from './Answer';
 import moreAndLess from './moreAndLessButtons';
 
-// this helper function is used in .sort() method to order answers by helpfulness
+// this helper function is used below in .sort() method to order answers by helpfulness
 function compare(a, b) {
   if (a.helpfulness > b.helpfulness) {
     return -1;
@@ -21,6 +21,7 @@ function AnswersList({ answersObj }) {
   const [shownAnswers, setShownAnswers] = useState([]);
 
   useEffect(() => {
+    // this hook is mapping over the object passed in from parent and creating an array
     const answersArr = Object.keys(answersObj).map((key) => answersObj[key]);
     answersArr.sort(compare);
     // this forEach is making sure that if the Seller answers a question it always shows first
@@ -56,7 +57,7 @@ function AnswersList({ answersObj }) {
   return (
     <Grid>
       {shownAnswers.map((answer) => <Answer key={answer.id} answer={answer} />)}
-      {answers.length > 2 ? moreAndLess(showLess, showMore, count, answers, 'Answers') : null}
+      {answers.length > 2 ? moreAndLess(showLess, showMore, count, answers, 'Answers', 1) : null}
     </Grid>
   );
 }

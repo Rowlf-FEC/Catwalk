@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Button, Icon } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import Question from './Question';
+import moreAndLess from './moreAndLessButtons';
 import './Question.css';
 
 function QuestionsList({ questionsArray }) {
@@ -21,50 +23,23 @@ function QuestionsList({ questionsArray }) {
     }
   }
 
-  function questionsAccordion() {
-    if (shownQuestions.length > count && count > 3) {
-      return (
-        <div>
-          <Button id="show_questions_button_row" onClick={showLess}>
-            <Icon name="angle up" />
-            <u>Show Less Questions</u>
-          </Button>
-          <Button id="show_questions_button_row" onClick={showMore}>
-            <Icon name="angle down" />
-            <u>Show More Questions</u>
-          </Button>
-        </div>
-      );
-    }
-    if (shownQuestions.length > count) {
-      return (
-        <Button id="show_questions_button_row" onClick={showMore}>
-          <Icon name="angle down" />
-          <u>More Answered Questions</u>
-        </Button>
-      );
-    }
-    if (count > 3) {
-      return (
-        <Button id="show_questions_button_row" onClick={showLess}>
-          <Icon name="angle up" />
-          <u>Less Questions</u>
-        </Button>
-      );
-    }
-    return <p />;
-  }
-
   return (
     <Grid centered>
       <Grid id="questions_feed">
         {shownQuestions.map((q) => <Question key={q.question_id} q={q} />)}
       </Grid>
-      <Grid.Row>
-        {questionsAccordion()}
+      <Grid.Row className="show_Questions_row">
+        {moreAndLess(showLess, showMore, count, shownQuestions, 'Questions', 3)}
       </Grid.Row>
     </Grid>
   );
 }
+
+QuestionsList.propTypes = {
+  questionsArray: PropTypes.arrayOf(PropTypes.shape()),
+};
+QuestionsList.defaultProps = {
+  questionsArray: [],
+};
 
 export default QuestionsList;

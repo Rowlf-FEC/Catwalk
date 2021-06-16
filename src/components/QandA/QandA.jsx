@@ -47,7 +47,7 @@ function QandA({ productId }) {
     <div className="QandA">
       <Grid centered className="QandA">
         <Grid.Row textAlign="center" className="question_scroll">
-          <SearchQuestionsList productId={productIdNum} />
+          <SearchQuestionsList productId={productIdNum} questionsArray={questions} />
           <SubmitQuestionForm productId={productIdNum} />
         </Grid.Row>
         <Grid.Row stretched>

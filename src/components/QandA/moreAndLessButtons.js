@@ -1,19 +1,22 @@
 import { Button, Icon, Grid } from 'semantic-ui-react';
 import React from 'react';
 
-function moreAndLess(showLess, showMore, count, arrOfObjs, nounString) {
-  if (arrOfObjs.length > count + 1 && count > 1) {
+// Just a helper function to render the "More Question/Answers" or "Less Questions/Answers" buttons
+// Becuase it is similar logic in both AnswersList and QuestionsList
+
+function moreAndLess(showLess, showMore, count, arrOfObjs, nounString, num) {
+  if (arrOfObjs.length > count && count > num) {
     return (
-      <Grid.Row className={`show_${nounString}_buttons`}>
+      <Grid.Row className={`show_${nounString}_row`}>
         <div>
-          <Button id="button" onClick={showLess}>
+          <Button id={`button${nounString}`} onClick={showLess}>
             <Icon name="angle up" />
             <u>
               Show Less&nbsp;
               {nounString}
             </u>
           </Button>
-          <Button id="button" onClick={showMore}>
+          <Button id={`button${nounString}`} onClick={showMore}>
             <Icon name="angle down" />
             <u>
               Show More&nbsp;
@@ -24,11 +27,11 @@ function moreAndLess(showLess, showMore, count, arrOfObjs, nounString) {
       </Grid.Row>
     );
   }
-  if (arrOfObjs.length > count + 1) {
+  if (arrOfObjs.length > count) {
     return (
-      <Grid.Row className={`show_${nounString}_buttons`}>
+      <Grid.Row className={`show_${nounString}_row`}>
         <div>
-          <Button id="button" onClick={showMore}>
+          <Button id={`button${nounString}`} onClick={showMore}>
             <Icon name="angle down" />
             <u>
               Show More&nbsp;
@@ -39,11 +42,11 @@ function moreAndLess(showLess, showMore, count, arrOfObjs, nounString) {
       </Grid.Row>
     );
   }
-  if (count > 1) {
+  if (count > num) {
     return (
-      <Grid.Row className={`show_${nounString}_buttons`}>
+      <Grid.Row className={`show_${nounString}_row`}>
         <div>
-          <Button id="button" onClick={showLess}>
+          <Button id={`button${nounString}`} onClick={showLess}>
             <Icon name="angle up" />
             <u>
               Show Less&nbsp;

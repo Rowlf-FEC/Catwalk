@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Modal, Form, Button } from 'semantic-ui-react';
 import config from '../../config';
 
@@ -8,18 +9,6 @@ function SubmitQuestionForm({ productId }) {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-
-  function nicknameStore(e) {
-    setNickname(e.target.value);
-  }
-
-  function emailStore(e) {
-    setEmail(e.target.value);
-  }
-
-  function messageStore(e) {
-    setMessage(e.target.value);
-  }
 
   function submitQuestion() {
     const data = {
@@ -40,6 +29,7 @@ function SubmitQuestionForm({ productId }) {
       });
   }
 
+  // this function just invokes two functions to be used in onClick event for submission
   function doubleFunction() {
     setOpen(false);
     submitQuestion();
@@ -56,10 +46,10 @@ function SubmitQuestionForm({ productId }) {
       <Modal.Content>
         <Form>
           <Form.Group widths="equal">
-            <Form.Input onChange={nicknameStore} fluid label="What is your nickname? *" placeholder="Example: Jackson11! *Required" />
-            <Form.Input onChange={emailStore} fluid label="What is your email? *" placeholder="Example: JaneDoe@Gmail.com *Required" />
+            <Form.Input onChange={(e) => { setNickname(e.target.value); }} fluid label="What is your nickname? *" placeholder="Example: Jackson11! *Required" />
+            <Form.Input onChange={(e) => { setEmail(e.target.value); }} fluid label="What is your email? *" placeholder="Example: JaneDoe@Gmail.com *Required" />
           </Form.Group>
-          <Form.TextArea onChange={messageStore} label="Question" placeholder="Your Question About The Product Here..." />
+          <Form.TextArea onChange={(e) => { setMessage(e.target.value); }} label="Question" placeholder="Your Question About The Product Here..." />
         </Form>
       </Modal.Content>
       <Modal.Actions>
@@ -77,5 +67,12 @@ function SubmitQuestionForm({ productId }) {
     </Modal>
   );
 }
+
+SubmitQuestionForm.propTypes = {
+  productId: PropTypes.number,
+};
+SubmitQuestionForm.defaultProps = {
+  productId: 1,
+};
 
 export default SubmitQuestionForm;
