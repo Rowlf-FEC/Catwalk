@@ -5,7 +5,7 @@
 import React from 'react';
 import axios from 'axios';
 import {
-  Grid, Divider,
+  Grid,
 } from 'semantic-ui-react';
 import './ProductImage/ProductImage.css';
 
@@ -250,7 +250,6 @@ export default class ProductDetail extends React.Component {
               />
             </Grid.Column>
           </Grid.Row>
-          <Divider />
           <Grid.Row stretched>
             <Grid.Column textAlign="center" width={16}>
               <ProductDescription productDescription={productDescription} essentials={essentials} />

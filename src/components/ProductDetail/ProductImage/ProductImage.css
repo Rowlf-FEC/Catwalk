@@ -1,16 +1,12 @@
-.slideImg:hover {
-  cursor: zoom-in;
-}
-
-div.carousel-root {
+/* div.carousel-root {
   height: 550px;
-}
+} */
 
-div.carousel.carousel-slider {
+/* div.carousel.carousel-slider { */
   /* height: ; */
-  width: 100%;
+  /* width: 100%;
   max-width: 100%;
-}
+} */
 
 /* image gallery */
 div.slider-wrapper.axis-horizontal {
@@ -24,14 +20,19 @@ div.thumbs-wrapper.axis-vertical {
   max-height: 50%;
 }
 
-/* li.slide.selected:hover {
-  cursor: zoom-in;
-} */
+ul.thumbs.animated {
+  margin: 0;
+  padding-top: 5px;
+}
 
-div#modalCarousel.ui.modal.transition.visible.active div.content div.carousel-root:hover {
+.mainImage:hover {
+  cursor: zoom-in;
+}
+
+.modalImage:hover {
   cursor: crosshair;
 }
 
-ul.thumbs.animated {
-  margin: 5px;
-}
+/* ul.thumbs.animated {
+  margin: 1px;
+} */
