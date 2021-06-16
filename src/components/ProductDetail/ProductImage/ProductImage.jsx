@@ -1,21 +1,54 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/forbid-prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { Image } from 'semantic-ui-react';
+import { Modal } from 'semantic-ui-react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { Carousel } from 'react-responsive-carousel';
+// import { Carousel } from 'react-responsive-carousel';
+import withSlide from './Carousel';
 import './ProductImage.css';
 
 function ProductImage({ images }) {
+  const [open, setOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  let mainCarousel;
+  const mainData = {
+    className: 'mainCarousel',
+    onClickItem: (index) => { setOpen(() => true); setCurrentSlide(() => index); },
+    onChange: (index) => { setCurrentSlide(() => index); },
+    selectedItem: currentSlide,
+    showIndicators: false,
+    showThumbs: true,
+    images,
+    imageClass: 'mainImage',
+  };
+
+  let modalCarousel;
+  const modalData = {
+    className: 'modalCarousel',
+    // onClickItem:
+    onChange: (index) => { setCurrentSlide(() => index); },
+    selectedItem: currentSlide,
+    showIndicators: true,
+    showThumbs: false,
+    images,
+    imageClass: 'modalImage',
+  };
+
   return (
-    <Carousel showArrows showStatus={false} showThumbs useKeyboardArrows width="100%">
-      {images.map((image, index) => (
-        <div key={index}>
-          <img alt={image.url} className="carouselImg" src={image.url} />
-        </div>
-      ))}
-    </Carousel>
+    <div>
+      {withSlide(mainCarousel, mainData)}
+      <Modal
+        id="modalCarousel"
+        onClose={() => setOpen(false)}
+        open={open}
+      >
+        <Modal.Content>
+          {withSlide(modalCarousel, modalData)}
+        </Modal.Content>
+      </Modal>
+    </div>
   );
 }
 

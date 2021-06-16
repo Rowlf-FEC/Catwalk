@@ -8,15 +8,3 @@
 
 }
 
-.original {
-  color: black;
-}
-
-.sale {
-  color: red;
-}
-
-.strikethrough {
-  text-decoration-line: line-through;
-  text-decoration-style: solid;
-}
