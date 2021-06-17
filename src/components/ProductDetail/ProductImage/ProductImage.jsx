@@ -3,8 +3,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'semantic-ui-react';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-// import { Carousel } from 'react-responsive-carousel';
 import withSlide from './Carousel';
 import './ProductImage.css';
 
@@ -15,6 +13,7 @@ function ProductImage({ images }) {
   let mainCarousel;
   const mainData = {
     className: 'mainCarousel',
+    dynamicHeight: false,
     onClickItem: (index) => { setOpen(() => true); setCurrentSlide(() => index); },
     onChange: (index) => { setCurrentSlide(() => index); },
     selectedItem: currentSlide,
@@ -27,6 +26,7 @@ function ProductImage({ images }) {
   let modalCarousel;
   const modalData = {
     className: 'modalCarousel',
+    dynamicHeight: true,
     // onClickItem:
     onChange: (index) => { setCurrentSlide(() => index); },
     selectedItem: currentSlide,

@@ -23,7 +23,7 @@ export default class ProductDetail extends React.Component {
       images: [],
       isTrue: true,
       productDescription: [],
-      productId: props.productId || 27192,
+      productId: props.productId || 27189,
       qtyCart: 0,
       qtyOptions: [],
       quantities: [],
@@ -229,12 +229,12 @@ export default class ProductDetail extends React.Component {
     } = this.state;
     return (
       <div>
-        <Grid columns={2}>
+        <Grid centered columns={2}>
           <Grid.Row stretched>
-            <Grid.Column className="carouselColumn" width={10}>
+            <Grid.Column className="carouselColumn" width={7.25}>
               <ProductImage images={images} />
             </Grid.Column>
-            <Grid.Column textAlign="left" width={6}>
+            <Grid.Column width={5}>
               <BuyProduct
                 changeStyle={this.changeStyle}
                 currentStyle={currentStyle}
@@ -251,7 +251,7 @@ export default class ProductDetail extends React.Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row stretched>
-            <Grid.Column textAlign="center" width={16}>
+            <Grid.Column textAlign="center" width={13}>
               <ProductDescription productDescription={productDescription} essentials={essentials} />
             </Grid.Column>
           </Grid.Row>
