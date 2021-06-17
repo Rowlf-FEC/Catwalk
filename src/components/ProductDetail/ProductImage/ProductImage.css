@@ -6,7 +6,9 @@
 } */
 
 ul.thumbs.animated {
-  margin: 0;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-inline-start: 0;
 }
 
 .mainImage {
