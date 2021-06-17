@@ -1,9 +1,4 @@
 
-/* Carousel */
-div.carousel-root .mainImage {
-  height: 450px;
-}
-
 /* thumbnail gallery */
 /* div.thumbs-wrapper.axis-vertical {
   margin: 0;
@@ -11,22 +6,22 @@ div.carousel-root .mainImage {
 } */
 
 ul.thumbs.animated {
-  margin: 0;
-  padding-top: 5px;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-inline-start: 0;
 }
 
-/* images and cursors */
 .mainImage {
-  /* min-height: 450px; */
-  height: auto;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
 }
 
 .mainImage img {
-  min-height: 450px;
+  min-height: 50%;
+  max-width: auto;
 }
+
 
 .mainImage:hover {
   cursor: zoom-in;

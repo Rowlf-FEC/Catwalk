@@ -13,7 +13,7 @@ function ProductImage({ images }) {
   let mainCarousel;
   const mainData = {
     className: 'mainCarousel',
-    dynamicHeight: false,
+    dynamicHeight: true,
     onClickItem: (index) => { setOpen(() => true); setCurrentSlide(() => index); },
     onChange: (index) => { setCurrentSlide(() => index); },
     selectedItem: currentSlide,
