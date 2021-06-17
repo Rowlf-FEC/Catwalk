@@ -7,7 +7,7 @@ function ProductRating({ rating }) {
     <Header
       style={{ fontSize: '4.5em' }}
     >
-      {rating}
+      {Number.isNaN(rating) ? rating : '5.0'}
     </Header>
   );
 }

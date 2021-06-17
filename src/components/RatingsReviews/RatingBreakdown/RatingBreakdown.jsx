@@ -39,6 +39,14 @@ function RatingBreakdown({
     addFilter('stars', ratingFilter);
   };
 
+  const totalRecommended = () => {
+    const totalRecomendations = Number.isNaN(((recommended.true / total) * 100).toFixed());
+    if (Number.isNaN(totalRecomendations)) {
+      return totalRecomendations;
+    }
+    return 100;
+  };
+
   return (
     <div style={{
       maxHeight: '300px',
@@ -74,7 +82,7 @@ function RatingBreakdown({
           </Grid.Row>
         ))}
         <p>
-          {((recommended.true / total) * 100).toFixed()}
+          {totalRecommended()}
           % of reviewers recommend this product
         </p>
       </Grid>
