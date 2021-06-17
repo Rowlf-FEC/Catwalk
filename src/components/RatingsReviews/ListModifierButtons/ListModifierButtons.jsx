@@ -30,7 +30,7 @@ function ListModifierButtons({
   const [reviewer_name, setReviewer_name] = useState('');
   const [email, setEmail] = useState('');
   const [handleButton, setHandleButton] = useState();
-  const [formHasError, setFormHasError] = useState(true);
+  const [formHasError, setFormHasError] = useState(false);
   const [formErrors, setFormErrors] = useState(null);
 
   useEffect(() => {
