@@ -5,7 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 const withSlide = (WrappedComponent, selectData) => (
   <Carousel
     className={selectData.className}
-    dynamicHeight={selectData.dynamicHeight}
+    dynamicHeight
     onClickItem={selectData.onClickItem}
     onChange={selectData.onChange}
     selectedItem={selectData.selectedItem}
