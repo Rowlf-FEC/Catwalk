@@ -14,6 +14,7 @@ import config from '../../../config';
 
 function ListModifierButtons({
   allReviewsLoaded,
+  productName,
   sortReviews,
   productId,
   characteristics,
@@ -29,7 +30,7 @@ function ListModifierButtons({
   const [reviewer_name, setReviewer_name] = useState('');
   const [email, setEmail] = useState('');
   const [handleButton, setHandleButton] = useState();
-  const [formHasError, setFormHasError] = useState(false);
+  const [formHasError, setFormHasError] = useState(true);
   const [formErrors, setFormErrors] = useState(null);
 
   useEffect(() => {
@@ -49,7 +50,7 @@ function ListModifierButtons({
           basic
           color="red"
         >
-          err
+          Map over the errors and return text that defines the errors for user
         </Label>,
       );
     }
@@ -59,7 +60,17 @@ function ListModifierButtons({
   const handleReviewSubmit = (e) => {
     e.preventDefault();
 
-    // if (handleFormErrors)
+    if (formHasError) {
+      setFormErrors(
+        <Label
+          basic
+          color="red"
+        >
+          Form has errors!
+        </Label>,
+      );
+      return;
+    }
 
     const postNewReview = {
       method: 'post',
@@ -85,8 +96,15 @@ function ListModifierButtons({
         sortReviews();
         setOpen(false);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        setFormErrors(
+          <Label
+            basic
+            color="red"
+          >
+            Error submitting review
+          </Label>,
+        );
       });
   };
 
@@ -101,7 +119,10 @@ function ListModifierButtons({
       >
         <Modal.Header>Write Your Review</Modal.Header>
         <Modal.Content>
-          <Header>About the productName</Header>
+          <Header>
+            About the&nbsp;
+            {productName}
+          </Header>
           <SubmitReviewForm
             characteristics={characteristics}
             userRating={userRating}
@@ -150,6 +171,7 @@ function ListModifierButtons({
 
 ListModifierButtons.propTypes = {
   allReviewsLoaded: PropTypes.bool.isRequired,
+  productName: PropTypes.string.isRequired,
   sortReviews: PropTypes.func.isRequired,
   productId: PropTypes.number.isRequired,
   characteristics: PropTypes.shape().isRequired,

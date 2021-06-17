@@ -13,6 +13,7 @@ import {
   Label,
 } from 'semantic-ui-react';
 import characteristicsList from './characteristicsList';
+import './RadioButtons.css';
 
 function SubmitReviewForm({
   characteristics,
@@ -38,7 +39,7 @@ function SubmitReviewForm({
   const [userRatingError, setUserRatingError] = useState(true);
   const [userRecommendsError, setUserRecommendsError] = useState(true);
   const [reviewCharacteristicsError, setReviewCharacteristicsError] = useState(true);
-  const [reviewSummaryError, setReviewSummaryError] = useState('');
+  const [reviewSummaryError, setReviewSummaryError] = useState(true);
   const [reviewBodyError, setReviewBodyError] = useState(true);
   const [photosError, setPhotosError] = useState(true);
   const [reviewer_nameError, setReviewer_nameError] = useState(true);
@@ -46,6 +47,9 @@ function SubmitReviewForm({
 
   const handleFormChange = (e) => {
     e.preventDefault();
+
+    const errors = [];
+
     if (
       userRatingError === false
       && userRecommendsError === false
@@ -77,22 +81,21 @@ function SubmitReviewForm({
             color="red"
           />
         </Form.Field>
-        <Label color="red" basic pointing="left">Please rate this</Label>
       </Form.Group>
       <Form.Group inline>
-        <Form.Field error width={8} inline required>
+        <Form.Field error={userRecommendsError} width={8} inline required>
           <label>Do you recommend this product?</label>
           <Form.Radio
             label="Yes"
-            value
+            value="yes"
             checked={userRecommends === true}
-            onChange={(e, { value }) => setUserRecommends(value)}
+            onChange={(e, { value }) => setUserRecommends(true)}
           />
           <Form.Radio
             label="No"
-            value={false}
+            value="no"
             checked={userRecommends === false}
-            onChange={(e, { value }) => setUserRecommends(value)}
+            onChange={(e, { value }) => setUserRecommends(false)}
           />
         </Form.Field>
       </Form.Group>
@@ -104,11 +107,12 @@ function SubmitReviewForm({
             inline
             widths={3}
           >
-            <Form.Field error width={16} required>
-              <label>
+            <Form.Field error={reviewCharacteristicsError} width={16} required>
+              <label className="characteristicLabel">
                 {item}
               </label>
               <Form.Radio
+                className="characteristicRadio"
                 label={characteristicsList[item][1]}
                 value={1}
                 checked={reviewCharacteristics[characteristicId] === 1}
@@ -119,6 +123,7 @@ function SubmitReviewForm({
                 }}
               />
               <Form.Radio
+                className="characteristicRadio"
                 label={characteristicsList[item][2]}
                 value={2}
                 checked={reviewCharacteristics[characteristicId] === 2}
@@ -129,6 +134,7 @@ function SubmitReviewForm({
                 }}
               />
               <Form.Radio
+                className="characteristicRadio"
                 label={characteristicsList[item][3]}
                 value={3}
                 checked={reviewCharacteristics[characteristicId] === 3}
@@ -139,6 +145,7 @@ function SubmitReviewForm({
                 }}
               />
               <Form.Radio
+                className="characteristicRadio"
                 label={characteristicsList[item][4]}
                 value={4}
                 checked={reviewCharacteristics[characteristicId] === 4}
@@ -149,6 +156,7 @@ function SubmitReviewForm({
                 }}
               />
               <Form.Radio
+                className="characteristicRadio"
                 label={characteristicsList[item][5]}
                 value={5}
                 checked={reviewCharacteristics[characteristicId] === 5}
@@ -163,7 +171,7 @@ function SubmitReviewForm({
         );
       })}
       <Form.Input
-        error
+        error={reviewSummaryError}
         label="Review summary:"
         fluid
         value={reviewSummary}
@@ -174,7 +182,7 @@ function SubmitReviewForm({
         })}
       />
       <Form.Input
-        error
+        error={reviewBodyError}
         required
         label="Review body:"
         fluid
@@ -189,7 +197,7 @@ function SubmitReviewForm({
       <p>Minimum reached</p>
       <Form.Group inline>
         <Button
-          color="red"
+          color={photosError ? 'red' : null}
           as="label"
           htmlFor="file"
           basic
@@ -209,7 +217,7 @@ function SubmitReviewForm({
         />
       </Form.Group>
       <Form.Input
-        error
+        error={reviewer_nameError}
         required
         label="What is your nickname?"
         value={reviewer_name}
@@ -221,7 +229,7 @@ function SubmitReviewForm({
       />
       <p>For privacy reasons, do not use your full name or email address</p>
       <Form.Input
-        error
+        error={emailError}
         required
         label="What is your email?"
         value={email}
@@ -240,7 +248,7 @@ SubmitReviewForm.propTypes = {
   characteristics: PropTypes.shape().isRequired,
   userRating: PropTypes.shape().isRequired,
   setUserRating: PropTypes.func.isRequired,
-  userRecommends: PropTypes.shape(),
+  userRecommends: PropTypes.bool,
   setUserRecommends: PropTypes.func.isRequired,
   reviewCharacteristics: PropTypes.shape().isRequired,
   setReviewCharacteristics: PropTypes.func.isRequired,

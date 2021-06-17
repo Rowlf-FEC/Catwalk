@@ -13,10 +13,10 @@ function RatingSummary({ ratings }) {
   return (
     <Grid style={{ maxHeight: '130px' }}>
       <Grid.Row>
-        <Grid.Column verticalAlign="top" width={5}>
+        <Grid.Column verticalAlign="top" width={7}>
           <ProductRating rating={stars} />
         </Grid.Column>
-        <Grid.Column verticalAlign="top" width={3}>
+        <Grid.Column verticalAlign="top" width={7}>
           <StarRating ratings={ratings} />
         </Grid.Column>
       </Grid.Row>

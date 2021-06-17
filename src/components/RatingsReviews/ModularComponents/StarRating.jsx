@@ -19,7 +19,7 @@ function StarRating({ ratings }) {
 
   const starsToShow = roundedStars * 20 || 100;
   return (
-    <div>
+    <div className="starContainer">
       <div className="starOutline" />
       <div style={{ width: starsToShow }} className="star" />
     </div>

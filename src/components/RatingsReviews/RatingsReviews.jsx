@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
-import { getReviews, getMetaReviews } from './requests';
+import { getReviews, getMetaReviews, getProductName } from './requests';
 
 import RatingSummary from './RatingSummary/RatingSummary';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown';
@@ -18,6 +18,7 @@ class RatingsReviews extends Component {
     this.state = {
       loaded: false,
       productId: props.productId || 27190,
+      productName: '',
       reviews: [],
       totalReviews: 0,
       reviewsChecked: 0,
@@ -49,28 +50,31 @@ class RatingsReviews extends Component {
 
   componentDidMount() {
     const { productId } = this.state;
-    getReviews(productId)
-      .then((reviews) => {
-        getMetaReviews(productId)
-          .then((metaReviews) => {
-            // set the number of reviews rendered to a max of 2 if there
-            // are more than 2 reviews to render.
-            const total = reviews.data.results.length >= 2 ? 2 : reviews.data.results.length;
+    getProductName(productId)
+      .then((name) => {
+        getReviews(productId)
+          .then((reviews) => {
+            getMetaReviews(productId)
+              .then((metaReviews) => {
+                // set the number of reviews rendered to a max of 2 if there
+                // are more than 2 reviews to render.
+                const total = reviews.data.results.length >= 2 ? 2 : reviews.data.results.length;
+                this.setState({
+                  loaded: true,
+                  productName: name.data.name,
+                  reviews: reviews.data.results,
+                  totalReviews: reviews.data.results.length,
+                  ratings: metaReviews.data.ratings,
+                  recommended: metaReviews.data.recommended,
+                  characteristics: metaReviews.data.characteristics,
+                  reviewsRendered: total,
+                  reviewsChecked: total,
+                  reviewsToRender: reviews.data.results.slice(0, 2),
+                });
 
-            this.setState({
-              loaded: true,
-              reviews: reviews.data.results,
-              totalReviews: reviews.data.results.length,
-              ratings: metaReviews.data.ratings,
-              recommended: metaReviews.data.recommended,
-              characteristics: metaReviews.data.characteristics,
-              reviewsRendered: total,
-              reviewsChecked: total,
-              reviewsToRender: reviews.data.results.slice(0, 2),
-            });
-
-            // console.log('reviews', reviews.data)
-            // console.log('meta', metaReviews.data)
+                // console.log('reviews', reviews.data)
+                // console.log('meta', metaReviews.data)
+              });
           });
       });
   }
@@ -167,6 +171,7 @@ class RatingsReviews extends Component {
   render() {
     const {
       productId,
+      productName,
       loaded,
       ratings,
       recommended,
@@ -188,7 +193,12 @@ class RatingsReviews extends Component {
         <Grid centered columns={2}>
           <Grid.Row stretched>
             <Grid.Column width={3}>
-              <a id="read_reviews">RATINGS & REVIEWS</a>
+              <a
+                id="read_reviews"
+                style={{ color: 'black' }}
+              >
+                RATINGS & REVIEWS
+              </a>
             </Grid.Column>
             <Grid.Column width={6} />
           </Grid.Row>
@@ -217,6 +227,7 @@ class RatingsReviews extends Component {
                 sortReviews={this.sortReviews}
               />
               <ListModifierButtons
+                productName={productName}
                 allReviewsLoaded={allReviewsLoaded}
                 sortReviews={this.sortReviews}
                 productId={productId}

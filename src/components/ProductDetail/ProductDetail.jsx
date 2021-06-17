@@ -231,7 +231,7 @@ export default class ProductDetail extends React.Component {
       <div>
         <Grid centered columns={2}>
           <Grid.Row stretched>
-            <Grid.Column className="carouselColumn" width={7.25}>
+            <Grid.Column className="carouselColumn" width={7}>
               <ProductImage images={images} />
             </Grid.Column>
             <Grid.Column width={5}>

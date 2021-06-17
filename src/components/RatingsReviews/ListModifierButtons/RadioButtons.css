@@ -1,0 +1,8 @@
+.characteristicLabel {
+  min-width: 60px;
+}
+
+.field.characteristicRadio {
+  min-width: 140px;
+  max-width: 140px;
+}

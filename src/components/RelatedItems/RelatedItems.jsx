@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-function RelatedItems(props) {
+function RelatedItems() {
   return (
     <div>
       RelatedItems
@@ -9,8 +9,8 @@ function RelatedItems(props) {
   );
 }
 
-RelatedItems.propTypes = {
+// RelatedItems.propTypes = {
 
-};
+// };
 
 export default RelatedItems;
