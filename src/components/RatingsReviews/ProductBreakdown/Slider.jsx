@@ -19,7 +19,11 @@ function Slider({ sliderValue }) {
 }
 
 Slider.propTypes = {
-  sliderValue: PropTypes.string.isRequired,
+  sliderValue: PropTypes.string,
+};
+
+Slider.defaultProps = {
+  sliderValue: '0',
 };
 
 export default Slider;
