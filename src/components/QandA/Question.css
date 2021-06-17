@@ -1,0 +1,111 @@
+/**================= QandA Component Styles =================**/
+.ui.grid {
+  display: block;
+}
+
+.QandA {
+  padding-top: 3%;
+}
+
+/**================= Search Bar Styles =================**/
+#question_search {
+  width: 70vw;
+  height: 35px;
+  padding-left: 20px;
+}
+
+.searchBar {
+  z-index: 90 !important;
+}
+
+/**================= Question Styles =================**/
+div#question.ui.centered.container.grid {
+  width: 70vw !important;
+  padding-left: 5%;
+}
+
+#questions_feed {
+  display: flex;
+  max-height: 70vh;
+  width: 70vw;
+  overflow-y: scroll;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+div.three.column.row.question_row {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+div.ui.grid>.row.show_Questions_row {
+  padding-top: 0;
+  margin-top: 14px;
+}
+
+#buttonQuestion {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+#ask_question_button {
+  margin-left: 5%;
+}
+
+#show_Questions_buttons {
+  margin-top: 15px;
+}
+
+/**================= Answer Styles =================**/
+
+div.ui.container.grid.answer {
+  width: 60vw !important;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.ui.grid>.row.answer_info {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.ui.grid>.row.answer_row {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+#answer_body {
+  padding-bottom: 0px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.answerer_data {
+  margin-right: 5%;
+  margin-top: .5% !important;
+  margin-bottom: .5%;
+  margin-left: 1%;
+}
+
+.ui.grid>.row.show_Answers_buttons {
+  padding-top: 1%;
+  margin-left: 15%;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+#buttonAnswers {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+#button.report_button {
+  margin-left: 25px;
+}

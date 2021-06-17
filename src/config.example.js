@@ -3,4 +3,5 @@
 module.exports = {
   cohort: 'hr-atx',
   token: 'INSERT_TOKEN_HERE',
+  url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx',
 };

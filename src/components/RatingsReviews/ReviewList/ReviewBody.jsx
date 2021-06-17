@@ -3,11 +3,24 @@ import PropTypes from 'prop-types';
 import { Grid, Container } from 'semantic-ui-react';
 
 function ReviewBody({ summary, body }) {
+  let prepended = null;
+  let summaryCopy = summary.slice();
+
+  if (summary.length > 60) {
+    const shortSummary = summaryCopy.slice(0, 60);
+    const endSummary = summaryCopy.slice(60);
+    // let prependedBody = endSummary + body;
+
+    summaryCopy = shortSummary.concat('...');
+    prepended = '...'.concat(endSummary);
+  }
+
   return (
     <Grid.Row className="reviewBody" textAlign="left">
       <Grid.Column floated="left">
         <Container textAlign="left">
-          <p className="reviewTitle">{summary}</p>
+          <p className="reviewTitle">{summaryCopy}</p>
+          <p>{prepended}</p>
           <p>
             {body}
           </p>

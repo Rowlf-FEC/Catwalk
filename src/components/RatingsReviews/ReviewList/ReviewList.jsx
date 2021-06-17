@@ -8,7 +8,7 @@ import ReviewHeader from './ReviewHeader';
 import ReviewBody from './ReviewBody';
 import ReviewFooter from './ReviewFooter';
 
-const ReviewList = ({ reviews }) => (
+const ReviewList = ({ reviews, sortReviews }) => (
   <Grid id="scrollContainer" className="reviewListContainer">
     {reviews.map((review) => (
       <Grid.Column
@@ -25,7 +25,11 @@ const ReviewList = ({ reviews }) => (
           summary={review.summary}
           body={review.body}
         />
-        <ReviewFooter helpfulness={review.helpfulness} />
+        <ReviewFooter
+          helpfulness={review.helpfulness}
+          reviewId={review.review_id}
+          sortReviews={sortReviews}
+        />
       </Grid.Column>
     ))}
   </Grid>
@@ -45,6 +49,7 @@ ReviewList.propTypes = {
       summary: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  sortReviews: PropTypes.func.isRequired,
 };
 
 export default ReviewList;
