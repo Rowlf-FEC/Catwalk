@@ -43,16 +43,13 @@ function RatingBreakdown({
     <div style={{
       maxHeight: '300px',
       paddingBottom: '50px',
+      marginTop: '20px',
     }}
     >
-      <p>
-        {((recommended.true / total) * 100).toFixed()}
-        % of reviewers recommend this product
-      </p>
       <Grid>
         {Object.keys(percentages).map((index) => (
-          <Grid.Row key={`${index}StarBar`}>
-            <Grid.Column width={4}>
+          <Grid.Row columns={2} key={`${index}StarBar`}>
+            <Grid.Column width={5}>
               <button
                 value={index}
                 onClick={(e) => handleClick(e, Number(index))}
@@ -71,11 +68,15 @@ function RatingBreakdown({
                 </u>
               </button>
             </Grid.Column>
-            <Grid.Column width={12}>
+            <Grid.Column width={11}>
               <RatingProgressBar percent={percentages[index]} />
             </Grid.Column>
           </Grid.Row>
         ))}
+        <p>
+          {((recommended.true / total) * 100).toFixed()}
+          % of reviewers recommend this product
+        </p>
       </Grid>
     </div>
   );

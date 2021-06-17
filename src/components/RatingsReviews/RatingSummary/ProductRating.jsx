@@ -4,7 +4,9 @@ import { Header } from 'semantic-ui-react';
 
 function ProductRating({ rating }) {
   return (
-    <Header style={{ fontSize: '4.5em' }}>
+    <Header
+      style={{ fontSize: '4.5em' }}
+    >
       {rating}
     </Header>
   );
