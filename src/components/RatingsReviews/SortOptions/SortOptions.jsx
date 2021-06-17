@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Dropdown } from 'semantic-ui-react';
 import './SortOptions.css';
 
-function SortOptions({ count }) {
+function SortOptions({ count, sortReviews }) {
   const options = [
     {
       key: 'relevance',
@@ -21,15 +21,21 @@ function SortOptions({ count }) {
       value: 'newest',
     },
   ];
+
+  const handleChange = (e, d) => {
+    e.preventDefault();
+    sortReviews(d.value);
+  };
+
   return (
     <div className="sortContainer">
       {count}
       {' reviews, sorted by: '}
       <Dropdown
-        text="relevance"
+        defaultValue="relevance"
         inline
         options={options}
-        defaultValue="newest"
+        onChange={handleChange}
       />
     </div>
   );
@@ -37,6 +43,7 @@ function SortOptions({ count }) {
 
 SortOptions.propTypes = {
   count: PropTypes.number.isRequired,
+  sortReviews: PropTypes.func.isRequired,
 };
 
 export default SortOptions;

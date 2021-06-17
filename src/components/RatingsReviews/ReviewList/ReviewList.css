@@ -3,11 +3,6 @@
   overflow-y: auto;
 }
 
-.ui.divider.reviewDivider {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
 .reviewTitle {
   font-size: 17px;
   font-weight: bold;
@@ -15,4 +10,12 @@
 
 .reviewBody {
   padding-bottom: 20px;
+}
+
+#helpfulnessCount {
+  padding: 0;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
 }
