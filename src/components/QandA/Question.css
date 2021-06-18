@@ -10,27 +10,32 @@
 /**================= Search Bar Styles =================**/
 #question_search {
   width: 70vw;
-  height: 35px;
+  height: 25px;
   padding-left: 20px;
 }
 
-.searchBar {
-  z-index: 90 !important;
+#search_bar {
+  width: 50vw;
 }
 
 /**================= Question Styles =================**/
 div#question.ui.centered.container.grid {
-  width: 70vw !important;
+  width: 60vw !important;
   padding-left: 5%;
 }
 
 #questions_feed {
   display: flex;
   max-height: 70vh;
-  width: 70vw;
+  min-height: 30vh;
+  width: 60vw;
   overflow-y: scroll;
   overflow: auto;
   overflow-x: hidden;
+}
+
+#no_results {
+  min-height: 30vh;
 }
 
 div.three.column.row.question_row {
@@ -62,7 +67,7 @@ div.ui.grid>.row.show_Questions_row {
 /**================= Answer Styles =================**/
 
 div.ui.container.grid.answer {
-  width: 60vw !important;
+  width: 50vw !important;
   padding-bottom: 0px;
   padding-top: 0px;
   margin-top: 0px;

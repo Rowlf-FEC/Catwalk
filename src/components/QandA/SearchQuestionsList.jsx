@@ -1,65 +1,88 @@
-import React, { useEffect, useState } from 'react';
-import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+import React, { useEffect } from 'react';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import './Question.css';
+import { Search, Grid } from 'semantic-ui-react';
 
-function SearchQuestionsList({ questionsArray }) {
-  const [searchQuestions, setSearchQuestions] = useState([]);
+function SearchQuestionsList({ questionsArray, setSearchList, setSearchLength }) {
+  const source = questionsArray;
+  const initialState = {
+    loading: false,
+    results: [],
+    value: '',
+  };
 
-  // this useEffect is changing the property key to "name" and deleting the old key "question_body"
-  // search bar requires "name" property for lookup
-  useEffect(() => {
-    for (let i = 0; i < questionsArray.length; i += 1) {
-      const obj = questionsArray[i];
-      delete Object.assign(obj, { name: obj.question_body }).question_body;
+  function exampleReducer(state, action) {
+    switch (action.type) {
+      case 'CLEAN_QUERY':
+        return initialState;
+      case 'START_SEARCH':
+        return { ...state, loading: true, value: action.query };
+      case 'FINISH_SEARCH':
+        return { ...state, loading: false, results: action.results };
+      case 'UPDATE_SELECTION':
+        return { ...state, value: action.selection };
+
+      default:
+        throw new Error();
     }
-    setSearchQuestions(questionsArray);
-  }, [questionsArray]);
+  }
 
-  // ============= Need to finish this logic for what happens with search bar ================
+  const [state, dispatch] = React.useReducer(exampleReducer, initialState);
+  const { loading, results, value } = state;
 
-  // const [inputValue, setInputValue] = useState('');
+  const timeoutRef = React.useRef();
 
-  // const handleOnSearch = (string, results) => {
-  //   // onSearch will have as the first callback parameter
-  //   // the string searched and for the second the results.
-  //   // console.log(string, results);
-  // };
+  const handleSearchChange = React.useCallback((e, data) => {
+    clearTimeout(timeoutRef.current);
+    dispatch({ type: 'START_SEARCH', query: data.value });
 
-  // const handleOnHover = (result) => {
-  //   // the item hovered
-  //   // console.log(result);
-  // };
+    timeoutRef.current = setTimeout(() => {
+      if (data.value.length === 0) {
+        dispatch({ type: 'CLEAN_QUERY' });
+        return;
+      }
 
-  // const handleOnSelect = (item) => {
-  //   // the item selected
-  //   // console.log(item);
-  // };
+      const re = new RegExp(_.escapeRegExp(data.value), 'i');
+      const isMatch = (result) => re.test(result.question_body);
 
-  // const handleOnFocus = () => {
-  //   // console.log('Focused');
-  // };
+      dispatch({
+        type: 'FINISH_SEARCH',
+        results: _.filter(source, isMatch),
+      });
+    }, 300);
+  }, [source]);
+  React.useEffect(() => () => {
+    clearTimeout(timeoutRef.current);
+  }, []);
+
+  useEffect(() => {
+    setSearchList(results);
+    setSearchLength(value);
+  }, [results, setSearchList, value, setSearchLength]);
 
   return (
-    <div className="searchBar">
-      <header className="App-header">
-        <div style={{ width: '40vw' }}>
-          <ReactSearchAutocomplete
-            items={searchQuestions}
-            // onSearch={handleOnSearch}
-            // onHover={handleOnHover}
-            // onSelect={handleOnSelect}
-            // onFocus={handleOnFocus}
-            autoFocus
-          />
-        </div>
-      </header>
-    </div>
+    <Grid>
+      <Grid.Column>
+        <Search
+          id="search_bar"
+          placeholder="Have a Question? Search for Answers..."
+          loading={loading}
+          onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.question_body })}
+          onSearchChange={handleSearchChange}
+          value={value}
+          minCharacters={3}
+          open={false}
+        />
+      </Grid.Column>
+    </Grid>
   );
 }
 
 SearchQuestionsList.propTypes = {
   questionsArray: PropTypes.arrayOf(PropTypes.shape()),
+  setSearchList: PropTypes.func.isRequired,
+  setSearchLength: PropTypes.func.isRequired,
 };
 SearchQuestionsList.defaultProps = {
   questionsArray: [],
