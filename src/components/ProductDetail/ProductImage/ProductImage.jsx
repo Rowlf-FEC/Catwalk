@@ -9,6 +9,7 @@ import './ProductImage.css';
 function ProductImage({ images }) {
   const [open, setOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [zoom, setZoom] = useState(false);
 
   let mainCarousel;
   const mainData = {
@@ -23,17 +24,20 @@ function ProductImage({ images }) {
   };
 
   let modalCarousel;
+
   const modalData = {
     className: 'modalCarousel',
-    // onClickItem:
+    onClickItem: () => {
+      setZoom(() => !zoom);
+    },
     onChange: (index) => { setCurrentSlide(() => index); },
     selectedItem: currentSlide,
     showIndicators: true,
     showThumbs: false,
     images,
     imageClass: 'modalImage',
+    zoom,
   };
-
   return (
     <div>
       {withSlide(mainCarousel, mainData)}

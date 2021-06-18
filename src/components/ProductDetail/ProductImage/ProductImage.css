@@ -5,9 +5,12 @@
   max-height: 50%;
 } */
 
+div.carousel {
+  justify-content: center;
+  display: flex;
+}
+
 ul.thumbs.animated {
-  margin-left: 5%;
-  margin-right: 5%;
   padding-inline-start: 0;
 }
 
