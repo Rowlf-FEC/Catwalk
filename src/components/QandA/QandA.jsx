@@ -20,7 +20,7 @@ function QandA({ productId }) {
       authorization: config.token,
     },
     params: {
-      product_id: productIdNum, page: 1, count: 100,
+      product_id: productIdNum, page: 1, count: 1000,
     },
   };
 
