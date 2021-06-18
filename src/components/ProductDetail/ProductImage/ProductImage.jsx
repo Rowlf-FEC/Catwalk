@@ -9,7 +9,7 @@ import './ProductImage.css';
 function ProductImage({ images }) {
   const [open, setOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [zoom, setZoom] = useState(false);
+  // const [zoom, setZoom] = useState(false);
 
   let mainCarousel;
   const mainData = {
@@ -21,22 +21,23 @@ function ProductImage({ images }) {
     showThumbs: true,
     images,
     imageClass: 'mainImage',
+    open,
   };
 
   let modalCarousel;
 
   const modalData = {
     className: 'modalCarousel',
-    onClickItem: () => {
-      setZoom(() => !zoom);
-    },
+    // onClickItem: () => {
+    //   setOpen(() => false);
+    // },
     onChange: (index) => { setCurrentSlide(() => index); },
     selectedItem: currentSlide,
     showIndicators: true,
     showThumbs: false,
     images,
     imageClass: 'modalImage',
-    zoom,
+    open,
   };
   return (
     <div>

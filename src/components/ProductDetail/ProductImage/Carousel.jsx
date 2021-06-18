@@ -1,6 +1,7 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import Magnifier from 'react-magnifier';
+import { Magnifier } from 'react-image-magnifiers';
 import { Carousel } from 'react-responsive-carousel';
 
 const withSlide = (WrappedComponent, selectData) => (
@@ -17,17 +18,16 @@ const withSlide = (WrappedComponent, selectData) => (
     width="100%"
   >
     {selectData.images.map((image, index) => (
-      // eslint-disable-next-line react/no-array-index-key
-      // <div className={selectData.imageClass} key={index}>
-      //   <img alt={image.url} src={image.url} />
-      // </div>
-      (selectData.zoom) ? (
-        <div>
-          <Magnifier src={image.url} />
+      (selectData.open) ? (
+        <div className={selectData.imageClass} key={index}>
+          <Magnifier
+            imageSrc={image.url}
+            imageAlt={image.url}
+            largeImageSrc={image.url}
+          />
         </div>
       )
         : (
-          // eslint-disable-next-line react/no-array-index-key
           <div className={selectData.imageClass} key={index}>
             <img alt={image.url} src={image.url} />
           </div>
