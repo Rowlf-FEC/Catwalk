@@ -58,7 +58,7 @@ function QandA({ productId }) {
   return (
     <div className="QandA">
       <Grid centered className="QandA">
-        <Grid.Row textAlign="center" className="question_search">
+        <Grid.Row stretched className="question_search_bar">
           <SearchQuestionsList
             questionsArray={questions}
             setSearchList={setSearchList}
@@ -66,7 +66,7 @@ function QandA({ productId }) {
           />
           <SubmitQuestionForm productId={productIdNum} />
         </Grid.Row>
-        <Grid.Row stretched>
+        <Grid.Row stretched className="question_feed">
           {questionListDecider()}
         </Grid.Row>
       </Grid>

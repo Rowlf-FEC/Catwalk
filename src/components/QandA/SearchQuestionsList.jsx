@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React, {
+  useEffect, useRef, useReducer, useCallback,
+} from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import './Question.css';
@@ -28,12 +30,12 @@ function SearchQuestionsList({ questionsArray, setSearchList, setSearchLength })
     }
   }
 
-  const [state, dispatch] = React.useReducer(exampleReducer, initialState);
+  const [state, dispatch] = useReducer(exampleReducer, initialState);
   const { loading, results, value } = state;
 
-  const timeoutRef = React.useRef();
+  const timeoutRef = useRef();
 
-  const handleSearchChange = React.useCallback((e, data) => {
+  const handleSearchChange = useCallback((e, data) => {
     clearTimeout(timeoutRef.current);
     dispatch({ type: 'START_SEARCH', query: data.value });
 
@@ -52,6 +54,7 @@ function SearchQuestionsList({ questionsArray, setSearchList, setSearchLength })
       });
     }, 300);
   }, [source]);
+
   React.useEffect(() => () => {
     clearTimeout(timeoutRef.current);
   }, []);
