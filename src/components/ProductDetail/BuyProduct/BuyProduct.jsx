@@ -15,7 +15,7 @@ import SizeQtyDropDowns from './SizeQtyDropdowns';
 import CartFaveButton from './CartFaveButton';
 
 function BuyProduct({
-  essentials, currentStyle, styles, changeStyle, setQuantity,
+  essentials, currentStyle, styles, changeStyle, setQuantity, totalReviews,
   sizeOptions, quantities, submitItem, setSizeQuantity, isTrue, ratings,
 }) {
   if (currentStyle.length > 0) {
@@ -23,10 +23,6 @@ function BuyProduct({
       { key: 'Style', content: 'Style', link: false },
       { key: 'Stylename', content: currentStyle[0].name, link: false },
     ];
-    let totalReviews = 0;
-    for (const score in ratings) {
-      totalReviews += Number(ratings[score]);
-    }
 
     return (
       <div>
@@ -74,6 +70,7 @@ BuyProduct.propTypes = {
   sizeOptions: PropTypes.array.isRequired,
   styles: PropTypes.array.isRequired,
   submitItem: PropTypes.func.isRequired,
+  totalReviews: PropTypes.number.isRequired,
 };
 
 export default BuyProduct;

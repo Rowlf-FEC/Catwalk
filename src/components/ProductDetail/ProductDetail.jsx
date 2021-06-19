@@ -38,6 +38,7 @@ export default class ProductDetail extends React.Component {
       sizeOptions: [],
       skuCart: null,
       styles: [],
+      totalReviews: 0,
     };
     this.changeStyle = this.changeStyle.bind(this);
     this.setQuantity = this.setQuantity.bind(this);
@@ -136,6 +137,27 @@ export default class ProductDetail extends React.Component {
         console.log(error);
       })
       .then(() => {
+        axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/', {
+          headers: {
+            Authorization: `${config.token}`,
+          },
+          params: {
+            page: 1,
+            count: 200,
+            sort: 'newest',
+            product_id: productId,
+          },
+        })
+          .then((reviews) => {
+            this.setState({
+              totalReviews: reviews.data.results.length,
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .then(() => {
         // eslint-disable-next-line react/no-find-dom-node
         ReactDOM.findDOMNode(this).addEventListener('click', (e) => handleAnalytics(e, 'ProductOverview'));
       });
@@ -230,7 +252,7 @@ export default class ProductDetail extends React.Component {
   render() {
     const {
       images, essentials, productDescription, currentStyle,
-      styles, quantities, sizeOptions, isTrue, ratings,
+      styles, quantities, sizeOptions, isTrue, ratings, totalReviews,
     } = this.state;
     return (
       <div>
@@ -252,6 +274,7 @@ export default class ProductDetail extends React.Component {
                 sizeOptions={sizeOptions}
                 styles={styles}
                 submitItem={this.submitItem}
+                totalReviews={totalReviews}
               />
             </Grid.Column>
           </Grid.Row>
