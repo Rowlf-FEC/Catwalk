@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
@@ -5,7 +6,7 @@ import { Carousel } from 'react-responsive-carousel';
 const withSlide = (WrappedComponent, selectData) => (
   <Carousel
     className={selectData.className}
-    dynamicHeight={selectData.dynamicHeight}
+    dynamicHeight
     onClickItem={selectData.onClickItem}
     onChange={selectData.onChange}
     selectedItem={selectData.selectedItem}
@@ -16,7 +17,6 @@ const withSlide = (WrappedComponent, selectData) => (
     width="100%"
   >
     {selectData.images.map((image, index) => (
-      // eslint-disable-next-line react/no-array-index-key
       <div className={selectData.imageClass} key={index}>
         <img alt={image.url} src={image.url} />
       </div>

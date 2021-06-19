@@ -1,14 +1,16 @@
 
-/* thumbnail gallery */
-/* div.thumbs-wrapper.axis-vertical {
-  margin: 0;
-  max-height: 50%;
-} */
+div.carousel {
+  justify-content: center;
+  display: flex;
+}
 
 ul.thumbs.animated {
-  margin-left: 5%;
-  margin-right: 5%;
   padding-inline-start: 0;
+}
+
+#modalCarousel {
+  width: 38%;
+  max-height: fit-content;
 }
 
 .mainImage {
@@ -31,16 +33,7 @@ ul.thumbs.animated {
   cursor: crosshair;
 }
 
-/* .modalImage NEEDS WORK{
-  width: 400px;
-  height: 600px;
-} */
 
-/* image gallery MESSES WITH .mainImage */
-/* div.slider-wrapper.axis-horizontal {
-  height: 450px;
-  width: auto;
-} */
-/* div.carousel-root.mainCarousel {
-  align-items:center;
+/* div.magnifierImg div {
+  cursor: zoom-out !important;
 } */

@@ -23,6 +23,9 @@ const ReviewList = ({ reviews, sortReviews }) => (
         />
         <ReviewBody
           summary={review.summary}
+          recommend={review.recommend}
+          photos={review.photos}
+          response={review.response}
           body={review.body}
         />
         <ReviewFooter

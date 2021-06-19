@@ -1,8 +1,11 @@
+/* eslint-disable react/no-find-dom-node */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
 import { getReviews, getMetaReviews, getProductName } from './requests';
+import handleAnalytics from './ModularComponents/handleAnalytics';
 
 import RatingSummary from './RatingSummary/RatingSummary';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown';
@@ -77,6 +80,7 @@ class RatingsReviews extends Component {
               });
           });
       });
+    ReactDOM.findDOMNode(this).addEventListener('click', (e) => handleAnalytics(e, 'Ratings and Reviews'));
   }
 
   // componentDidUpdate(prevProps) {
@@ -159,7 +163,6 @@ class RatingsReviews extends Component {
             filteredReviews.push(review);
           }
         });
-
         this.setState({
           reviews: filteredReviews,
           reviewsToRender: filteredReviews.slice(0, reviewsRendered),
