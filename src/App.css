@@ -43,6 +43,27 @@
   height: 70px;
 }
 
+.bottomBar {
+  position: relative;
+  background-color: rgb(199, 162, 0);
+  bottom: 0;
+  height: 105px;
+  width: 80%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 10px;
+}
+
+.bottomLogo {
+  position: absolute;
+  height: 50px;
+  left: 0px;
+  bottom: 0px;
+  float: left;
+  margin: 30px;
+}
+
 .headerText {
   position: absolute;
   height: 80px;
@@ -50,4 +71,26 @@
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%)
+}
+
+.footerLink {
+  text-decoration: underline;
+}
+
+.footerLink:hover {
+  cursor: pointer;
+}
+
+.backToTop {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: -50px;
+  padding-bottom: 10px;
+  width: 80%;
+  background-color: rgb(228, 228, 228);
+  height: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50% 50% 0px 0px;
 }

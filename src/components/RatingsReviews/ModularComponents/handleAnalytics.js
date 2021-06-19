@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 import dayjs from 'dayjs';
-import config from '../../../config';
 import axios from 'axios';
+import config from '../../../config';
 
 export default (event, module) => {
   event.preventDefault();
@@ -22,4 +23,4 @@ export default (event, module) => {
     .then((response) => {
       console.log(response);
     });
-}
+};

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-find-dom-node */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -49,7 +50,6 @@ class RatingsReviews extends Component {
     this.sortReviews = this.sortReviews.bind(this);
     this.addFilter = this.addFilter.bind(this);
   }
-
 
   componentDidMount() {
     const { productId } = this.state;
