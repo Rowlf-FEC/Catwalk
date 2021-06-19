@@ -10,13 +10,11 @@
 
 /**================= Search Bar Styles =================**/
 #question_search_bar {
-  width: 70vw;
   height: 25px;
-  padding-left: 20px;
 }
 
 #search_bar {
-  width: 50vw;
+  width: 35vw;
 }
 
 /**================= Question Styles =================**/
@@ -26,7 +24,7 @@ div#question.ui.centered.container.grid {
   margin-bottom: 5px;
   padding-bottom: 15px;
   padding-top: 1px;
-  box-shadow: 2px 2px 5px;
+  box-shadow: 1px 1px 3px rgb(197, 197, 197);
   border-radius: 7.5px;
 }
 
@@ -64,7 +62,7 @@ div.ui.grid>.row.show_Questions_row {
 }
 
 #ask_question_button {
-  margin-left: 5%;
+  margin-left: 1%;
 }
 
 #show_Questions_buttons {

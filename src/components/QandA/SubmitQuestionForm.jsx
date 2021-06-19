@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Modal, Form, Button } from 'semantic-ui-react';
+import {
+  Modal, Form, Button, Input, Message,
+} from 'semantic-ui-react';
 import config from '../../config';
 
 function SubmitQuestionForm({ productId }) {
@@ -9,10 +11,53 @@ function SubmitQuestionForm({ productId }) {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [hasErrors, setHasErrors] = useState(true);
+  const [hasEmailError, setHasEmailError] = useState(true);
+  const [failedSubmit, setFailedSubmit] = useState(false);
+
+  function validateEmail(str) {
+    const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    return re.test(str);
+  }
+
+  useEffect(() => {
+    if (validateEmail(email)) {
+      setHasEmailError(false);
+    }
+    if (!validateEmail(email)) {
+      setHasEmailError(true);
+    }
+    if (message.length === 0) {
+      setHasErrors(true);
+      return;
+    }
+    if (nickname.length === 0) {
+      setHasErrors(true);
+      return;
+    }
+    setHasErrors(false);
+  }, [nickname, email, message]);
+
+  function failMessage() {
+    return (
+      <Message
+        attatched="bottom"
+        warning
+        color="red"
+        onDismiss={() => setFailedSubmit(false)}
+      >
+        <Message.Header>
+          <h3>
+            Please fill in all fields *
+          </h3>
+        </Message.Header>
+      </Message>
+    );
+  }
 
   function submitQuestion() {
     const data = {
-      body: message, name: nickname, email, productId,
+      body: message, name: nickname, email, product_id: productId,
     };
 
     const context = {
@@ -31,8 +76,13 @@ function SubmitQuestionForm({ productId }) {
 
   // this function just invokes two functions to be used in onClick event for submission
   function doubleFunction() {
-    setOpen(false);
-    submitQuestion();
+    if (!hasEmailError && !hasErrors) {
+      setOpen(false);
+      submitQuestion();
+    } else {
+      setHasEmailError(!validateEmail(email));
+      setFailedSubmit(true);
+    }
   }
 
   return (
@@ -46,10 +96,33 @@ function SubmitQuestionForm({ productId }) {
       <Modal.Content>
         <Form>
           <Form.Group widths="equal">
-            <Form.Input onChange={(e) => { setNickname(e.target.value); }} fluid label="What is your nickname? *" placeholder="Example: Jackson11! *Required" />
-            <Form.Input onChange={(e) => { setEmail(e.target.value); }} fluid label="What is your email? *" placeholder="Example: JaneDoe@Gmail.com *Required" />
+            <Form.Field
+              control={Input}
+              onChange={(e) => { setNickname(e.target.value); }}
+              fluid
+              label="What is your nickname?"
+              placeholder="Example: Jackson11! (60 maximum characters)"
+              maxLength="60"
+            />
+            <Form.Field
+              control={Input}
+              id="email_input"
+              onChange={(e) => { setEmail(e.target.value); }}
+              fluid
+              label="What is your email? *"
+              placeholder="Example: JaneDoe@Gmail.com (60 maximum characters)"
+              type="email"
+              required
+              maxLength="60"
+              error={hasEmailError ? { content: 'Please enter a valid email address', pointing: 'above' } : false}
+            />
           </Form.Group>
-          <Form.TextArea onChange={(e) => { setMessage(e.target.value); }} label="Question" placeholder="Your Question About The Product Here..." />
+          <Form.TextArea
+            maxLength="1000"
+            onChange={(e) => { setMessage(e.target.value); }}
+            label="Question"
+            placeholder="Your Question About The Product Here... (1000 maximum characters)"
+          />
         </Form>
       </Modal.Content>
       <Modal.Actions>
@@ -64,6 +137,7 @@ function SubmitQuestionForm({ productId }) {
           positive
         />
       </Modal.Actions>
+      {failedSubmit ? failMessage() : null}
     </Modal>
   );
 }

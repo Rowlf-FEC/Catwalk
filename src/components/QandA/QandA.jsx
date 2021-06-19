@@ -3,11 +3,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+// import ReactDOM from 'react-dom';
 import QuestionsList from './QuestionsList';
 import SearchQuestionsList from './SearchQuestionsList';
 import SubmitQuestionForm from './SubmitQuestionForm';
 import config from '../../config';
 import './Question.css';
+// import handleAnalytics from './RatingsReviews/ModularComponents/handleAnalytics';
 
 function QandA({ productId }) {
   const [productIdNum] = useState(productId);
@@ -42,6 +44,9 @@ function QandA({ productId }) {
       })
       .catch((error) => {
         throw error;
+      })
+      .then(() => {
+        // ReactDOM.findDOMNode(this).addEventListener('click', (e) => handleAnalytics(e, 'Questions and Answers'));
       });
   }, [productIdNum]);
 
