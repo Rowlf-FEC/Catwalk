@@ -151,9 +151,11 @@ function SubmitReviewForm({
       />
       {reviewBody.length < 50
         ? (
-          <p>Minimum required characters left: {50 - reviewBody.length}</p>
-        ) : <p>Minimum reached</p>
-      }
+          <p>
+            Minimum required characters left:&nbsp;
+            {50 - reviewBody.length}
+          </p>
+        ) : <p>Minimum reached</p>}
       <Form.Group inline>
         <Button
           color={photosError ? 'red' : null}
