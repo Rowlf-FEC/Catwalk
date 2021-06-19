@@ -66,7 +66,7 @@ function Answer({ answer }) {
           {report ? <b><u>Reported</u></b> : <b><u>Report</u></b>}
         </Button>
       </Grid.Row>
-      {answer.photos.length > 0 ? <RenderImages arr={answer.photos} /> : null}
+      {answer.photos.length > 0 ? <RenderImages arr={answer.photos} bool /> : null}
     </Grid>
   );
 }

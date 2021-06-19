@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   Form,
@@ -33,38 +33,25 @@ function SubmitReviewForm({
   setReviewer_name,
   email,
   setEmail,
-  setFormHasError,
-  handleFormErrors,
+  setUserRatingError,
+  setUserRecommendsError,
+  setReviewCharacteristicsError,
+  setReviewSummaryError,
+  setReviewBodyError,
+  setPhotosError,
+  setReviewer_nameError,
+  setEmailError,
+  userRatingError,
+  userRecommendsError,
+  reviewCharacteristicsError,
+  reviewSummaryError,
+  reviewBodyError,
+  photosError,
+  reviewer_nameError,
+  emailError,
 }) {
-  const [userRatingError, setUserRatingError] = useState(true);
-  const [userRecommendsError, setUserRecommendsError] = useState(true);
-  const [reviewCharacteristicsError, setReviewCharacteristicsError] = useState(true);
-  const [reviewSummaryError, setReviewSummaryError] = useState(true);
-  const [reviewBodyError, setReviewBodyError] = useState(true);
-  const [photosError, setPhotosError] = useState(true);
-  const [reviewer_nameError, setReviewer_nameError] = useState(true);
-  const [emailError, setEmailError] = useState(true);
-
-  const handleFormChange = (e) => {
-    e.preventDefault();
-
-    const errors = [];
-
-    if (
-      userRatingError === false
-      && userRecommendsError === false
-      && reviewCharacteristicsError === false
-      && reviewSummaryError === false
-      && reviewBodyError === false
-      && photosError === false
-      && reviewer_nameError === false
-      && emailError === false
-    ) {
-      setFormHasError(false);
-    } else {
-      handleFormErrors([1]);
-    }
-  };
+  useEffect(() => {
+  }, [reviewBody]);
 
   return (
     <Form>
@@ -75,7 +62,7 @@ function SubmitReviewForm({
             maxRating={userRating.maxRating}
             onRate={(e, { rating, maxRating }) => {
               setUserRating({ rating, maxRating });
-              handleFormChange(e);
+              setUserRatingError(false);
             }}
             clearable
             color="red"
@@ -89,13 +76,19 @@ function SubmitReviewForm({
             label="Yes"
             value="yes"
             checked={userRecommends === true}
-            onChange={(e, { value }) => setUserRecommends(true)}
+            onChange={(e, { value }) => {
+              setUserRecommends(true);
+              setUserRecommendsError(false);
+            }}
           />
           <Form.Radio
             label="No"
             value="no"
             checked={userRecommends === false}
-            onChange={(e, { value }) => setUserRecommends(false)}
+            onChange={(e, { value }) => {
+              setUserRecommends(false);
+              setUserRecommendsError(false);
+            }}
           />
         </Form.Field>
       </Form.Group>
@@ -104,68 +97,29 @@ function SubmitReviewForm({
         return (
           <Form.Group
             key={`${item}RadioForm`}
-            inline
             widths={3}
           >
-            <Form.Field error={reviewCharacteristicsError} width={16} required>
+            <Form.Field>
               <label className="characteristicLabel">
                 {item}
               </label>
-              <Form.Radio
-                className="characteristicRadio"
-                label={characteristicsList[item][1]}
-                value={1}
-                checked={reviewCharacteristics[characteristicId] === 1}
-                onChange={(e, { value }) => {
-                  setReviewCharacteristics((currentCharacteristics) => (
-                    { ...currentCharacteristics, [characteristicId]: value }
-                  ));
-                }}
-              />
-              <Form.Radio
-                className="characteristicRadio"
-                label={characteristicsList[item][2]}
-                value={2}
-                checked={reviewCharacteristics[characteristicId] === 2}
-                onChange={(e, { value }) => {
-                  setReviewCharacteristics((currentCharacteristics) => (
-                    { ...currentCharacteristics, [characteristicId]: value }
-                  ));
-                }}
-              />
-              <Form.Radio
-                className="characteristicRadio"
-                label={characteristicsList[item][3]}
-                value={3}
-                checked={reviewCharacteristics[characteristicId] === 3}
-                onChange={(e, { value }) => {
-                  setReviewCharacteristics((currentCharacteristics) => (
-                    { ...currentCharacteristics, [characteristicId]: value }
-                  ));
-                }}
-              />
-              <Form.Radio
-                className="characteristicRadio"
-                label={characteristicsList[item][4]}
-                value={4}
-                checked={reviewCharacteristics[characteristicId] === 4}
-                onChange={(e, { value }) => {
-                  setReviewCharacteristics((currentCharacteristics) => (
-                    { ...currentCharacteristics, [characteristicId]: value }
-                  ));
-                }}
-              />
-              <Form.Radio
-                className="characteristicRadio"
-                label={characteristicsList[item][5]}
-                value={5}
-                checked={reviewCharacteristics[characteristicId] === 5}
-                onChange={(e, { value }) => {
-                  setReviewCharacteristics((currentCharacteristics) => (
-                    { ...currentCharacteristics, [characteristicId]: value }
-                  ));
-                }}
-              />
+              <Form.Group inline width={16} required>
+                {Object.values(characteristicsList[item]).map((characteristic, index) => (
+                  <Form.Radio
+                    key={`${characteristic}RadioButton${index + 1}`}
+                    className="characteristicRadio"
+                    label={characteristic}
+                    value={index + 1}
+                    checked={reviewCharacteristics[characteristicId] === index + 1}
+                    onChange={(e, { value }) => {
+                      e.preventDefault();
+                      setReviewCharacteristics((currentCharacteristics) => (
+                        { ...currentCharacteristics, [characteristicId]: value }
+                      ));
+                    }}
+                  />
+                ))}
+              </Form.Group>
             </Form.Field>
           </Form.Group>
         );
@@ -176,6 +130,7 @@ function SubmitReviewForm({
         fluid
         value={reviewSummary}
         placeholder="Example: Best purchase ever!"
+        maxLength="60"
         onChange={((e) => {
           e.preventDefault();
           setReviewSummary(e.target.value);
@@ -188,13 +143,17 @@ function SubmitReviewForm({
         fluid
         value={reviewBody}
         placeholder="Why did you like the product or not?"
+        maxLength="1000"
         onChange={((e) => {
           e.preventDefault();
           setReviewBody(e.target.value);
         })}
       />
-      <p>Minimum required characters left: [##]</p>
-      <p>Minimum reached</p>
+      {reviewBody.length < 50
+        ? (
+          <p>Minimum required characters left: {50 - reviewBody.length}</p>
+        ) : <p>Minimum reached</p>
+      }
       <Form.Group inline>
         <Button
           color={photosError ? 'red' : null}
@@ -262,8 +221,22 @@ SubmitReviewForm.propTypes = {
   setReviewer_name: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   setEmail: PropTypes.func.isRequired,
-  setFormHasError: PropTypes.func.isRequired,
-  handleFormErrors: PropTypes.func.isRequired,
+  setUserRatingError: PropTypes.func.isRequired,
+  setUserRecommendsError: PropTypes.func.isRequired,
+  setReviewCharacteristicsError: PropTypes.func.isRequired,
+  setReviewSummaryError: PropTypes.func.isRequired,
+  setReviewBodyError: PropTypes.func.isRequired,
+  setPhotosError: PropTypes.func.isRequired,
+  setReviewer_nameError: PropTypes.func.isRequired,
+  setEmailError: PropTypes.func.isRequired,
+  userRatingError: PropTypes.bool.isRequired,
+  userRecommendsError: PropTypes.bool.isRequired,
+  reviewCharacteristicsError: PropTypes.bool.isRequired,
+  reviewSummaryError: PropTypes.bool.isRequired,
+  reviewBodyError: PropTypes.bool.isRequired,
+  photosError: PropTypes.bool.isRequired,
+  reviewer_nameError: PropTypes.bool.isRequired,
+  emailError: PropTypes.bool.isRequired,
 };
 
 export default SubmitReviewForm;

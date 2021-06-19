@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import axios from 'axios';
 import {
   Modal, Form, Button, Input,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import RenderImages from './RenderImages';
 import config from '../../config';
 
 function SubmitAnswerForm({ id, body }) {
@@ -11,10 +13,11 @@ function SubmitAnswerForm({ id, body }) {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [photos, setPhotos] = useState([]);
 
   const context = { headers: { authorization: config.token } };
   const data = {
-    body: message, name: nickname, email, photos: [],
+    body: message, name: nickname, email, photos,
   };
 
   // this is axios to post a new answer to a specific question
@@ -28,6 +31,27 @@ function SubmitAnswerForm({ id, body }) {
   function doubleFunction() {
     setOpen(false);
     submitAnswer();
+  }
+
+  function deleteDoubleFunction() {
+    setOpen(false);
+    setPhotos([]);
+  }
+
+  async function encodeImageFileAsURL(file) {
+    const info = new FormData();
+    info.append('image', file);
+    const configImg = {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+        Authorization: config.imgurAPI,
+      },
+    };
+    return axios.post('https://api.imgur.com/3/image', info, configImg)
+      .then((response) => response.data.data.link)
+      .catch((err) => {
+        throw err;
+      });
   }
 
   return (
@@ -45,14 +69,53 @@ function SubmitAnswerForm({ id, body }) {
       <Modal.Content>
         <Form>
           <Form.Group widths="equal">
-            <Form.Field control={Input} onChange={(e) => setNickname(e.target.value)} fluid label="What is your nickname?" placeholder="Example: Jackson11!" />
-            <Form.Field control={Input} id="email_input" onChange={(e) => setEmail(e.target.value)} fluid label="What is your email? *" placeholder="Example: JaneDoe@Gmail.com" type="email" required error={{ content: 'Please enter a valid email address', pointing: 'above' }} />
+            <Form.Field
+              control={Input}
+              onChange={(e) => setNickname(e.target.value)}
+              fluid
+              label="What is your nickname?"
+              placeholder="Example: Jackson11!"
+            />
+            <Form.Field
+              control={Input}
+              id="email_input"
+              onChange={(e) => setEmail(e.target.value)}
+              fluid
+              label="What is your email? *"
+              placeholder="Example: JaneDoe@Gmail.com"
+              type="email"
+              required
+              error={{ content: 'Please enter a valid email address', pointing: 'above' }}
+            />
           </Form.Group>
-          <Form.TextArea onChange={(e) => setMessage(e.target.value)} label="Question" placeholder="Your Question About The Product Here..." />
+          <Form.TextArea
+            onChange={(e) => setMessage(e.target.value)}
+            label="Question"
+            placeholder="Your Question About The Product Here..."
+          />
         </Form>
+        {photos.length > 0 ? <RenderImages arr={photos} false /> : null}
       </Modal.Content>
       <Modal.Actions>
-        <Button color="black" onClick={() => setOpen(false)}>
+        <Button
+          as="label"
+          htmlFor="file"
+          basic
+          content="Upload photos"
+          type="button"
+        />
+        <Input
+          type="file"
+          id="file"
+          style={{ visibility: 'hidden' }}
+          onChange={async (e) => {
+            setPhotos(photos.concat([await encodeImageFileAsURL(e.target.files[0])]));
+          }}
+        />
+        <Button
+          color="black"
+          onClick={() => deleteDoubleFunction()}
+        >
           Cancel
         </Button>
         <Button

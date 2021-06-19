@@ -44,7 +44,7 @@ function ReviewFooter({ helpfulness, reviewId, sortReviews }) {
         }
       }}
     >
-      {helpfulCount}
+      {`Yes, (${helpfulCount})`}
     </button>
   );
 
@@ -83,9 +83,9 @@ function ReviewFooter({ helpfulness, reviewId, sortReviews }) {
   return (
     <Container textAlign="left">
       <p>
-        Helpful? Yes (
+        Helpful?&nbsp;
         {helpfulnessCount}
-        ) |&nbsp;
+        &nbsp;
         {reportReview}
       </p>
       <Divider fitted />

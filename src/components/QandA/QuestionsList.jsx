@@ -7,7 +7,7 @@ import './Question.css';
 
 function QuestionsList({ questionsArray }) {
   const [count, setCount] = useState(3);
-  const [shownQuestions, setShownQuestions] = useState(questionsArray.slice(0, 5));
+  const [shownQuestions, setShownQuestions] = useState(questionsArray.slice(0, 4));
 
   useEffect(() => {
     setShownQuestions(questionsArray.slice(0, count + 1));
@@ -29,7 +29,7 @@ function QuestionsList({ questionsArray }) {
         {shownQuestions.map((q) => <Question key={q.question_id} q={q} />)}
       </Grid>
       <Grid.Row className="show_Questions_row">
-        {moreAndLess(showLess, showMore, count, shownQuestions, 'Questions', 3)}
+        {moreAndLess(showLess, showMore, count, questionsArray, 'Questions', 3)}
       </Grid.Row>
     </Grid>
   );

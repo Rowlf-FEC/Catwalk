@@ -8,8 +8,9 @@ ul.thumbs.animated {
   padding-inline-start: 0;
 }
 
-div#modalCarousel.ui.scrolling.modal.transition.visible.active {
-  width: 39%;
+#modalCarousel {
+  width: 38%;
+  max-height: fit-content;
 }
 
 .mainImage {

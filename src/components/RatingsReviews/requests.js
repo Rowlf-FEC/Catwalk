@@ -2,7 +2,7 @@ import axios from 'axios';
 import config from '../../config';
 
 const getReviews = (productId, sortMethod = 'relevant') => (
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/', {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/', {
     headers: {
       Authorization: `${config.token}`,
     },
@@ -16,7 +16,7 @@ const getReviews = (productId, sortMethod = 'relevant') => (
 );
 
 const getMetaReviews = (productId) => (
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/meta', {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/meta', {
     headers: {
       Authorization: `${config.token}`,
     },
@@ -27,7 +27,7 @@ const getMetaReviews = (productId) => (
 );
 
 const getProductName = (productId) => (
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${productId}`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${productId}`, {
     headers: {
       Authorization: `${config.token}`,
     },
