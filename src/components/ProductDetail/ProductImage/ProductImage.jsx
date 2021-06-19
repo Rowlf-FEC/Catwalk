@@ -32,7 +32,9 @@ function ProductImage({ images }) {
     // onClickItem: () => {
     //   setZoom(() => true);
     // },
-    onChange: (index) => { setCurrentSlide(() => index); },
+    onChange: (index) => {
+      setCurrentSlide(() => index);
+    },
     selectedItem: currentSlide,
     showIndicators: true,
     showThumbs: false,
@@ -54,7 +56,7 @@ function ProductImage({ images }) {
         <Modal.Content>
           {/* {zoom ? (
             <div>
-              <GlassMagnifier
+              <Magnifier
                 className="magnifierImg"
                 cursorStyle="crosshair"
                 imageSrc={images[currentSlide].url}
