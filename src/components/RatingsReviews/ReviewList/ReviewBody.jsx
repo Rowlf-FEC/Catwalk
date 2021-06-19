@@ -2,7 +2,12 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Container, Icon, Image } from 'semantic-ui-react';
+import {
+  Grid,
+  Container,
+  Icon,
+  Image,
+} from 'semantic-ui-react';
 
 function ReviewBody({
   summary,
@@ -65,7 +70,8 @@ function ReviewBody({
                   borderColor: 'lightGrey',
                   borderRadius: '4px',
                   padding: '3px 10px',
-                }}>
+                }}
+                >
                   {`Response from seller: ${response}`}
                 </span>
               </div>
