@@ -1,10 +1,4 @@
 
-/* thumbnail gallery */
-/* div.thumbs-wrapper.axis-vertical {
-  margin: 0;
-  max-height: 50%;
-} */
-
 div.carousel {
   justify-content: center;
   display: flex;
@@ -42,23 +36,3 @@ div#modalCarousel.ui.scrolling.modal.transition.visible.active {
 div.magnifierImg div {
   cursor: zoom-out !important;
 }
-
-/* .modalImage {
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-} */
-
-/* div.modalImage {
-  max-height: 50%;
-  max-width: auto;
-} */
-
-/* image gallery MESSES WITH .mainImage */
-/* div.slider-wrapper.axis-horizontal {
-  height: 450px;
-  width: auto;
-} */
-/* div.carousel-root.mainCarousel {
-  align-items:center;
-} */
