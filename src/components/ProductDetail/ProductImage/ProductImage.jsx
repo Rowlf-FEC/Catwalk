@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'semantic-ui-react';
-import { Magnifier } from 'react-image-magnifiers';
+import { Magnifier, GlassMagnifier } from 'react-image-magnifiers';
 import withSlide from './Carousel';
 import './ProductImage.css';
 
@@ -11,7 +11,6 @@ function ProductImage({ images }) {
   const [open, setOpen] = useState(false);
   const [zoom, setZoom] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  // const [zoom, setZoom] = useState(false);
 
   let mainCarousel;
   const mainData = {
@@ -58,7 +57,6 @@ function ProductImage({ images }) {
               <Magnifier
                 className="magnifierImg"
                 cursorStyle="crosshair"
-                cursorStyleActive="move"
                 imageSrc={images[currentSlide].url}
                 imageAlt={images[currentSlide].url}
                 largeImageSrc={images[currentSlide].url}
