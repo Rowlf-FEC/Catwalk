@@ -16,8 +16,12 @@
   padding: 0;
   border: none;
   background: none;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
+}
+
+.helpfulnessCount:hover {
+  text-decoration: underline;
 }
 
 #reportReview {
