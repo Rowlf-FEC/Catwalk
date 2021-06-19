@@ -3,10 +3,6 @@ export default (ratings) => {
     return ratings.toFixed(1);
   }
 
-  if (ratings === undefined || ratings === null) {
-    return '5.0';
-  }
-
   let sum = 0;
   let divisor = 0;
 

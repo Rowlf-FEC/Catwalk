@@ -32,7 +32,7 @@ function Question({ q }) {
         <Grid.Column textAlign="left" width={10}>
           <h4>
             Q: &quot;
-            {q.name}
+            {q.question_body}
             &quot;
           </h4>
         </Grid.Column>

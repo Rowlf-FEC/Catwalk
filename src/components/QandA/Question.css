@@ -5,35 +5,47 @@
 
 .QandA {
   padding-top: 3%;
+  padding-bottom: 3%;
 }
 
 /**================= Search Bar Styles =================**/
-#question_search {
+#question_search_bar {
   width: 70vw;
-  height: 35px;
+  height: 25px;
   padding-left: 20px;
 }
 
-.searchBar {
-  z-index: 90 !important;
+#search_bar {
+  width: 50vw;
 }
 
 /**================= Question Styles =================**/
 div#question.ui.centered.container.grid {
-  width: 70vw !important;
-  padding-left: 5%;
+  width: 65vw !important;
+  padding-left: 2%;
+  margin-bottom: 5px;
+  padding-bottom: 15px;
+  padding-top: 1px;
+  box-shadow: 2px 2px 5px;
+  border-radius: 7.5px;
 }
 
 #questions_feed {
-  display: flex;
+  display: block;
+  width: 56vw;
+  min-height: 30vh;
   max-height: 70vh;
-  width: 70vw;
   overflow-y: scroll;
   overflow: auto;
   overflow-x: hidden;
 }
 
+#no_results {
+  min-height: 30vh;
+}
+
 div.three.column.row.question_row {
+  width: 60vw;
   padding-top: 0px;
   padding-bottom: 0px;
   margin-top: 15px;
@@ -62,7 +74,7 @@ div.ui.grid>.row.show_Questions_row {
 /**================= Answer Styles =================**/
 
 div.ui.container.grid.answer {
-  width: 60vw !important;
+  width: 48vw !important;
   padding-bottom: 0px;
   padding-top: 0px;
   margin-top: 0px;
@@ -77,6 +89,7 @@ div.ui.container.grid.answer {
 .ui.grid>.row.answer_row {
   padding-top: 0px;
   padding-bottom: 0px;
+  margin-top: 2%;
 }
 
 #answer_body {
@@ -90,6 +103,10 @@ div.ui.container.grid.answer {
   margin-top: .5% !important;
   margin-bottom: .5%;
   margin-left: 1%;
+}
+
+#submitThumbnails {
+  padding-top: 2%;
 }
 
 .ui.grid>.row.show_Answers_buttons {

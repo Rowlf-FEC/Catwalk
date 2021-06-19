@@ -10,15 +10,17 @@ import config from '../../config';
 import './Question.css';
 
 function QandA({ productId }) {
-  const [productIdNum] = useState(productId || 27189);
+  const [productIdNum] = useState(productId);
   const [questions, setQuestions] = useState([]);
+  const [searchList, setSearchList] = useState([]);
+  const [searchLength, setSearchLength] = useState('');
 
   const context = {
     headers: {
       authorization: config.token,
     },
     params: {
-      product_id: productIdNum, page: 1, count: 100,
+      product_id: productIdNum, page: 1, count: 1000,
     },
   };
 
@@ -43,15 +45,29 @@ function QandA({ productId }) {
       });
   }, [productIdNum]);
 
+  function questionListDecider() {
+    if (searchLength.length > 2 && searchList.length > 0) {
+      return <QuestionsList questionsArray={searchList} bool />;
+    }
+    if (searchLength.length > 2 && searchList.length === 0) {
+      return <h1 id="questions_feed">No Results Found</h1>;
+    }
+    return <QuestionsList questionsArray={questions} bool={false} />;
+  }
+
   return (
     <div className="QandA">
       <Grid centered className="QandA">
-        <Grid.Row textAlign="center" className="question_scroll">
-          <SearchQuestionsList productId={productIdNum} questionsArray={questions} />
+        <Grid.Row stretched className="question_search_bar">
+          <SearchQuestionsList
+            questionsArray={questions}
+            setSearchList={setSearchList}
+            setSearchLength={setSearchLength}
+          />
           <SubmitQuestionForm productId={productIdNum} />
         </Grid.Row>
-        <Grid.Row stretched>
-          <QuestionsList questionsArray={questions} />
+        <Grid.Row stretched className="question_feed">
+          {questionListDecider()}
         </Grid.Row>
       </Grid>
     </div>
