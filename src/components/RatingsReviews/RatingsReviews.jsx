@@ -17,7 +17,7 @@ class RatingsReviews extends Component {
 
     this.state = {
       loaded: false,
-      productId: props.productId || 27190,
+      productId: props.productId || 27189,
       productName: '',
       reviews: [],
       totalReviews: 0,
