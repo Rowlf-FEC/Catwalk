@@ -5,7 +5,22 @@ import React from 'react';
 // Becuase it is similar logic in both AnswersList and QuestionsList
 
 function moreAndLess(showLess, showMore, count, arrOfObjs, nounString, num) {
-  if (arrOfObjs.length > count && count > num) {
+  if (arrOfObjs.length > count && count <= num) {
+    return (
+      <Grid.Row className={`show_${nounString}_row`}>
+        <div>
+          <Button id={`button${nounString}`} onClick={showMore}>
+            <Icon name="angle down" />
+            <u>
+              Show More&nbsp;
+              {nounString}
+            </u>
+          </Button>
+        </div>
+      </Grid.Row>
+    );
+  }
+  if (arrOfObjs.length - 1 > count && count > num) {
     return (
       <Grid.Row className={`show_${nounString}_row`}>
         <div>
@@ -27,21 +42,7 @@ function moreAndLess(showLess, showMore, count, arrOfObjs, nounString, num) {
       </Grid.Row>
     );
   }
-  if (arrOfObjs.length > count) {
-    return (
-      <Grid.Row className={`show_${nounString}_row`}>
-        <div>
-          <Button id={`button${nounString}`} onClick={showMore}>
-            <Icon name="angle down" />
-            <u>
-              Show More&nbsp;
-              {nounString}
-            </u>
-          </Button>
-        </div>
-      </Grid.Row>
-    );
-  }
+
   if (count > num) {
     return (
       <Grid.Row className={`show_${nounString}_row`}>
