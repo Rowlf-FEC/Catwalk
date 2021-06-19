@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'semantic-ui-react';
+import { Magnifier } from 'react-image-magnifiers';
 import withSlide from './Carousel';
 import './ProductImage.css';
 
 function ProductImage({ images }) {
   const [open, setOpen] = useState(false);
+  const [zoom, setZoom] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   // const [zoom, setZoom] = useState(false);
 
@@ -28,9 +30,9 @@ function ProductImage({ images }) {
 
   const modalData = {
     className: 'modalCarousel',
-    // onClickItem: () => {
-    //   setOpen(() => false);
-    // },
+    onClickItem: () => {
+      setZoom(() => true);
+    },
     onChange: (index) => { setCurrentSlide(() => index); },
     selectedItem: currentSlide,
     showIndicators: true,
@@ -44,11 +46,26 @@ function ProductImage({ images }) {
       {withSlide(mainCarousel, mainData)}
       <Modal
         id="modalCarousel"
-        onClose={() => setOpen(false)}
+        onClose={() => {
+          setOpen(false);
+          setZoom(false);
+        }}
         open={open}
       >
         <Modal.Content>
-          {withSlide(modalCarousel, modalData)}
+          {zoom ? (
+            <div>
+              <Magnifier
+                className="magnifierImg"
+                cursorStyle="crosshair"
+                cursorStyleActive="move"
+                imageSrc={images[currentSlide].url}
+                imageAlt={images[currentSlide].url}
+                largeImageSrc={images[currentSlide].url}
+                onZoomEnd={() => setZoom(false)}
+              />
+            </div>
+          ) : withSlide(modalCarousel, modalData)}
         </Modal.Content>
       </Modal>
     </div>
