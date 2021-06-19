@@ -8,7 +8,8 @@ import {
   Grid,
 } from 'semantic-ui-react';
 import './ProductImage/ProductImage.css';
-
+import ReactDOM from 'react-dom';
+import handleAnalytics from '../RatingsReviews/ModularComponents/handleAnalytics';
 import config from '../../config';
 import ProductImage from './ProductImage/ProductImage';
 import ProductDescription from './ProductDescription';
@@ -133,6 +134,10 @@ export default class ProductDetail extends React.Component {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .then(() => {
+        // eslint-disable-next-line react/no-find-dom-node
+        ReactDOM.findDOMNode(this).addEventListener('click', (e) => handleAnalytics(e, 'ProductOverview'));
       });
   }
 
