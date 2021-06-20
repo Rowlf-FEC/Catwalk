@@ -62,7 +62,7 @@ export default class ProductDetail extends React.Component {
         console.log(error);
       })
       .then(
-        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/${productId}/styles`, {
+        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/product/${productId}/styles`, {
         })
           .then((result) => {
             const { data } = result;
