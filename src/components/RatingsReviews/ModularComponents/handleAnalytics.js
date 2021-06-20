@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import dayjs from 'dayjs';
 import axios from 'axios';
-import config from '../../../config';
 
 export default (event, module) => {
   event.preventDefault();
