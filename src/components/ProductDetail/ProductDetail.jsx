@@ -10,7 +10,6 @@ import {
 import './ProductImage/ProductImage.css';
 import ReactDOM from 'react-dom';
 import handleAnalytics from '../RatingsReviews/ModularComponents/handleAnalytics';
-import config from '../../config';
 import ProductImage from './ProductImage/ProductImage';
 import ProductDescription from './ProductDescription';
 import BuyProduct from './BuyProduct/BuyProduct';
@@ -48,10 +47,7 @@ export default class ProductDetail extends React.Component {
 
   componentDidMount() {
     const { productId } = this.state;
-    return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${productId}`, {
-      headers: {
-        Authorization: `${config.token}`,
-      },
+    return axios.get(`/${productId}`, {
     })
       .then((result) => {
         const { data } = result;
@@ -66,10 +62,7 @@ export default class ProductDetail extends React.Component {
         console.log(error);
       })
       .then(
-        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${productId}/styles`, {
-          headers: {
-            Authorization: `${config.token}`,
-          },
+        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/${productId}/styles`, {
         })
           .then((result) => {
             const { data } = result;
@@ -117,9 +110,6 @@ export default class ProductDetail extends React.Component {
       })
       .then(() => {
         axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/meta', {
-          headers: {
-            Authorization: `${config.token}`,
-          },
           params: {
             product_id: productId,
           },
@@ -137,10 +127,7 @@ export default class ProductDetail extends React.Component {
         console.log(error);
       })
       .then(() => {
-        axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/', {
-          headers: {
-            Authorization: `${config.token}`,
-          },
+        axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews', {
           params: {
             page: 1,
             count: 200,
@@ -240,11 +227,7 @@ export default class ProductDetail extends React.Component {
     const { skuCart, qtyCart } = this.state;
     let n = 0;
     while (n < qtyCart) {
-      axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/cart', { sku_id: skuCart }, {
-        headers: {
-          Authorization: `${config.token}`,
-        },
-      });
+      axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/cart', { sku_id: skuCart });
       n += 1;
     }
   }
@@ -288,12 +271,3 @@ export default class ProductDetail extends React.Component {
     );
   }
 }
-
-/* return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${this.productId}`, {
-  headers: {
-    Authorization: `${config.token}`,
-  }}
-    .then(result => {
-      do things to result
-    })
-*/

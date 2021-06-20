@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import './App.css';
 import React from 'react';
-import { Icon } from 'semantic-ui-react';
+// import { Icon } from 'semantic-ui-react';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import QandA from './components/QandA/QandA';
 import RatingsReviews from './components/RatingsReviews/RatingsReviews';
@@ -17,8 +17,8 @@ function App() {
   const productId = 27189;
   return (
     <div className="App">
-      <a id="imTheTop" style={{ visibility: 'hidden' }} />
       <div className="topBar">
+        {/* <a id="imTheTop" style={{ visibility: 'hidden' }} /> */}
         <img className="headerOutline" alt="logo outline" src={outline} />
         <img className="headerLogo" alt="Fleur de Lis" src={logo} />
         <img className="headerText" alt="Le Catwalk de Rowlf" src={headerText} />
@@ -26,10 +26,10 @@ function App() {
       <ProductDetail productId={productId} />
       <QandA productId={productId} />
       <RatingsReviews productId={productId} />
-      <div className="backToTop">
+      {/* <div className="backToTop">
         <Icon name="angle up" />
         <a style={{ color: 'black' }} href="#imTheTop">Back to Top</a>
-      </div>
+      </div> */}
       <div className="bottomBar">
         <img className="bottomLogo" alt="Fleur de Lis" src={logo} />
         <BottomBar />

@@ -10,7 +10,6 @@ import {
 } from 'semantic-ui-react';
 import axios from 'axios';
 import SubmitReviewForm from './SubmitReviewForm';
-import config from '../../../config';
 
 function ListModifierButtons({
   allReviewsLoaded,
@@ -126,9 +125,6 @@ function ListModifierButtons({
       const postNewReview = {
         method: 'post',
         url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/',
-        headers: {
-          Authorization: `${config.token}`,
-        },
         data: {
           product_id: productId,
           rating: userRating.rating,

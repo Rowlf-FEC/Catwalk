@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import QuestionsList from './QuestionsList';
 import SearchQuestionsList from './SearchQuestionsList';
 import SubmitQuestionForm from './SubmitQuestionForm';
-import config from '../../config';
 import './Question.css';
 // import handleAnalytics from './RatingsReviews/ModularComponents/handleAnalytics';
 
@@ -18,9 +17,6 @@ function QandA({ productId }) {
   const [searchLength, setSearchLength] = useState('');
 
   const context = {
-    headers: {
-      authorization: config.token,
-    },
     params: {
       product_id: productIdNum, page: 1, count: 1000,
     },
@@ -37,16 +33,13 @@ function QandA({ productId }) {
   }
 
   useEffect(() => {
-    axios.get(`${config.url}/qa/questions`, context)
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions', context)
       .then((results) => {
         results.data.results.sort(compare);
         setQuestions(results.data.results);
       })
       .catch((error) => {
         throw error;
-      })
-      .then(() => {
-        // ReactDOM.findDOMNode(this).addEventListener('click', (e) => handleAnalytics(e, 'Questions and Answers'));
       });
   }, [productIdNum]);
 

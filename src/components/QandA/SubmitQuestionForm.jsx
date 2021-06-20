@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
   Modal, Form, Button, Input, Message,
 } from 'semantic-ui-react';
-import config from '../../config';
 
 function SubmitQuestionForm({ productId }) {
   const [open, setOpen] = useState(false);
@@ -60,14 +59,7 @@ function SubmitQuestionForm({ productId }) {
       body: message, name: nickname, email, product_id: productId,
     };
 
-    const context = {
-      headers:
-      {
-        authorization: config.token,
-      },
-    };
-
-    axios.post(`${config.url}/qa/questions`, data, context)
+    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions', data)
       .then((results) => results)
       .catch((err) => {
         throw err;

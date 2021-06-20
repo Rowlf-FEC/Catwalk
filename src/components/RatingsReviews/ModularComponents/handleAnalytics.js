@@ -9,9 +9,6 @@ export default (event, module) => {
   const analyticsRequest = {
     method: 'post',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/interactions/',
-    headers: {
-      Authorization: `${config.token}`,
-    },
     data: {
       element: event.target.outerHTML,
       widget: module,
