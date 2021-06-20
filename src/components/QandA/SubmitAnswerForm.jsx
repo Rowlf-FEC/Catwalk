@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
-  Modal, Form, Button, Input, Message,
+  Modal, Form, Button, Input, Message, Label,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import RenderImages from './RenderImages';
@@ -110,7 +110,7 @@ function SubmitAnswerForm({ id, body }) {
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
-        trigger={<Button id="buttonAnswers" size="mini"><u>Add an Answer</u></Button>}
+        trigger={<Button id="buttonAnswers" className="submit" size="mini"><u>Add an Answer</u></Button>}
       >
         <Modal.Header>
           Submit your Answer for:
@@ -120,26 +120,38 @@ function SubmitAnswerForm({ id, body }) {
         <Modal.Content>
           <Form>
             <Form.Group widths="equal">
-              <Form.Field
-                control={Input}
-                onChange={(e) => setNickname(e.target.value)}
-                fluid
-                label="What is your nickname?"
-                placeholder="Example: Jackson11! (60 maximum characters)"
-                maxLength="60"
-              />
-              <Form.Field
-                control={Input}
-                maxLength="60"
-                id="email_input"
-                onChange={(e) => setEmail(e.target.value)}
-                fluid
-                label="What is your email? *"
-                placeholder="Example: JaneDoe@Gmail.com (60 maximum characters)"
-                type="email"
-                required
-                error={hasEmailError ? { content: 'Please enter a valid email address', pointing: 'above' } : false}
-              />
+              <Form.Field>
+                <Form.Input
+                  onChange={(e) => { setNickname(e.target.value); }}
+                  fluid
+                  label="What is your nickname?"
+                  placeholder="Example: Jackson11! (60 maximum characters)"
+                  maxLength="60"
+                />
+                <Label
+                  pointing
+                >
+                  For privacy reasons, do not use your full name or email address
+                </Label>
+              </Form.Field>
+              <Form.Field>
+                <Form.Input
+                  id="email_input"
+                  onChange={(e) => { setEmail(e.target.value); }}
+                  fluid
+                  label="What is your email?"
+                  placeholder="Example: JaneDoe@Gmail.com (60 maximum characters)"
+                  type="email"
+                  required
+                  maxLength="60"
+                  error={!!hasEmailError}
+                />
+                <Label
+                  pointing
+                >
+                  For authentication reasons, you will not be emailed
+                </Label>
+              </Form.Field>
             </Form.Group>
             <Form.TextArea
               maxLength="1000"
@@ -151,13 +163,16 @@ function SubmitAnswerForm({ id, body }) {
           {photos.length > 0 ? <RenderImages arr={photos} false /> : null}
         </Modal.Content>
         <Modal.Actions>
-          <Button
-            as="label"
-            htmlFor="file"
-            basic
-            content="Upload photos"
-            type="button"
-          />
+          {photos.length <= 4 ? (
+            <Button
+              id="submitPhotos"
+              as="label"
+              htmlFor="file"
+              basic
+              content="Upload photos"
+              type="button"
+            />
+          ) : null}
           <Input
             type="file"
             id="file"

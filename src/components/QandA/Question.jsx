@@ -27,7 +27,7 @@ function Question({ q }) {
   }
 
   return (
-    <Grid centered container id="question">
+    <Grid stackable={false} centered container id="question">
       <Grid.Row columns={3} className="question_row">
         <Grid.Column textAlign="left" width={10}>
           <h4>
@@ -36,7 +36,7 @@ function Question({ q }) {
             &quot;
           </h4>
         </Grid.Column>
-        <Grid.Column textAlign="right" width={3}>
+        <Grid.Column textAlign="right" width={5}>
           <Button id="buttonQuestion" size="mini" onClick={handleHelpful}>
             Helpful?&nbsp;&nbsp;
             <u>Yes</u>
@@ -44,8 +44,6 @@ function Question({ q }) {
             {helpful}
             )
           </Button>
-        </Grid.Column>
-        <Grid.Column width={3}>
           <SubmitAnswerForm id={q.question_id} body={q.question_body} />
         </Grid.Column>
       </Grid.Row>

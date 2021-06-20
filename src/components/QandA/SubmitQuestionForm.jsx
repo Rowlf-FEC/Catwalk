@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import {
-  Modal, Form, Button, Input, Message,
+  Modal, Form, Button, Message, Label,
 } from 'semantic-ui-react';
 import config from '../../config';
 
@@ -74,7 +74,6 @@ function SubmitQuestionForm({ productId }) {
       });
   }
 
-  // this function just invokes two functions to be used in onClick event for submission
   function doubleFunction() {
     if (!hasEmailError && !hasErrors) {
       setOpen(false);
@@ -96,26 +95,38 @@ function SubmitQuestionForm({ productId }) {
       <Modal.Content>
         <Form>
           <Form.Group widths="equal">
-            <Form.Field
-              control={Input}
-              onChange={(e) => { setNickname(e.target.value); }}
-              fluid
-              label="What is your nickname?"
-              placeholder="Example: Jackson11! (60 maximum characters)"
-              maxLength="60"
-            />
-            <Form.Field
-              control={Input}
-              id="email_input"
-              onChange={(e) => { setEmail(e.target.value); }}
-              fluid
-              label="What is your email? *"
-              placeholder="Example: JaneDoe@Gmail.com (60 maximum characters)"
-              type="email"
-              required
-              maxLength="60"
-              error={hasEmailError ? { content: 'Please enter a valid email address', pointing: 'above' } : false}
-            />
+            <Form.Field>
+              <Form.Input
+                onChange={(e) => { setNickname(e.target.value); }}
+                fluid
+                label="What is your nickname?"
+                placeholder="Example: Jackson11! (60 maximum characters)"
+                maxLength="60"
+              />
+              <Label
+                pointing
+              >
+                For privacy reasons, do not use your full name or email address
+              </Label>
+            </Form.Field>
+            <Form.Field>
+              <Form.Input
+                id="email_input"
+                onChange={(e) => { setEmail(e.target.value); }}
+                fluid
+                label="What is your email?"
+                placeholder="Example: JaneDoe@Gmail.com (60 maximum characters)"
+                type="email"
+                required
+                maxLength="60"
+                error={!!hasEmailError}
+              />
+              <Label
+                pointing
+              >
+                For authentication reasons, you will not be emailed
+              </Label>
+            </Form.Field>
           </Form.Group>
           <Form.TextArea
             maxLength="1000"
