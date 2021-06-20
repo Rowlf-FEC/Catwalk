@@ -20,7 +20,7 @@ const getMetaReviews = (productId) => (
 );
 
 const getProductName = (productId) => (
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/${productId}`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${productId}`, {
   })
 );
 
