@@ -110,7 +110,7 @@ function SubmitAnswerForm({ id, body }) {
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
-        trigger={<Button id="buttonAnswers" size="mini"><u>Add an Answer</u></Button>}
+        trigger={<Button id="buttonAnswers" className="submit" size="mini"><u>Add an Answer</u></Button>}
       >
         <Modal.Header>
           Submit your Answer for:

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import SearchQuestionsList from './SearchQuestionsList';
 import SubmitQuestionForm from './SubmitQuestionForm';
 import config from '../../config';
 import './Question.css';
-// import handleAnalytics from './RatingsReviews/ModularComponents/handleAnalytics';
+// import handleAnalytics from '../RatingsReviews/ModularComponents/handleAnalytics';
 
 function QandA({ productId }) {
   const [productIdNum] = useState(productId);
@@ -36,6 +36,9 @@ function QandA({ productId }) {
     return 0;
   }
 
+  // const reference = React.createRef();
+  // ReactDOM.().addEventListener('click', (e) => handleAnalytics(e, 'Questions and Answers'));
+
   useEffect(() => {
     axios.get(`${config.url}/qa/questions`, context)
       .then((results) => {
@@ -44,9 +47,6 @@ function QandA({ productId }) {
       })
       .catch((error) => {
         throw error;
-      })
-      .then(() => {
-        // ReactDOM.findDOMNode(this).addEventListener('click', (e) => handleAnalytics(e, 'Questions and Answers'));
       });
   }, [productIdNum]);
 
