@@ -11,6 +11,7 @@ import config from '../../config';
 import './Question.css';
 import handleAnalytics from '../RatingsReviews/ModularComponents/handleAnalytics';
 
+
 class QandA extends Component {
   constructor(props) {
     super(props);
@@ -55,6 +56,9 @@ class QandA extends Component {
       })
       .catch((error) => {
         throw error;
+      })
+      .then(() => {
+        // ReactDOM.findDOMNode(this).addEventListener('click', (e) => handleAnalytics(e, 'Questions and Answers'));
       });
     ReactDOM.findDOMNode(this).addEventListener('click', (e) => handleAnalytics(e, 'Questions and Answers'));
   }
