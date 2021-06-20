@@ -109,6 +109,10 @@ div.ui.container.grid.answer {
   padding-top: 2%;
 }
 
+label#submitPhotos {
+  float: left;
+}
+
 .ui.grid>.row.show_Answers_buttons {
   padding-top: 1%;
   margin-left: 15%;

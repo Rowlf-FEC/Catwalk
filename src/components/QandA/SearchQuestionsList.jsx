@@ -32,7 +32,6 @@ function SearchQuestionsList({ questionsArray, setSearchList, setSearchLength })
 
   const [state, dispatch] = useReducer(exampleReducer, initialState);
   const { loading, results, value } = state;
-
   const timeoutRef = useRef();
 
   const handleSearchChange = useCallback((e, data) => {
