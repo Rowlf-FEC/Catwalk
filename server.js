@@ -2,13 +2,14 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
+const config = require('./src/config');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 // app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.resolve(__dirname, './public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT, (error) => {
   if (error) {
@@ -28,7 +29,7 @@ app.post('https://api.imgur.com/3/image', (req, res) => {
     url: 'https://api.imgur.com/3/image',
     headers: {
       'Content-type': 'application/x-www-form-urlencoded',
-      Authorization: 'Client-ID 51ceea0b2656141',
+      Authorization: config.ImgurToken,
     },
     data: req.data,
   };
@@ -48,7 +49,7 @@ app.all('/*', (req, res) => {
     method: req.method,
     url: req.url,
     headers: {
-      Authorization: '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',
+      Authorization: config.AtelierToken,
     },
     data: req.data,
   };
