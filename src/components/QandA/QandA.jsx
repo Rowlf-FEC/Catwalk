@@ -10,7 +10,6 @@ import SubmitQuestionForm from './SubmitQuestionForm';
 import './Question.css';
 import handleAnalytics from '../RatingsReviews/ModularComponents/handleAnalytics';
 
-
 class QandA extends Component {
   constructor(props) {
     super(props);
