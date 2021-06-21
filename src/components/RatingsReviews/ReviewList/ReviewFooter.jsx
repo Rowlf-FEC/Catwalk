@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Divider } from 'semantic-ui-react';
 import axios from 'axios';
-import config from '../../../config';
 
 function ReviewFooter({ helpfulness, reviewId, sortReviews }) {
   const [helpfulCount, setHelpfulCount] = useState(helpfulness);
@@ -13,10 +12,7 @@ function ReviewFooter({ helpfulness, reviewId, sortReviews }) {
   const updateCount = () => {
     const updateHelpfulnessConfig = {
       method: 'put',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/${reviewId}/helpful`,
-      headers: {
-        Authorization: `${config.token}`,
-      },
+      url: `/${reviewId}/helpful`,
     };
 
     axios(updateHelpfulnessConfig)
@@ -51,10 +47,7 @@ function ReviewFooter({ helpfulness, reviewId, sortReviews }) {
   const sendReportReview = () => {
     const sendReportConfig = {
       method: 'put',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/${reviewId}/report`,
-      headers: {
-        Authorization: `${config.token}`,
-      },
+      url: `/${reviewId}/report`,
     };
 
     axios(sendReportConfig)

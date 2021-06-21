@@ -14,11 +14,11 @@ import outline from './assets/WigglyFrameCircle.svg';
 // import config from'./config.js';
 
 function App() {
-  const productId = 27257;
+  const productId = 27189;
   return (
     <div className="App">
-      <a id="imTheTop" style={{ visibility: 'hidden' }} />
       <div className="topBar">
+        <a id="imTheTop" style={{ visibility: 'hidden' }} />
         <img className="headerOutline" alt="logo outline" src={outline} />
         <img className="headerLogo" alt="Fleur de Lis" src={logo} />
         <img className="headerText" alt="Le Catwalk de Rowlf" src={headerText} />

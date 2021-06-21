@@ -7,10 +7,8 @@ import ReactDOM from 'react-dom';
 import QuestionsList from './QuestionsList';
 import SearchQuestionsList from './SearchQuestionsList';
 import SubmitQuestionForm from './SubmitQuestionForm';
-import config from '../../config';
 import './Question.css';
 import handleAnalytics from '../RatingsReviews/ModularComponents/handleAnalytics';
-
 
 class QandA extends Component {
   constructor(props) {
@@ -29,9 +27,6 @@ class QandA extends Component {
   componentDidMount() {
     const { productIdNum } = this.state;
     const context = {
-      headers: {
-        authorization: config.token,
-      },
       params: {
         product_id: productIdNum, page: 1, count: 1000,
       },
@@ -47,7 +42,7 @@ class QandA extends Component {
       return 0;
     }
 
-    axios.get(`${config.url}/qa/questions`, context)
+    axios.get('/qa/questions', context)
       .then((results) => {
         results.data.results.sort(compare);
         this.setState({
@@ -56,9 +51,6 @@ class QandA extends Component {
       })
       .catch((error) => {
         throw error;
-      })
-      .then(() => {
-        // ReactDOM.findDOMNode(this).addEventListener('click', (e) => handleAnalytics(e, 'Questions and Answers'));
       });
     ReactDOM.findDOMNode(this).addEventListener('click', (e) => handleAnalytics(e, 'Questions and Answers'));
   }

@@ -5,7 +5,6 @@ import {
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import RenderImages from './RenderImages';
-import config from '../../config';
 
 function SubmitAnswerForm({ id, body }) {
   const [open, setOpen] = useState(false);
@@ -17,7 +16,6 @@ function SubmitAnswerForm({ id, body }) {
   const [hasEmailError, setHasEmailError] = useState(true);
   const [failedSubmit, setFailedSubmit] = useState(false);
 
-  const context = { headers: { authorization: config.token } };
   const data = {
     body: message, name: nickname, email, photos,
   };
@@ -64,7 +62,7 @@ function SubmitAnswerForm({ id, body }) {
 
   // this is axios to post a new answer to a specific question
   function submitAnswer() {
-    axios.post(`${config.url}/qa/questions/${id}/answers`, data, context)
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions/${id}/answers`, data)
       .then((results) => results)
       .catch((err) => {
         throw err;
@@ -91,13 +89,7 @@ function SubmitAnswerForm({ id, body }) {
   async function encodeImageFileAsURL(file) {
     const info = new FormData();
     info.append('image', file);
-    const configImg = {
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded',
-        Authorization: config.imgurAPI,
-      },
-    };
-    return axios.post('https://api.imgur.com/3/image', info, configImg)
+    return axios.post('https://api.imgur.com/3/image', info)
       .then((response) => response.data.data.link)
       .catch((err) => {
         throw err;

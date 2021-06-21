@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Grid, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import AnswersList from './AnswersList';
-import config from '../../config';
 import SubmitAnswerForm from './SubmitAnswerForm';
 import './Question.css';
 
@@ -11,11 +10,9 @@ function Question({ q }) {
   const [helpful, setHelpful] = useState(q.question_helpfulness);
   const [helpfulClick, setHelpfulClick] = useState(false);
 
-  const context = { headers: { Authorization: config.token } };
-
   function handleHelpful() {
     if (helpfulClick === false) {
-      axios.put(`${config.url}/qa/questions/${q.question_id}/helpful`, {}, context)
+      axios.put(`/qa/questions/${q.question_id}/helpful`, {})
         .then(() => {
           setHelpful(helpful + 1);
           setHelpfulClick(true);

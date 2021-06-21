@@ -5,18 +5,16 @@ import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import handleTime from '../configFiles/dayjsConfig';
 import RenderImages from './RenderImages';
-import config from '../../config';
 
 function Answer({ answer }) {
   const [helpful, setHelpful] = useState(answer.helpfulness);
   const [report, setReport] = useState(false);
   const [helpfulClick, setHelpfulClick] = useState(false);
-  const context = { headers: { Authorization: config.token } };
 
   // this function is axios PUT to mark whether a specific Answer was helpful
   function handleHelpful() {
     if (helpfulClick === false) {
-      axios.put(`${config.url}/qa/answers/${answer.id}/helpful`, {}, context)
+      axios.put(`/qa/answers/${answer.id}/helpful`, {})
         .then(() => {
           setHelpful(helpful + 1);
           setHelpfulClick(true);
@@ -29,7 +27,7 @@ function Answer({ answer }) {
 
   // this function is axios PUT to report an Answer on a specific Question
   function reportAnswer() {
-    axios.put(`${config.url}/qa/answers/${answer.id}/report`, {}, context)
+    axios.put(`/qa/answers/${answer.id}/report`, {})
       .then(() => {
         setReport(true);
       })
