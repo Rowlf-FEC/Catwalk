@@ -52,9 +52,11 @@ app.all('/*', (req, res) => {
     },
     data: req.data,
   };
-  console.log(req.url);
+
   axios(configAtelier)
     .then((response) => {
+      console.log(configAtelier);
+      console.log(response);
       res.send(response);
     })
     .catch((error) => {
