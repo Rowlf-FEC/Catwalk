@@ -90,7 +90,10 @@ function SubmitAnswerForm({ id, body }) {
     const info = new FormData();
     info.append('image', file);
     return axios.post('https://api.imgur.com/3/image', info)
-      .then((response) => response.data.data.link)
+      .then((response) => {
+        console.log(response);
+        return response.data.data.link;
+      })
       .catch((err) => {
         throw err;
       });

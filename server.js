@@ -23,25 +23,26 @@ app.listen(PORT, (error) => {
 //   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // })RE
 
-// app.post('https://api.imgur.com/3/image', (req, res) => {
-//   const configImgur = {
-//     method: req.method,
-//     url: 'https://api.imgur.com/3/image',
-//     headers: {
-//       'Content-type': 'application/x-www-form-urlencoded',
-//       Authorization: config.ImgurToken,
-//     },
-//     data: req.data,
-//   };
+app.post('https://api.imgur.com/3/image', (req, res) => {
+  const configImgur = {
+    method: req.method,
+    url: 'https://api.imgur.com/3/image',
+    headers: {
+      'Content-type': 'application/x-www-form-urlencoded',
+      Authorization: config.ImgurToken,
+    },
+    data: req.data,
+  };
 
-//   axios(configImgur)
-//     .then((response) => {
-//       res.send(response);
-//     })
-//     .catch((error) => {
-//       res.send(error);
-//     });
-// });
+  axios(configImgur)
+    .then((response) => {
+      console.log(response.data);
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+});
 
 app.all('/*', (req, res) => {
   const configAtelier = {
