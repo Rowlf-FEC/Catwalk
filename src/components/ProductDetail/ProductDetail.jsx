@@ -47,7 +47,7 @@ export default class ProductDetail extends React.Component {
 
   componentDidMount() {
     const { productId } = this.state;
-    return axios.get(`/${productId}`, {
+    return axios.get(`/products/${productId}`, {
     })
       .then((result) => {
         console.log('result from ProductDetails ProdId', result);

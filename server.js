@@ -21,7 +21,7 @@ app.listen(PORT, (error) => {
 
 // app.get('/', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// })
+// })RE
 
 // app.post('https://api.imgur.com/3/image', (req, res) => {
 //   const configImgur = {
@@ -52,7 +52,7 @@ app.all('/*', (req, res) => {
     },
     data: req.data,
   };
-
+  console.log(req.url);
   axios(configAtelier)
     .then((response) => {
       res.send(response);
