@@ -49,8 +49,8 @@ export default class ProductDetail extends React.Component {
     const { productId } = this.state;
     return axios.get(`/products/${productId}`)
       .then((result) => {
-        console.log('result from ProductDetails ProdId', result);
-        const data = result;
+        console.log('result from ProductDetails ProdId', result.data);
+        const { data } = result;
         const resultDescriptions = [data.description, data.slogan];
         const resultEssentials = [data.category, data.default_price, data.name, data.features];
         this.setState({
@@ -64,7 +64,7 @@ export default class ProductDetail extends React.Component {
       .then(
         axios.get(`/products/${productId}/styles`)
           .then((result) => {
-            const data = result;
+            const { data } = result;
             this.setState({
               currentStyle: [data.results[0]],
               images: data.results[0].photos,
@@ -115,7 +115,7 @@ export default class ProductDetail extends React.Component {
         })
           .then((metaReviews) => {
             this.setState({
-              ratings: metaReviews.ratings,
+              ratings: metaReviews.data.ratings,
             });
           })
           .catch((error) => {
