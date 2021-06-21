@@ -9,8 +9,10 @@
 }
 
 /**================= Search Bar Styles =================**/
-#question_search_bar {
-  height: 25px;
+
+div.stretched.row.question_search_bar {
+  padding-top: 1%;
+  padding-bottom: 3%;
 }
 
 #search_bar {
@@ -20,7 +22,8 @@
 /**================= Question Styles =================**/
 div#question.ui.centered.container.grid {
   width: 65vw !important;
-  padding-left: 2%;
+  padding-left: 0;
+  padding-right: 0;
   margin-bottom: 5px;
   padding-bottom: 15px;
   padding-top: 1px;
@@ -51,7 +54,7 @@ div.three.column.row.question_row {
 }
 
 div.ui.grid>.row.show_Questions_row {
-  padding-top: 0;
+  padding-top: 5%;
   margin-top: 14px;
 }
 
@@ -107,6 +110,10 @@ div.ui.container.grid.answer {
   padding-top: 2%;
 }
 
+label#submitPhotos {
+  float: left;
+}
+
 .ui.grid>.row.show_Answers_buttons {
   padding-top: 1%;
   margin-left: 15%;
@@ -123,4 +130,7 @@ div.ui.container.grid.answer {
 
 #button.report_button {
   margin-left: 25px;
+}
+button#buttonAnswers.ui.mini.button.submit {
+  padding-left: 5%;
 }
