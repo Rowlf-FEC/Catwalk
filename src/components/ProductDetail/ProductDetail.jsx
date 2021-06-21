@@ -47,8 +47,7 @@ export default class ProductDetail extends React.Component {
 
   componentDidMount() {
     const { productId } = this.state;
-    return axios.get(`/products/${productId}`, {
-    })
+    return axios.get(`/products/${productId}`)
       .then((result) => {
         console.log('result from ProductDetails ProdId', result);
         const { data } = result;
@@ -63,8 +62,7 @@ export default class ProductDetail extends React.Component {
         console.log(error);
       })
       .then(
-        axios.get(`/products/${productId}/styles`, {
-        })
+        axios.get(`/products/${productId}/styles`)
           .then((result) => {
             const { data } = result;
             this.setState({
