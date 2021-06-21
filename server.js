@@ -52,7 +52,7 @@ app.all('/*', (req, res) => {
     },
     data: req.data,
   };
-console.log(req.method);
+
   axios(configAtelier)
     .then((response) => {
       res.send(response.data);
