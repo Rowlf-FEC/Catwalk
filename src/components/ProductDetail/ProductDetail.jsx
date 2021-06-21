@@ -50,6 +50,7 @@ export default class ProductDetail extends React.Component {
     return axios.get(`/${productId}`, {
     })
       .then((result) => {
+        console.log('result from ProductDetails ProdId', result);
         const { data } = result;
         const resultDescriptions = [data.description, data.slogan];
         const resultEssentials = [data.category, data.default_price, data.name, data.features];

@@ -44,8 +44,6 @@ app.listen(PORT, (error) => {
 // });
 
 app.all('/*', (req, res) => {
-  console.log('Client connected to server taco!');
-  console.log('url', req.url);
   const configAtelier = {
     method: req.method,
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx${req.url}`,
