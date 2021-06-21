@@ -57,7 +57,7 @@ app.all('/*', (req, res) => {
     .then((response) => {
       console.log(configAtelier);
       console.log(response.data);
-      res.send(response);
+      res.send(response.data);
     })
     .catch((error) => {
       res.send(error);
