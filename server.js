@@ -56,7 +56,7 @@ app.all('/*', (req, res) => {
   axios(configAtelier)
     .then((response) => {
       console.log(configAtelier);
-      console.log(response);
+      console.log(response.data);
       res.send(response);
     })
     .catch((error) => {
