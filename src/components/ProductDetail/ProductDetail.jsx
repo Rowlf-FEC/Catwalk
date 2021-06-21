@@ -62,7 +62,7 @@ export default class ProductDetail extends React.Component {
         console.log(error);
       })
       .then(
-        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${productId}/styles`, {
+        axios.get(`/products/${productId}/styles`, {
         })
           .then((result) => {
             const { data } = result;
@@ -109,7 +109,7 @@ export default class ProductDetail extends React.Component {
         console.log(error);
       })
       .then(() => {
-        axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/meta', {
+        axios.get('/reviews/meta', {
           params: {
             product_id: productId,
           },
@@ -127,7 +127,7 @@ export default class ProductDetail extends React.Component {
         console.log(error);
       })
       .then(() => {
-        axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews', {
+        axios.get('/reviews', {
           params: {
             page: 1,
             count: 200,
