@@ -33,7 +33,7 @@ function QandA({ productId }) {
   }
 
   useEffect(() => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions', context)
+    axios.get('/qa/questions', context)
       .then((results) => {
         results.data.results.sort(compare);
         setQuestions(results.data.results);

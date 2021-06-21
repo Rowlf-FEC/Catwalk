@@ -124,7 +124,7 @@ function ListModifierButtons({
     if (!hasErrors) {
       const postNewReview = {
         method: 'post',
-        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/',
+        url: '/reviews/',
         data: {
           product_id: productId,
           rating: userRating.rating,

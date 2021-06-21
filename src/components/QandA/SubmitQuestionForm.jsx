@@ -59,7 +59,7 @@ function SubmitQuestionForm({ productId }) {
       body: message, name: nickname, email, product_id: productId,
     };
 
-    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions', data)
+    axios.post('/qa/questions', data)
       .then((results) => results)
       .catch((err) => {
         throw err;

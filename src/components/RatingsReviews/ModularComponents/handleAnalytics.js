@@ -7,7 +7,7 @@ export default (event, module) => {
 
   const analyticsRequest = {
     method: 'post',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/interactions/',
+    url: '/interactions/',
     data: {
       element: event.target.outerHTML,
       widget: module,

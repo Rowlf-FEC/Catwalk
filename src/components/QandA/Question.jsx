@@ -12,7 +12,7 @@ function Question({ q }) {
 
   function handleHelpful() {
     if (helpfulClick === false) {
-      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/questions/${q.question_id}/helpful`, {})
+      axios.put(`/qa/questions/${q.question_id}/helpful`, {})
         .then(() => {
           setHelpful(helpful + 1);
           setHelpfulClick(true);

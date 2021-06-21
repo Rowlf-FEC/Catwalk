@@ -27,7 +27,7 @@ function Answer({ answer }) {
 
   // this function is axios PUT to report an Answer on a specific Question
   function reportAnswer() {
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/qa/answers/${answer.id}/report`, {})
+    axios.put(`/qa/answers/${answer.id}/report`, {})
       .then(() => {
         setReport(true);
       })

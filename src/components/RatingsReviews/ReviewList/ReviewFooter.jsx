@@ -12,7 +12,7 @@ function ReviewFooter({ helpfulness, reviewId, sortReviews }) {
   const updateCount = () => {
     const updateHelpfulnessConfig = {
       method: 'put',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/${reviewId}/helpful`,
+      url: `/${reviewId}/helpful`,
     };
 
     axios(updateHelpfulnessConfig)
@@ -47,7 +47,7 @@ function ReviewFooter({ helpfulness, reviewId, sortReviews }) {
   const sendReportReview = () => {
     const sendReportConfig = {
       method: 'put',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/${reviewId}/report`,
+      url: `/${reviewId}/report`,
     };
 
     axios(sendReportConfig)

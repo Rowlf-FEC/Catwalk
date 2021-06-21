@@ -227,7 +227,7 @@ export default class ProductDetail extends React.Component {
     const { skuCart, qtyCart } = this.state;
     let n = 0;
     while (n < qtyCart) {
-      axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/cart', { sku_id: skuCart });
+      axios.post('/cart', { sku_id: skuCart });
       n += 1;
     }
   }

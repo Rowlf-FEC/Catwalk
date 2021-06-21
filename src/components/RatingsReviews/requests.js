@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getReviews = (productId, sortMethod = 'relevant') => (
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/reviews/', {
+  axios.get('/reviews/', {
     params: {
       page: 1,
       count: 200,
@@ -12,7 +12,7 @@ const getReviews = (productId, sortMethod = 'relevant') => (
 );
 
 const getMetaReviews = (productId) => (
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/meta', {
+  axios.get('/meta', {
     params: {
       product_id: productId,
     },
@@ -20,7 +20,7 @@ const getMetaReviews = (productId) => (
 );
 
 const getProductName = (productId) => (
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx/products/${productId}`, {
+  axios.get(`/products/${productId}`, {
   })
 );
 
