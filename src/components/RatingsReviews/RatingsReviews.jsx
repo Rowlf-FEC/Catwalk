@@ -61,6 +61,9 @@ class RatingsReviews extends Component {
               .then((metaReviews) => {
                 // set the number of reviews rendered to a max of 2 if there
                 // are more than 2 reviews to render.
+                console.log(name.data);
+                console.log(reviews.data);
+                console.log(metaReviews.data);
                 const total = reviews.data.results.length >= 2 ? 2 : reviews.data.results.length;
                 this.setState({
                   loaded: true,
