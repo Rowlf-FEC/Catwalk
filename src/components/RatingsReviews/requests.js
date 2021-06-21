@@ -12,7 +12,7 @@ const getReviews = (productId, sortMethod = 'relevant') => (
 );
 
 const getMetaReviews = (productId) => (
-  axios.get('/meta', {
+  axios.get('/reviews/meta', {
     params: {
       product_id: productId,
     },
